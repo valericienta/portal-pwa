@@ -1,16 +1,25 @@
 // This file can be replaced during build by using the `fileReplacements` array.
-// `ng build` replaces `environment.ts` with `environment.prod.ts`.
+// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
-};
+  production: false,
+  hostAPI: 'https://api.portaltrabajadores.cl/',
+  dev: true,
+  gps: true,
+  google: {
+   // clientId: '1091254295542-tdpaknchrp0pf0bpf7ssa37nvfdvhmr1.apps.googleusercontent.com',
+   clientId: '968316479331-ngfvq9o0sj36hh5bg2ujtlndhuq26eds.apps.googleusercontent.com',
+    scopes: ['profile', 'email']
 
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
+  },
+  msal: {
+    // appId: '8e8a4e37-f111-4220-85df-725ebb9ba678',
+    appId: 'be0bf2cf-8f4b-46f7-939d-50e429564d64',
+    authority: 'https://login.microsoftonline.com/consumers',
+    redirectUri: 'http://localhost:8100',
+    scope: 'https://graph.microsoft.com/User.Read',
+    authorizationBaseUrl: `https://login.microsoftonline.com/consumers/oauth2/v2.0/authorize`,
+    accessTokenEndpoint: 'https://login.microsoftonline.com/consumers/oauth2/v2.0/token',
+  }
+};

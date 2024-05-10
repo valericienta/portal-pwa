@@ -1,0 +1,40 @@
+<ion-card>
+  <ion-segment value="buttons" [(ngModel)]="tipo">
+    <ion-segment-button value="solicitudes" (click)="getSolicitudes()">
+      <ion-label>Solicitudes</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="vacaciones" (click)="getVacaciones()">
+      <ion-label>Vacaciones</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <ion-list>
+    <div *ngIf="tipo=='vacaciones'">
+      <ion-item *ngFor="let solicitud of solicitudes">
+        <ion-col size="6">
+          <ion-label class="semibold">{{solicitud.tipo}}</ion-label>
+        </ion-col>
+        <ion-col size="6" style="text-align: right;">
+          <ion-label>{{solicitud.desde | date : 'dd/MM/yy'}} - {{solicitud.hasta | date : 'dd/MM/yy'}}</ion-label>
+        </ion-col>
+      </ion-item>
+    </div>
+    <div *ngIf="tipo=='solicitudes'">
+    <ion-item-sliding *ngFor="let solicitud of solicitudes">
+      <ion-item>
+        <ion-col size="12">
+          <ion-label class="semibold">{{solicitud.tipo}}</ion-label>
+          <ion-label>{{solicitud.desde | date : 'dd/MM/yy'}} - {{solicitud.hasta | date : 'dd/MM/yy'}}</ion-label>
+          <div *ngIf="solicitud.idTipo==98">
+            {{solicitud.dias | number : '1.2-2' }} días
+            <ion-badge [ngClass]="solicitud.aprobada == true? 'badge-success':'badge-warning'"
+              mode="md">{{solicitud.aprobada ? 'Aprobada':'Pendiente Aprobación'}}</ion-badge>
+          </div>
+        </ion-col>
+      </ion-item>
+      <ion-item-options>
+        <ion-item-option color="danger" (click)="eliminarSolicitud(solicitud.id)"><fa-icon
+            [icon]="['fas', 'trash']"></fa-icon>Eliminar</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding></div>
+  </ion-list>
+</ion-card>

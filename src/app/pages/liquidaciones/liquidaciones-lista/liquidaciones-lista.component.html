@@ -1,0 +1,18 @@
+<ion-card *ngIf="liquidaciones.length>0">
+  <ion-list>
+    <ion-item (click)="showPDF(liquidacion)" *ngFor="let liquidacion of liquidaciones">
+      <ion-col size="12">
+        <ion-label class="semibold">{{liquidacion.referencia}}</ion-label>
+        <ion-label>{{liquidacion.fecha | date : 'dd/MM/yy'}}</ion-label>
+        <ion-badge [ngClass]="liquidacion.firmado == true? 'badge-success':'badge-warning'"
+          mode="md">{{liquidacion.firmado == true
+          ?
+          'Firmado':'Por Firmar'}}</ion-badge>
+      </ion-col>
+    </ion-item>
+  </ion-list>
+</ion-card>
+
+<ion-infinite-scroll  (ionInfinite)="onIonInfinite($event)">
+  <ion-infinite-scroll-content class="spinner-hide"></ion-infinite-scroll-content>
+</ion-infinite-scroll> 

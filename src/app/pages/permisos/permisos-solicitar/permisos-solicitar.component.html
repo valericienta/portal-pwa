@@ -1,0 +1,29 @@
+
+<div class="ion-padding">
+  <h1>Solicitar</h1>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <ion-item>
+          <ion-select label="Tipo de Permiso" placeholder="" [(ngModel)]="permiso.idTipoPermiso">
+            <ion-select-option *ngFor="let tipo of tipos" [value]="tipo.id">{{tipo.nombre}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12">
+        <ion-range-calendar [(ngModel)]="dateRange" [options]="optionsRange" [type]="type" [format]="'yyyy-MM-dd'">
+        </ion-range-calendar>
+      </ion-col>
+      <ion-col size="12">
+        <ion-item fill="outline" mode="md" style="margin-top: 15px">
+          <ion-label position="stacked">Observaciones</ion-label>
+          <ion-input type="text" [(ngModel)]="permiso.observaciones" ></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" style="justify-content: end;">
+        <ion-button id="btnCerrar" color="secondary" (click)="dismiss()">Cerrar</ion-button>
+        <ion-button id="btnSolicitar" (click)="solicitar()" [disabled]="!permiso.idTipoPermiso || !dateRange">Solicitar</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

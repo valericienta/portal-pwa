@@ -1,0 +1,40 @@
+<ion-content class="ion-padding">
+
+  <div *ngIf="!showTenants">
+    <img src="assets/img/logo_horizontal.png" class="img-logo" />
+
+    <h4 class="mb-2 mt-2">Hola! 👋</h4>
+    <p class="mb-4">Para poder continuar, necesitamos algunos datos</p>
+    <ion-list>
+      <ion-col size="12" class="ion-margin-bottom">
+        <ion-item class="box mb-3">
+          <ion-input labelPlacement="stacked" label="EMAIL" [(ngModel)]="user.email" type="email" inputmode="email"
+            autofocus></ion-input>
+        </ion-item>
+        <ion-item class="box mb-3">
+          <ion-input labelPlacement="stacked" label="CLAVE SECRETA" [(ngModel)]="user.password"
+            type="password"></ion-input>
+        </ion-item>
+
+      </ion-col>
+      <div class="mb-3">
+        <ion-button id="btnLogin" class="btn btn-primary" expand="block" (click)="Login('portal')">Ingresar</ion-button>
+      </div>
+
+      <div class="divider my-4">
+        <div class="divider-text">o con</div>
+      </div>
+      
+      <ion-row>
+        <ion-col size="12" class="ion-text-center">
+          <ion-button id="btn-google" color="google" (click)="Login('google')">
+            <ion-icon name="logo-google" color="danger"></ion-icon>Google
+          </ion-button>
+          <ion-button id="btn-microsoft" color="microsoft" (click)="Login('microsoft')">
+            <ion-icon name="logo-microsoft"></ion-icon>Microsoft
+          </ion-button></ion-col>
+      </ion-row>
+    </ion-list>
+  </div>
+  <app-select-tenant #tenant (hideTenant)="hideTenantDiv($event)" *ngIf="showTenants"></app-select-tenant>
+</ion-content>

@@ -1,0 +1,25 @@
+<app-header></app-header>
+<ion-content>
+  <ion-card>
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="3">
+          <h1  style="margin-left: 1rem !important;">
+            <fa-duotone-icon [icon]="['fad', 'file-invoice']"
+              class="text-primary big-icon" ></fa-duotone-icon></h1>
+        </ion-col>
+        <ion-col size="9">
+          <h4>Certificados
+            <small class="text-muted" style="display: block;">Los certificados que has solicitado</small>
+          </h4>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <app-certificado-lista ></app-certificado-lista>
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="showSolicitar()">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

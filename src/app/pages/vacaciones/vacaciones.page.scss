@@ -1,0 +1,41 @@
+.resumen {
+    width: 65%;
+    float: right;
+
+    ion-button {
+        display: flex;
+    }
+}
+
+
+.info-disponibles {
+    padding: 0 !important;
+    font-size: 1rem;
+    font-weight: 200;
+    width: 90%;
+    float: right;
+}
+
+ion-badge {
+    margin-left: 15px !important;
+    padding: 7px;
+    border-radius: 5px;
+}
+
+ion-fab {
+    bottom: 25px !important;
+    right: 25px !important;
+}
+
+@media only screen and (max-width: 320px) {
+// width: 320
+// Height: 568
+    .resumen {
+        width: 100%;
+        float: right;
+
+        ion-button {
+            display: flex;
+        }
+    }
+}

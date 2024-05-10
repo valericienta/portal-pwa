@@ -1,0 +1,44 @@
+<ion-header *ngIf="!showModalFirma">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-fab (click)="share()" *ngIf="!showModalFirma && loaddoc && (documento.idEstado!=3)">
+  <ion-fab-button size="small">
+    <fa-icon [icon]="['fal', 'share-nodes']"></fa-icon>
+  </ion-fab-button>
+</ion-fab>
+
+
+<ion-fab (click)="firmar2FA()"
+  *ngIf="!showModalFirma && loaddoc && (documento.idEstado==3) && habilitadoFirma">
+  <ion-fab-button size="small">
+    <fa-icon [icon]="['fal', 'signature']"></fa-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<!-- <ion-fab (click)="firmarFingerPrint()" *ngIf="loaddoc" id="fingerprint">
+  <ion-fab-button size="small">
+    <fa-icon [icon]="['fal', 'fingerprint']"></fa-icon>
+  </ion-fab-button>
+</ion-fab> -->
+<ion-content>
+
+  <div *ngIf="!showModalFirma">
+    <ngx-extended-pdf-viewer *ngIf="loaddoc" [src]="pdfSrc" backgroundColor="#ffffff" [showToolbar]="true"
+      [showSidebarButton]="false" [showFindButton]="false" [showPagingButtons]="false" [showDrawEditor]="false"
+      [showStampEditor]="false" [showTextEditor]="false" [showZoomButtons]="false" [showPresentationModeButton]="false"
+      [showOpenFileButton]="false" [showPrintButton]="false" [showDownloadButton]="false"
+      [showSecondaryToolbarButton]="false" [showRotateButton]="false" [showHandToolButton]="false"
+      [showScrollingButton]="false" [showSpreadButton]="false" [showPropertiesButton]="false"
+      [zoom]="'page-width'"></ngx-extended-pdf-viewer>
+  </div>
+
+  <app-select-metodo *ngIf="showModalFirma" (hideSelectMethod)="hideSelectComponent($event)" [id]="id"></app-select-metodo>
+</ion-content>

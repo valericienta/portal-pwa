@@ -1,0 +1,81 @@
+
+
+ion-button {
+  text-transform: none;
+  border-radius: 5px;
+}
+
+ion-button ion-icon {
+  margin-right: 8px;
+}
+
+.img-logo {
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 25% !important;
+}
+
+#btn-google {
+  color: #dd4b39;
+  border-color: rgba(0, 0, 0, 0);
+  background: #fae2df;
+  --box-shadow: none;
+}
+
+
+#btn-microsoft {
+  color: #0077b5;
+  border-color: rgba(0, 0, 0, 0);
+  background: #d6e9f3;
+  --box-shadow: none;
+  margin-left: 15px;
+}
+
+ion-content {
+  --ion-background-color: white;
+}
+
+/* LINES */
+
+.divider {
+  display: block;
+  text-align: center;
+  margin: 1rem 0;
+  overflow: hidden;
+  white-space: nowrap
+}
+
+.divider .divider-text {
+  position: relative;
+  display: inline-block;
+  font-size: .8rem;
+  padding: 0rem 1rem
+}
+
+.divider .divider-text i {
+  font-size: 1rem
+}
+
+.divider .divider-text:before,
+.divider .divider-text:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 100vw;
+  border-top: 1px solid rgba(67, 89, 113, .2)
+}
+
+.divider .divider-text:before {
+  right: 100%
+}
+
+.divider .divider-text:after {
+  left: 100%
+}
+
+.box {
+  border-color: #403E39;
+  border-width: thin;
+  border-style: solid;
+  border-radius: 3px;
+}

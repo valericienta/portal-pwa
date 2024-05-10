@@ -1,0 +1,60 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-grid>
+      <ion-row class="mt-3">
+        <ion-col class="h-center">
+          <ion-avatar class="h-center">
+            <img [src]="global.trabajador.avatar" />
+          </ion-avatar>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="h-center">
+          <h4>{{global.trabajador.nombre}} {{global.trabajador.paterno}}</h4>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col style="border-bottom: solid 1px lightgrey">Detalles</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col><ion-text class="bold">RUT:</ion-text>{{global.trabajador.rut}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col><ion-text class="bold">Email: </ion-text>{{global.trabajador.eMail}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col><ion-text class="bold">Telefono: </ion-text>{{global.trabajador.telefono}}</ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card class="card">
+    <ion-card-header>
+      <ion-card-title>Notificaciones</ion-card-title>
+      <ion-card-subtitle>¿Como quieres que te avisemos</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+     
+      <ion-checkbox labelPlacement="end" disabled="true" checked="true"> <fa-icon [icon]="['fal', 'envelope']" ></fa-icon>Email</ion-checkbox><br />
+      <ion-checkbox labelPlacement="end" (ionChange)="grabar()"  [(ngModel)]="WA" ><fa-icon [icon]="['fab', 'whatsapp']"></fa-icon>WhatsApp</ion-checkbox><br />      
+      <ion-checkbox labelPlacement="end"  (ionChange)="grabar()" [(ngModel)]="SMS"><fa-icon [icon]="['fal', 'comment-sms']"></fa-icon>SMS</ion-checkbox><br />
+
+     
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button (click)="redirectClave()" id="btnCambiar" class="ion-padding ion-float-right">Cambiar
+    Clave</ion-button>
+
+  <!-- <ion-card>
+    <ion-card-header>
+      <ion-card-title>Cambiar Clave Secreta</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <app-alert type="warning" title="Será redireccionado al sitio para cambiar su clave"
+        content="Asegúrate que al menos cumpla con un mínimo de 6 caracteres de largo, que contenga minúsculas, mayúsculas y números"></app-alert>
+    </ion-card-content>
+  </ion-card> -->
+</ion-content>

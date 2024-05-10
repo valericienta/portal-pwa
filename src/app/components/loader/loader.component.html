@@ -1,0 +1,8 @@
+<div class="overlay" *ngIf="isLoading | async">
+  <button ion-button icon-only (click)="dismiss()">
+    <ion-icon name="close" id="close"></ion-icon>
+  </button>
+  <div class="spin">
+    <ion-spinner name="circular" color="primary"></ion-spinner>
+  </div>
+</div>

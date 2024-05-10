@@ -1,0 +1,23 @@
+<ion-card class="ion-padding">
+  <h6 class="text-uppercase text-primary"><fa-duotone-icon [icon]="['fad', 'calendar-day']"
+      class="text-primary"></fa-duotone-icon>Liquidaciones</h6>
+  <ion-grid>
+  
+      <ion-row *ngFor="let item of liquidaciones">
+        <ion-col size="11">
+          <ion-label class="semibold block">{{item.referencia}}</ion-label>
+          <ion-label class="text-muted">{{item.fecha | date : 'dd/MM/yy'}}</ion-label>
+        </ion-col>
+        <ion-col size="1">
+          <ion-button class="btn-light-primary" size="small" *ngIf="global.habilitadoFirma && item.idEstado==3"
+            (click)="showPDF(item)">
+            <fa-icon [icon]="['fal', 'signature']"></fa-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+    <ion-row  class="text-primary" style="text-align: center;">
+      <ion-col size="12"><a [routerLink]="['/liquidaciones']">Ver Todos</a></ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card>

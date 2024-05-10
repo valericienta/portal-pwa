@@ -1,0 +1,64 @@
+<ion-content class="ion-padding">
+  <div *ngIf="!showAddCode">
+    <div class="ion-text-center">
+      <h1>Método de Autentificación</h1>
+      Debes indicar como quieres recibir tu código de validación para poder completar la firma del documento.
+    </div>
+    <ion-card>
+      <!-- <ion-grid fixed>
+        <ion-row>
+          <ion-col size="3">
+            <h1 style="margin-left: 1rem !important;">
+              <fa-icon [icon]="['fab', 'whatsapp']" class="big-icon">
+              </fa-icon>
+            </h1>
+          </ion-col>
+          <ion-col size="9" (click)="sendCode('wa')">
+            <h3>Whatsapp</h3>
+            Te enviaremos el código a tu teléfono, para que puedas firmar el documento.
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+    <ion-card> -->
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="3">
+            <h1 style="margin-left: 1rem !important;">
+              <fa-icon [icon]="['fal', 'message-sms']" class="big-icon">
+              </fa-icon>
+            </h1>
+          </ion-col>
+          <ion-col size="9" (click)="sendCode('sms')">
+            <h3>Mensaje de Texto</h3>
+            Te enviaremos el código por mensaje de texto a tu teléfono, para que puedas firmar el documento.
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+    <ion-card>
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="3">
+            <h1 style="margin-left: 1rem !important;">
+              <fa-icon [icon]="['fal', 'envelopes']" class="big-icon">
+              </fa-icon>
+            </h1>
+          </ion-col>
+          <ion-col size="9" (click)="sendCode('email')">
+            <h3>Correo Electrónico</h3>
+            Te enviaremos el código a tu Correo Electrónico, para que puedas firmar el documento.
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" style="justify-content: end;">
+          <ion-button id="btnCerrar" color="secondary" class="ion-float-right" (click)="dismiss()">Cerrar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <app-add-codigo *ngIf="showAddCode" (hideAddCode)="hideAddCodeComponent($event)" [id]="id" [via]="via"></app-add-codigo>
+</ion-content>  

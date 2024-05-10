@@ -1,0 +1,14 @@
+    [
+      { "id": -1, "tipo": "Todos" },
+      { "id": 0, "tipo": "Contrato" },
+      { "id": 1, "tipo": "Anexo" },
+      { "id": 2, "tipo": "Finiquito" },
+      { "id": 3, "tipo": "Carta Aviso" },
+      { "id": 4, "tipo": "Certificado" },
+      { "id": 5, "tipo": "Declaración Jurada" },
+      { "id": 6, "tipo": "Liquidación de Sueldo" },
+      { "id": 7, "tipo": "Comprobante Vacaciones" },
+      { "id": 8, "tipo": "Otro Documento" },
+      { "id": 9, "tipo": "Carta Amonestación" },
+      { "id": 10, "tipo": "Permiso" }
+    ]

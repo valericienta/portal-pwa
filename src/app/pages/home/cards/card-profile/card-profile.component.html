@@ -1,0 +1,22 @@
+<ion-card>
+  <div class="user-profile-header">
+    <div class="user-profile-header-banner">
+      <img src="assets/img/profile-banner.jpg" alt="Banner image" class="rounded-top">
+    </div>
+    <img [src]="trabajador.urlFotografia" alt="user image" class="rounded user-profile-img">
+  </div>
+  <div class="user-profile-info">
+    <h4>    
+      {{trabajador.nombre}} {{trabajador.paterno}} {{trabajador.materno}}</h4>
+    <ion-grid>
+      <ion-row>
+        <ion-col> <fa-duotone-icon [icon]="['fad', 'briefcase']" ></fa-duotone-icon>{{trabajador.cargo}}</ion-col>
+        <ion-col> <fa-duotone-icon [icon]="['fad', 'location-dot']" ></fa-duotone-icon>{{trabajador.sucursal}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col> <fa-duotone-icon [icon]="['fad', 'file-contract']" ></fa-duotone-icon>Contrato desde {{trabajador.fechaContrato | date: 'dd-MM-yyyy': "UTC"}}</ion-col>
+       
+      </ion-row>
+    </ion-grid>   
+  </div>
+</ion-card>

@@ -1,0 +1,13 @@
+ion-modal.modalPDF::part(content) {    
+    --width: 80%;
+    --height: auto;
+    position: absolute; 
+    top: 5%;
+    border-radius: 5px;
+    display: block;
+
+ } .modal-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: var(--ion-modal-padding);
+}

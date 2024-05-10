@@ -1,0 +1,8 @@
+<ion-card class="ion-padding">
+  <h6 class="text-uppercase text-danger"><fa-duotone-icon [icon]="['fad', 'siren']"
+    class="text-danger"></fa-duotone-icon>Emergencias</h6>
+  <ion-grid> 
+      <ion-row class="d-flex mb-3"><fa-icon [icon]="['fal', 'user-nurse']" ></fa-icon><span class="semibold">Nombre:</span><span>{{trabajador.emergenciaContacto}}</span></ion-row>
+      <ion-row class="d-flex mb-3"><fa-icon [icon]="['fal', 'family']" ></fa-icon><span class="semibold mr-2">Relación:</span><span>{{trabajador.emergenciaRelacion}}</span></ion-row>
+      <ion-row class="d-flex mb-3"><fa-icon [icon]="['fal', 'phone-office']" ></fa-icon><span class="semibold mr-2">Teléfono:</span> <span>{{trabajador.emergenciaTelefono}}</span></ion-row>
+  </ion-grid>
