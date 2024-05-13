@@ -4,8 +4,10 @@ export const environment = {
   dev: false,
   gps: true,
   google: {
-    clientId: '968316479331-ngfvq9o0sj36hh5bg2ujtlndhuq26eds.apps.googleusercontent.com',
+    clientId: '1091254295542-tdpaknchrp0pf0bpf7ssa37nvfdvhmr1.apps.googleusercontent.com',
     scopes: ['profile', 'email']
+    //clientId: '968316479331-ngfvq9o0sj36hh5bg2ujtlndhuq26eds.apps.googleusercontent.com',
+    //id PROD Skualo 
   },
   msal: {
     appId: '8e8a4e37-f111-4220-85df-725ebb9ba678',

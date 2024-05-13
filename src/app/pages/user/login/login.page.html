@@ -36,5 +36,6 @@
       </ion-row>
     </ion-list>
   </div>
+  <span style="position: absolute; right: 2px; bottom: 2px;">{{global.appVersion}}</span>
   <app-select-tenant #tenant (hideTenant)="hideTenantDiv($event)" *ngIf="showTenants"></app-select-tenant>
 </ion-content>
