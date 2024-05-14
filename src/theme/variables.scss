@@ -15,7 +15,7 @@
   
   --ion-font-family: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   /** primary **/
-  --ion-color-primary: #696cff;
+  --ion-color-primary: #6A6CFF;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
@@ -132,6 +132,16 @@
   --color-black-rgb: 67, 89, 113;
   --color-body-color-rgb: 105, 122, 141;
   --color-body-bg-rgb: 245, 245, 249;
+
+  // acentos por sección
+  --liquidaciones-accent: #3697DE;
+  --vacaciones-accent: #41C360;
+  --certificados-accent: #7658CB;
+  --permisos-accent: #FFA736;
+  --todos-docs-accent: #2A55A8;
+  --eventos-accent: #F38ADD;
+  --aldia-accent: #178171;
+  --historial-accent: #a8a8a8;
 }
 
 

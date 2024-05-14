@@ -19,12 +19,14 @@ import { FiltrarComponent } from './filtrar/filtrar.component';
 import { IonRangeCalendarModule } from '@googlproxer/ion-range-calendar';
 import { TwoFAComponent } from './twofa/twofa.component';
 import {FingerprintAIO} from '@awesome-cordova-plugins/fingerprint-aio/ngx';
+import { SectionTitleComponent } from './section-title/section-title.component';
 @NgModule({
   declarations: [HeaderComponent,
     PdfPreviewComponent,
     AddCodigoComponent,
     SelectMetodoComponent,
     FiltrarComponent,
+    SectionTitleComponent,
     TwoFAComponent
   ],
   imports: [
@@ -44,7 +46,8 @@ import {FingerprintAIO} from '@awesome-cordova-plugins/fingerprint-aio/ngx';
     AddCodigoComponent,
     SelectMetodoComponent,
     FiltrarComponent,
-    TwoFAComponent
+    TwoFAComponent,
+    SectionTitleComponent
   ],
   providers:[ FingerprintAIO,],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

@@ -25,8 +25,8 @@ import { environment } from 'src/environments/environment';
 
 export class PdfPreviewComponent implements OnInit {
 
-  id: string = '';
-  documento: Documento = {};
+  id: string;
+  documento: Documento;
   habilitadoFirma: boolean = false;
   zoom = 1.0;
 
@@ -40,7 +40,8 @@ export class PdfPreviewComponent implements OnInit {
   showModalFirma: boolean = false;
   public spreadMode: 'off' | 'even' | 'odd' = 'off';
 
-  public available: boolean = false;  //'finger' | 'face' | 'biometric'
+  public availableFinger: boolean = false;
+  //'finger' | 'face' | 'biometric'
 
 
   constructor(public documentosService: DocumentosService,
@@ -68,28 +69,17 @@ export class PdfPreviewComponent implements OnInit {
 
 
   checkFingerPrint() {
-    this.fp.isAvailable().then((result) => { this.available = true; }).catch((err) => {
 
-      console.log({ err });
-    });
+    this.fp.isAvailable().then((result) => {
+      alert(result);
+      this.availableFinger = true;
+    })
+      .catch((err) => {
+
+       alert({ err });
+      });
   }
 
-  async firmarFingerPrint() {
-    console.log(`Utilizar ${this.available} para firmar`);
-    let fpo: FingerprintOptions;
-    fpo = {
-      title: 'Firma de documentos',
-      description: 'Firme este documento',
-      fallbackButtonTitle: 'Use Backup',
-      disableBackup: true
-    }
-    this.fp.show(fpo).then(() => {
-      this.signDocumento();
-
-    }).catch((error: any) => {
-
-    });
-  }
 
 
   setPDFData() {
@@ -115,6 +105,7 @@ export class PdfPreviewComponent implements OnInit {
 
   firmar2FA() {
     let signdate = localStorage.getItem("2fa-date");
+    alert('ultima firma:' + signdate)
     if (signdate) {
       var duration = moment.duration(moment().diff(moment(signdate)));
       var minutes = duration.asMinutes();
@@ -122,8 +113,24 @@ export class PdfPreviewComponent implements OnInit {
       else this.signDocumento();
     }
     else this.showModalFirma = true;
-
   }
+
+  async firmarFingerPrint() {
+    let fpo: FingerprintOptions;
+    fpo = {
+      title: 'Firma de documentos',
+      description: 'Firme este documento',
+      fallbackButtonTitle: 'Use Backup',
+      disableBackup: true
+    }
+    this.fp.show(fpo).then(() => {
+      this.signDocumento();
+
+    }).catch((error: any) => {
+
+    });
+  }
+
 
   async signDocumento() {
     const coordinates = await Geolocation.getCurrentPosition();
@@ -137,10 +144,11 @@ export class PdfPreviewComponent implements OnInit {
       })
   }
 
-  firmar() {
-    if (this.available) this.firmarFingerPrint();
+  firmarDocumento() {
+    if (this.availableFinger) this.firmarFingerPrint();
     else this.firmar2FA();
   }
+
   cancel() {
     this.modalCtrl.dismiss(null, 'cancel');
   }

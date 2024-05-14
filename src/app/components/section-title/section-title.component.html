@@ -1,0 +1,9 @@
+<ion-item lines="none">
+  <ion-avatar slot="start" [style]="'background: var(' + section.color + ')'"
+    ><fa-icon [icon]="['fal', section.icon]"></fa-icon
+  ></ion-avatar>
+  <ion-label>
+    <h1 [style]="'color:var(' + section.color + ')'">{{ section.title }}</h1>
+    <p>{{ section.message }}</p>
+  </ion-label>
+</ion-item>

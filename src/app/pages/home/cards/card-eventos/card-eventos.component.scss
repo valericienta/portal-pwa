@@ -1,3 +1,25 @@
 .user-profile-img{
 width: 50%;
 }
+
+ion-avatar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  fa-icon{
+    font-size: 1.2rem;
+    color: #FFFFFF;
+    margin: 0
+  }
+}
+
+.scroll-container {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.card-wrapper {
+  display: inline-flex;
+  margin-right: 10px;
+  /* Espacio entre tarjetas */
+}

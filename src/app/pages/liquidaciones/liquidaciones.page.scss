@@ -11,3 +11,8 @@ ion-modal.modalPDF::part(content) {
     flex: 1 1 auto;
     padding: var(--ion-modal-padding);
 }
+
+.item-title{
+    font-weight: 600;
+    font-size: 16px;
+}

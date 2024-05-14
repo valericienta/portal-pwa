@@ -8,17 +8,18 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { ControlsModule } from 'src/app/controls/controls.module';
 import { HomeCardsModule } from './cards/cards.module';
+import { HomeCardComponent } from './home-card/home-card.component';
 
 @NgModule({
-  imports: [CommonModule,
+  imports: [
+    CommonModule,
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
     HomeCardsModule,
     ControlsModule,
-    ComponentsModule],
-  declarations: [
-    HomePage
+    ComponentsModule,
   ],
+  declarations: [HomePage, HomeCardComponent],
 })
-export class HomePageModule { }
+export class HomePageModule {}

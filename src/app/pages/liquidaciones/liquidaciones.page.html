@@ -1,21 +1,38 @@
-<app-header></app-header>
+<app-header title="Liquidaciones"></app-header>
 <ion-content>
-  <ion-card>
-    <ion-grid fixed>
-      <ion-row>
-        <ion-col size="3">
-          <h1 style="margin-left: 1rem !important;">
-            <fa-duotone-icon [icon]="['fad', 'money-check-alt']" class="text-primary big-icon"></fa-duotone-icon>
-          </h1>
-        </ion-col>
-        <ion-col size="9">
-          <h4>Liquidaciones
-            <small class="text-muted" style="display: block;">Tus Liquidaciones firmadas y por firmar</small>
-          </h4>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
-  <app-liquidaciones-lista></app-liquidaciones-lista>
-  
+  <app-section-title [section]="liquidacionesTitle"></app-section-title>
+  <ion-list>
+    <ion-item
+      (click)="showPDF(liquidacion)"
+      *ngFor="let liquidacion of porFirmar"
+    >
+      <ion-label>
+        <h4 class="item-title">{{liquidacion.referencia}}</h4>
+        <p>{{liquidacion.fecha | date : 'dd/MM/yy'}}</p>
+      </ion-label>
+      <ion-badge class="badge-warning">Por firmar</ion-badge>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="firmados.length>0">
+    <app-section-title [section]="historialTitle"></app-section-title>
+    <ion-list>
+      <ion-item
+        (click)="showPDF(liquidacion)"
+        *ngFor="let liquidacion of firmados"
+      >
+        <ion-label>
+          <h4 class="item-title">{{liquidacion.referencia}}</h4>
+          <p>{{liquidacion.fecha | date : 'dd/MM/yy'}}</p>
+        </ion-label>
+
+        <ion-badge class="badge-success">Firmado</ion-badge>
+      </ion-item>
+    </ion-list>
+  </div>
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content
+      class="spinner-hide"
+    ></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

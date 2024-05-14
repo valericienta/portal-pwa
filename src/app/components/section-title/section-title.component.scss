@@ -1,0 +1,17 @@
+ion-item{
+  --background: none;
+  margin-top: 1rem;
+  h1{
+    font-size: 23px;
+  }
+  ion-avatar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    fa-icon{
+      color: #FFFFFF;
+      margin: 0;
+      font-size: 1.2rem;
+    }
+  }
+}

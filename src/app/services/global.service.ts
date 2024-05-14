@@ -15,7 +15,7 @@ export class GlobalService {
   trabajador: Trabajador;
   habilitadoFirma: boolean = false;
 
-  appVersion: string;
+  appVersion: string = 'pwa @ 1.0.4';
 
 
   constructor() {

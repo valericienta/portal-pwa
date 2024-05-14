@@ -1,0 +1,18 @@
+<div class="background">
+  <!-- tenemos el sexo del usuario? para mostrar el msj com bienvenido / a  -->
+  <h1>Bienvenida, {{ trabajador.nombre }}!</h1>
+  <ion-card>
+    <p>Frecuentes</p>
+    <ion-row class="ion-justify-content-between">
+      <div *ngFor="let icon of icons" style="text-align: -webkit-center">
+        <a [routerLink]="icon.path">
+          <div class="icon" [style]="'background: var(' + icon.color + ')'">
+            <div class="circle"></div>
+            <fa-icon [icon]="['fal', icon.icon]"></fa-icon>
+          </div>
+          <p [style]="'color:var(' + icon.color + ')'">{{ icon.name }}</p>
+        </a>
+      </div>
+    </ion-row>
+  </ion-card>
+</div>

@@ -1,3 +1,4 @@
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { GlobalService } from './global.service';
@@ -19,6 +20,29 @@ export class DocumentosService {
   getLiquidaciones(page?: number, size?: number) {
     let filtro = {
       tipo: 6,
+      pageNumber: page,
+      pageSize: size,
+      orderby: ["fecha ASC"]
+    }
+    return this.search(filtro);
+  }
+
+  getLiquidacionesFirmadas(page?: number, size?: number) {
+    let filtro = {
+      tipo: 6,
+      idEstado: 4,
+      pageNumber: page,
+      pageSize: size,
+      orderby: ["fecha ASC"]
+    }
+    return this.search(filtro);
+  }
+
+
+  getLiquidacionesPorFirmar(page?: number, size?: number) {
+    let filtro = {
+      tipo: 6,
+      idEstado: 3,
       pageNumber: page,
       pageSize: size,
       orderby: ["fecha ASC"]
