@@ -10,26 +10,20 @@ import { GlobalService } from 'src/app/services/global.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-
 export class HeaderComponent implements OnInit {
-  @ViewChild('popover') popover: any = {};
+  @ViewChild('popover') popover: IonPopover;
+  @Input() title: string;
   isOpen = false;
 
-  constructor(public authService: AuthenticationService, public router: Router, public global: GlobalService) {
+  constructor(
+    public authService: AuthenticationService,
+    public router: Router,
+    public global: GlobalService
+  ) {}
 
-  }
-
-  ngOnInit() {
-  }
-
-
-  presentPopover(e: Event) {
-    this.popover.event = e;
-    this.isOpen = true;
-  }
+  ngOnInit() {}
 
   goMiCuenta() {
-    this.popover.dismiss();
     this.router.navigate(['/mi-cuenta']);
   }
 
@@ -41,5 +35,4 @@ export class HeaderComponent implements OnInit {
     localStorage.clear();
     this.router.navigate(['/login']);
   }
-
 }

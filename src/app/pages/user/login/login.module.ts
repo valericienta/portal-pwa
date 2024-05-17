@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
+import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { SelectTenantComponent } from './select-tenant/select-tenant.component';
 

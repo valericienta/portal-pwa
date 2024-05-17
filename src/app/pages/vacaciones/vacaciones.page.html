@@ -1,31 +1,78 @@
-<app-header></app-header>
+<app-header title="Vacaciones"></app-header>
+<div class="diasdisp">
+  <p>Días disponibles</p>
+  <h2>{{dias}} <span>días</span></h2>
+</div>
+
 <ion-content>
-<ion-card>
+  <!-- SOLICTUDES DE VACACIONES -->
+  <app-section-title [section]="vacationTitle"></app-section-title>
+  <ion-list *ngIf="solicitudes.length > 0">
+    <ion-item *ngFor="let sol of solicitudes">
+      <ion-label>{{sol.tipo}}</ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="block" style="margin: 16px" (click)="showSolicitar()">
+    <ion-icon name="add"></ion-icon>
+    Nueva solicitud
+  </ion-button>
+
+  <!-- HISTORIAL DE VACACIONES -->
+  <app-section-title [section]="historialTitle"></app-section-title>
+  <ion-list>
+    <ion-item *ngFor="let his of historial">
+      <ion-label>
+        <h4 class="item-title">{{his.tipo}}</h4>
+        <p>{{his.desde| date : 'dd/MM/yy'}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<!-- <ion-content>
+  <ion-card>
     <ion-grid fixed>
       <ion-row>
         <ion-col size="3">
-          <h1  style="margin-left: 1rem !important;">
-            <fa-duotone-icon [icon]="['fad', 'umbrella-beach']"
-              class="text-primary big-icon" ></fa-duotone-icon></h1>
+          <h1 style="margin-left: 1rem !important">
+            <fa-duotone-icon
+              [icon]="['fad', 'umbrella-beach']"
+              class="text-primary big-icon"
+            ></fa-duotone-icon>
+          </h1>
         </ion-col>
         <ion-col size="9">
-          <h4>Vacaciones
-            <small class="text-muted" style="display: block;">Detalle de tus vacaciones devengadas y utilizadas</small>
+          <h4>
+            Vacaciones
+            <small class="text-muted" style="display: block"
+              >Detalle de tus vacaciones devengadas y utilizadas</small
+            >
           </h4>
         </ion-col>
       </ion-row>
       <div class="resumen">
-        <ion-button class="info-disponibles mb-3" expand="block" fill="outline" color="tertiary" size="small">
+        <ion-button
+          class="info-disponibles mb-3"
+          expand="block"
+          fill="outline"
+          color="tertiary"
+          size="small"
+        >
           <ion-badge slot="end" color="tertiary">{{dias}}</ion-badge>
           <ion-label>Días Disponibles</ion-label>
         </ion-button>
       </div>
     </ion-grid>
   </ion-card>
-  <app-vacaciones-lista (updateDiasEvent)="mostrarDiasDisponibles($event)"></app-vacaciones-lista>
-  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button (click)="showSolicitar()">
-      <ion-icon name="add-outline"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-</ion-content>
+  <app-vacaciones-lista
+    (updateDiasEvent)="mostrarDiasDisponibles($event)"
+  ></app-vacaciones-lista>
+</ion-fab>
+</ion-content> 
+<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+  <ion-fab-button (click)="showSolicitar()">
+    <ion-icon name="add-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+-->

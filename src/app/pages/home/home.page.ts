@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController, ModalController, Platform ,getPlatforms } from '@ionic/angular';
+import { MenuController, ModalController } from '@ionic/angular';
 import { Trabajador } from 'src/app/models/trabajador.model';
 import { GlobalService } from 'src/app/services/global.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { LoadingService } from '../../services/loading.service';
 
 import { ToastService } from 'src/app/services/toast.service';
+import * as moment from 'moment';
 import { IconName } from '@fortawesome/pro-solid-svg-icons';
+import { VacacionesService } from 'src/app/services/vacaciones.service';
 
 @Component({
   selector: 'app-home',
@@ -31,8 +33,7 @@ export class HomePage implements OnInit {
     public menuController: MenuController,
     public loadingService: LoadingService,
     public modalCtrl: ModalController,
-    public toastService: ToastService,
-    public platform: Platform
+    public toastService: ToastService
   ) {
     this.trabajador = this.global.trabajador;
   }
@@ -40,7 +41,6 @@ export class HomePage implements OnInit {
   ngOnInit() {
     // this.loadingService.isLoading.next(true)
     this.validateHabilitacion();
-    alert(getPlatforms()); 
   }
 
   ionViewWillEnter() {

@@ -10,9 +10,9 @@ import { GlobalService } from 'src/app/services/global.service';
 })
 export class SelectMetodoComponent implements OnInit {
   @Output() hideSelectMethod = new EventEmitter<boolean>();
-  @Input() id: string='';
+  @Input() id: string;
   public showAddCode: boolean = false;
-  public via: string='';
+  public via: string;
 
   constructor(public global: GlobalService,
     public documentoService: DocumentosService,

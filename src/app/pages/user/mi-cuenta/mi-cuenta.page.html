@@ -1,6 +1,37 @@
-<app-header></app-header>
-
+<app-header title="Mi cuenta"></app-header>
 <ion-content [fullscreen]="true">
+  <ion-item lines="none" class="user">
+    <ion-avatar slot="start">
+      <img alt="" [src]="global.trabajador.avatar" />
+    </ion-avatar>
+    <ion-label>
+      <h1>{{global.trabajador.nombre}} {{global.trabajador.paterno}}</h1>
+      <p>{{global.trabajador.cargo}} en {{global.trabajador.sucursal}}</p>
+    </ion-label>
+  </ion-item>
+  <ion-segment [value]="segment" (ionChange)="setSegment($event)">
+    <ion-segment-button value="personal">
+      <ion-label>Personal</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="contract">
+      <ion-label>Contrato</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="config">
+      <ion-label>Ajustes</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div *ngIf="segment == 'personal'">
+    <app-personal></app-personal>
+  </div>
+  <div *ngIf="segment == 'contract'">
+    <app-contrato></app-contrato>
+  </div>
+  <div *ngIf="segment == 'config'">
+    <app-configuracion></app-configuracion>
+  </div>
+</ion-content>
+<!-- <ion-content [fullscreen]="true">
   <ion-card>
     <ion-grid>
       <ion-row class="mt-3">
@@ -48,7 +79,7 @@
   <ion-button (click)="redirectClave()" id="btnCambiar" class="ion-padding ion-float-right">Cambiar
     Clave</ion-button>
 
-  <!-- <ion-card>
+   <ion-card>
     <ion-card-header>
       <ion-card-title>Cambiar Clave Secreta</ion-card-title>
     </ion-card-header>
@@ -56,5 +87,5 @@
       <app-alert type="warning" title="Será redireccionado al sitio para cambiar su clave"
         content="Asegúrate que al menos cumpla con un mínimo de 6 caracteres de largo, que contenga minúsculas, mayúsculas y números"></app-alert>
     </ion-card-content>
-  </ion-card> -->
-</ion-content>
+  </ion-card> 
+</ion-content> -->

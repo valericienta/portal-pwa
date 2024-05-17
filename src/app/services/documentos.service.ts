@@ -1,4 +1,3 @@
-
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { GlobalService } from './global.service';
@@ -49,7 +48,7 @@ export class DocumentosService {
     }
     return this.search(filtro);
   }
-
+  
   getCertificados(page?: number, size?: number) {
     let filtro = {
       tipo: 4,

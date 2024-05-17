@@ -16,9 +16,9 @@ import { ModalController } from '@ionic/angular';
 export class AddCodigoComponent implements OnInit {
   @Output() hideAddCode = new EventEmitter<boolean>();
 
-  codigo: string='';
-  @Input() via: string='';
-  @Input() id: string='';
+  codigo: string;
+  @Input() via: string;
+  @Input() id: string;
 
   constructor(
     public documentosService: DocumentosService,

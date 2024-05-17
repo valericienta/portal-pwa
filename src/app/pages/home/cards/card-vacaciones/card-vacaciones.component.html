@@ -1,18 +1,5 @@
-<!-- <ion-card class="ion-padding">
-  <h6 class="text-uppercase text-primary">
-    <fa-duotone-icon [icon]="['fad', 'umbrella-beach']" class="text-primary"></fa-duotone-icon>  
-    Vacaciones Disponibles</h6>
-  <ion-grid>
-    <span class="text-muted">Al día de hoy</span>
-    <span>
-      <h5 class="card-title text-success mb-1">{{dias}}</h5>
-    </span>
-    <span class="text-muted">días hábiles</span>
-  </ion-grid>
-  <ion-button fill="solid" [routerLink]="['/vacaciones']">
-    Ver Detalle
-  </ion-button>
-</ion-card> -->
-
-<!-- TODO mostrar dias pendientes  -->
 <app-section-title [section]="vacSection"></app-section-title>
+<div class="diasdisp">
+  <p>Días disponibles</p>
+  <h2>{{ dias }} <span>días</span></h2>
+</div>

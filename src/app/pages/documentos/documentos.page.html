@@ -1,17 +1,28 @@
-<app-header></app-header>
+<app-header title="Documentos"></app-header>
+<!-- <ion-content>
+  <app-section-title [section]="documentosTitle"></app-section-title>
+  <app-section-title [section]="historialTitle"></app-section-title>
+</ion-content> -->
+
 <ion-content>
   <div *ngIf="!pendientes">
     <ion-card>
       <ion-grid fixed>
         <ion-row>
           <ion-col size="3">
-            <h1 style="margin-left: 1rem !important;">
-              <fa-duotone-icon [icon]="['fad', 'folder-open']" class="text-primary big-icon"></fa-duotone-icon>
+            <h1 style="margin-left: 1rem !important">
+              <fa-duotone-icon
+                [icon]="['fad', 'folder-open']"
+                class="text-primary big-icon"
+              ></fa-duotone-icon>
             </h1>
           </ion-col>
           <ion-col size="9">
-            <h4>Documentos
-              <small class="text-muted" style="display: block;">Acá encontrarás todos tus documentos publicados.</small>
+            <h4>
+              Documentos
+              <small class="text-muted" style="display: block"
+                >Acá encontrarás todos tus documentos publicados.</small
+              >
             </h4>
           </ion-col>
         </ion-row>
@@ -26,14 +37,20 @@
       <ion-grid fixed>
         <ion-row>
           <ion-col size="3">
-            <h1 style="margin-left: 1rem !important;">
-              <fa-duotone-icon [icon]="['fad', 'file-signature']" class="text-primary big-icon"></fa-duotone-icon>
+            <h1 style="margin-left: 1rem !important">
+              <fa-duotone-icon
+                [icon]="['fad', 'file-signature']"
+                class="text-primary big-icon"
+              ></fa-duotone-icon>
             </h1>
           </ion-col>
           <ion-col size="9">
-            <h4>Documentos Por Firmar
-              <small class="text-muted" style="display: block;">Acá encontrarás todos los documentos pendientes de ser
-                firmados.</small>
+            <h4>
+              Documentos Por Firmar
+              <small class="text-muted" style="display: block"
+                >Acá encontrarás todos los documentos pendientes de ser
+                firmados.</small
+              >
             </h4>
           </ion-col>
         </ion-row>
@@ -42,5 +59,5 @@
     <app-2fa *ngIf="global.habilitadoFirma"></app-2fa>
     <app-documentos-lista [pendientes]="pendientes"></app-documentos-lista>
   </div>
-
 </ion-content>
+-->

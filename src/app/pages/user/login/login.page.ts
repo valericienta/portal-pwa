@@ -45,7 +45,6 @@ export class LoginPage implements OnInit {
     this.showTenants = false;
     this.msalService.handleRedirectObservable().subscribe();
     this.msalService.instance.setNavigationClient(new CustomNavigationClient(this.iab));
-    console.log(this.global.appVersion)
   }
 
   ngOnInit() {

@@ -23,6 +23,12 @@ export class HomeCardComponent implements OnInit {
       path: '/liquidaciones',
     },
     {
+      name: 'Vacaciones',
+      color: '--vacaciones-accent',
+      icon: this.vacIcon,
+      path: '/vacaciones',
+    },
+    {
       name: 'Permisos',
       color: '--permisos-accent',
       icon: this.perIcon,
@@ -33,12 +39,6 @@ export class HomeCardComponent implements OnInit {
       color: '--certificados-accent',
       icon: this.certIcon,
       path: '/certificados',
-    },
-    {
-      name: 'Vacaciones',
-      color: '--vacaciones-accent',
-      icon: this.vacIcon,
-      path: '/vacaciones',
     },
   ];
 

@@ -16,12 +16,18 @@
 </ion-fab>
 
 
-<ion-fab (click)="firmarDocumento()"
+<ion-fab (click)="firmar2FA()"
   *ngIf="!showModalFirma && loaddoc && (documento.idEstado==3) && habilitadoFirma">
   <ion-fab-button size="small">
     <fa-icon [icon]="['fal', 'signature']"></fa-icon>
   </ion-fab-button>
 </ion-fab>
+
+<!-- <ion-fab (click)="firmarFingerPrint()" *ngIf="loaddoc" id="fingerprint">
+  <ion-fab-button size="small">
+    <fa-icon [icon]="['fal', 'fingerprint']"></fa-icon>
+  </ion-fab-button>
+</ion-fab> -->
 <ion-content>
 
   <div *ngIf="!showModalFirma">

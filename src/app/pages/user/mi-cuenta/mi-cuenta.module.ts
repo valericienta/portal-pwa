@@ -9,7 +9,9 @@ import { MiCuentaPageRoutingModule } from './mi-cuenta-routing.module';
 import { MiCuentaPage } from './mi-cuenta.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
-
+import { ConfiguracionComponent } from './configuracion/configuracion.component';
+import { PersonalComponent } from './personal/personal.component';
+import { ContratoComponent } from './contrato/contrato.component';
 
 @NgModule({
   imports: [
@@ -17,9 +19,14 @@ import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
     FormsModule,
     IonicModule,
     ComponentsModule,
-    MiCuentaPageRoutingModule,   
+    MiCuentaPageRoutingModule,
   ],
-  declarations: [MiCuentaPage],
-  providers: [  InAppBrowser ]
+  declarations: [
+    MiCuentaPage,
+    ConfiguracionComponent,
+    PersonalComponent,
+    ContratoComponent,
+  ],
+  providers: [InAppBrowser],
 })
 export class MiCuentaPageModule {}

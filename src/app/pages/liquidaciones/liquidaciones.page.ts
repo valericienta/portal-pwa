@@ -80,6 +80,7 @@ export class LiquidacionesPage implements OnInit {
             ? this.firmados.push(item)
             : this.porFirmar.push(item);
         });
+        this.firmados.reverse();
         this.setMensaje(this.porFirmar.length);
         if (ev) this.infiniteScroll.complete();
       });

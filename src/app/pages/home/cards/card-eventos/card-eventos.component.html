@@ -3,7 +3,7 @@
 <div class="scroll-container">
   <div class="card-wrapper">
     <ion-card *ngFor="let event of eventos" class="ion-padding">
-      <ion-item>
+      <ion-item lines="none">
         <!-- Si el evento es cumpleaños se verá la foto, si es festividad u otro un icono -->
         <ion-avatar slot="start" *ngIf="event.urlFotografia.length > 0">
           <img [src]="event.urlFotografia" />

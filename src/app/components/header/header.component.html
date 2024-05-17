@@ -3,13 +3,12 @@
     <ion-buttons slot="start">
       <ion-menu-button menu="main"></ion-menu-button>
     </ion-buttons>
-    <div  class="ellipsis">
-      
-      <fa-duotone-icon [icon]="['fad', 'building']" class="text-info"></fa-duotone-icon>
-      <ion-text class="ellipsis">{{global.empresa}}</ion-text>
+    <div class="ellipsis">
+      <ion-text class="ellipsis" *ngIf="!title">{{ global.empresa }}</ion-text>
+      <ion-text class="ellipsis" *ngIf="title">{{ title }}</ion-text>
     </div>
     <ion-buttons slot="end">
-      <ion-avatar slot="end" (click)="presentPopover($event)">
+      <ion-avatar slot="end" (click)="goMiCuenta()">
         <img [src]="global.trabajador.avatar" />
         <button class="status"></button>
       </ion-avatar>
@@ -17,7 +16,12 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-popover #popover [isOpen]="isOpen" (didDismiss)="isOpen = false" class="my-custom-class">
+<!-- <ion-popover
+  #popover
+  [isOpen]="isOpen"
+  (didDismiss)="isOpen = false"
+  class="my-custom-class"
+>
   <ng-template>
     <ion-content class="ion-padding">
       <ion-grid>
@@ -29,25 +33,23 @@
             </ion-avatar>
           </ion-col>
           <ion-col>
-            {{global.trabajador.nombre}}<br>{{global.trabajador.paterno}}
+            {{ global.trabajador.nombre }}<br />{{ global.trabajador.paterno }}
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
             <div (click)="goMiCuenta()">
-              <fa-icon  [icon]="['fal', 'user']" ></fa-icon>
-              <ion-label>
-                Mi Cuenta
-              </ion-label>
+              <fa-icon [icon]="['fal', 'user']"></fa-icon>
+              <ion-label> Mi Cuenta </ion-label>
             </div>
           </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col (click)="SignOut()">  <fa-icon [icon]="['fal', 'power-off']" ></fa-icon> Salir</ion-col>
+          <ion-col (click)="SignOut()">
+            <fa-icon [icon]="['fal', 'power-off']"></fa-icon> Salir</ion-col
+          >
         </ion-row>
       </ion-grid>
-
-
     </ion-content>
   </ng-template>
-</ion-popover>
+</ion-popover> -->
