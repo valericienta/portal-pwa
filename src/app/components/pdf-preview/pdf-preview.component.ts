@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 import { GlobalService } from 'src/app/services/global.service';
 import { LoadingService } from '../../services/loading.service';
 import { Geolocation } from '@capacitor/geolocation';
-import { FingerprintAIO, FingerprintOptions } from '@awesome-cordova-plugins/fingerprint-aio/ngx';
 import * as moment from 'moment';
 import { environment } from 'src/environments/environment';
 
@@ -40,7 +39,7 @@ export class PdfPreviewComponent implements OnInit {
   showModalFirma: boolean = false;
   public spreadMode: 'off' | 'even' | 'odd' = 'off';
 
-  public available: boolean=false;
+  public available: boolean = false;
   //'finger' | 'face' | 'biometric'
 
 
@@ -50,8 +49,7 @@ export class PdfPreviewComponent implements OnInit {
     public loadingService: LoadingService,
     public toastService: ToastService,
     public router: Router,
-    public platform: Platform,
-    public fp: FingerprintAIO) {
+    public platform: Platform) {
 
     this.loadingService.isLoading.next(true);
     // this.platform.pause.subscribe(() => { this.modalCtrl.dismiss() });
@@ -69,27 +67,11 @@ export class PdfPreviewComponent implements OnInit {
 
 
   checkFingerPrint() {
-    this.fp.isAvailable().then((result) => { this.available = true; }).catch((err) => {
-
-      console.log({ err });
-    });
+  
   }
 
   async firmarFingerPrint() {
-    console.log(`Utilizar ${this.available} para firmar`);
-    let fpo: FingerprintOptions;
-    fpo = {
-      title: 'Firma de documentos',
-      description: 'Firme este documento',
-      fallbackButtonTitle: 'Use Backup',
-      disableBackup: true
-    }
-    this.fp.show(fpo).then(() => {
-      this.signDocumento();
-
-    }).catch((error: any) => {
-
-    });
+   
   }
 
 

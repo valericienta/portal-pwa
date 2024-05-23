@@ -1,0 +1,8 @@
+app/web/portal_148c8/twa/DelegationService.java
+ app.web.portal_148c8.twa.DelegationService
+app/web/portal_148c8/twa/BuildConfig.java
+ app.web.portal_148c8.twa.BuildConfig
+app/web/portal_148c8/twa/LauncherActivity.java
+ app.web.portal_148c8.twa.LauncherActivity
+app/web/portal_148c8/twa/Application.java
+ app.web.portal_148c8.twa.Application
