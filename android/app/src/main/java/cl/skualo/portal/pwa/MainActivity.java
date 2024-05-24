@@ -1,4 +1,4 @@
-package portaltrabajadores.skualo.cl;
+package cl.skualo.portal.pwa;
 
 import com.getcapacitor.BridgeActivity;
 

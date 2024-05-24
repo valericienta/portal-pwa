@@ -2,6 +2,6 @@
 <resources>
     <string name="app_name">Portal de Trabajadores</string>
     <string name="title_activity_main">Portal de Trabajadores</string>
-    <string name="package_name">portaltrabajadores.skualo.cl</string>
-    <string name="custom_url_scheme">portaltrabajadores.skualo.cl</string>
+    <string name="package_name">cl.skualo.portal.pwa</string>
+    <string name="custom_url_scheme">cl.skualo.portal.pwa</string>
 </resources>

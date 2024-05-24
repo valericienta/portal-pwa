@@ -1,13 +1,13 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'portaltrabajadores.skualo.cl',
+  appId: 'cl.skualo.portal.pwa',
   appName: 'Portal de Trabajadores',
   webDir: 'www',
   plugins: {
     GoogleAuth: {
       scopes: ['profile', 'email'],
-      serverClientId: '1091254295542-tdpaknchrp0pf0bpf7ssa37nvfdvhmr1.apps.googleusercontent.com',
+      serverClientId: '1005811561165-4fp63o42fg9jatju82c0ocu3ge3sesot.apps.googleusercontent.com',
       forceCodeForRefreshToken: true
     },
     SplashScreen: {
