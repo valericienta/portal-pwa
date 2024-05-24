@@ -1,19 +1,19 @@
-<app-header></app-header>
+<app-header [title]="true"></app-header>
 <ion-content [fullscreen]="true">
   <div id="container">
     <div class="container-fluid flex-grow-1 container-p-y" *ngIf="trabajador">
       <app-home-card [trabajador]="trabajador"></app-home-card>
-
-      <!-- el siguiente título se muestra si no hay ningún documento que esté pendiente de firma o aprobación -->
-      <app-section-title [section]="alDiaSection"></app-section-title>
-
-      <!-- mostrar si tienen firma/aprobacion pendiente respectivamente  -->
-      <!-- ver si el pedido de los datos se gestiona desde esta clase o desde la misma card ? -->
-      <app-card-liquidaciones></app-card-liquidaciones>
+      <app-card-eventos></app-card-eventos>
       <app-card-vacaciones></app-card-vacaciones>
 
-      <!-- muestra siempre  -->
-      <app-card-eventos></app-card-eventos>
+      <app-section-title
+        *ngIf="documentosPendientes.length == 0"
+        [section]="alDiaSection"
+      ></app-section-title>
+      <app-card-documentos
+        *ngIf="documentosPendientes.length > 0"
+        [documentos]="documentosPendientes"
+      ></app-card-documentos>
     </div>
   </div>
 </ion-content>

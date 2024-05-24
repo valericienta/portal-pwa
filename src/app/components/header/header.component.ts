@@ -12,7 +12,7 @@ import { GlobalService } from 'src/app/services/global.service';
 })
 export class HeaderComponent implements OnInit {
   @ViewChild('popover') popover: IonPopover;
-  @Input() title: string;
+  @Input() title: boolean;
   isOpen = false;
 
   constructor(

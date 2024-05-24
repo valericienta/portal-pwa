@@ -4,8 +4,7 @@
       <ion-menu-button menu="main"></ion-menu-button>
     </ion-buttons>
     <div class="ellipsis">
-      <ion-text class="ellipsis" *ngIf="!title">{{ global.empresa }}</ion-text>
-      <ion-text class="ellipsis" *ngIf="title">{{ title }}</ion-text>
+      <ion-text class="ellipsis" *ngIf="title">{{ global.empresa }}</ion-text>
     </div>
     <ion-buttons slot="end">
       <ion-avatar slot="end" (click)="goMiCuenta()">

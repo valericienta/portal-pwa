@@ -12,7 +12,7 @@ export class DocumentosPage implements OnInit {
   docIcon: IconName = 'folder';
   documentosTitle = {
     title: 'Documentos',
-    message: 'Documentos pendientes de firma o aprobación',
+    message: 'Documentos pendientes de firma.',
     color: '--documentos-accent',
     icon: this.docIcon,
   };
@@ -20,7 +20,7 @@ export class DocumentosPage implements OnInit {
   histIcon: IconName = 'history';
   historialTitle = {
     title: 'Historial de documentos',
-    message: 'Aquí encontraras todos tus documentos publicados.',
+    message: 'Aquí encontraras todos tus documentos.',
     color: '--historial-accent',
     icon: this.histIcon,
   };

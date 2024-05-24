@@ -8,7 +8,7 @@ import { Trabajador } from 'src/app/models/trabajador.model';
   styleUrls: ['./home-card.component.scss'],
 })
 export class HomeCardComponent implements OnInit {
-  @Input() trabajador: Trabajador;
+  @Input() trabajador: any;
 
   liqIcon: IconName = 'file-contract';
   perIcon: IconName = 'calendar-range';
@@ -44,5 +44,7 @@ export class HomeCardComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.trabajador);
+  }
 }
