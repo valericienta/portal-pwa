@@ -1,37 +1,35 @@
 <app-section-title [section]="eventosSection"></app-section-title>
 
-<div class="scroll-container">
-  <div class="card-wrapper">
-    <ion-card *ngFor="let event of eventos" class="ion-padding">
-      <ion-item lines="none">
-        <!-- Si el evento es cumpleaños se verá la foto, si es festividad u otro un icono -->
-        <ion-avatar slot="start" *ngIf="event.urlFotografia.length > 0">
-          <img [src]="event.urlFotografia" />
-        </ion-avatar>
-        <ion-avatar
-          slot="start"
-          *ngIf="event.urlFotografia.length < 1"
-          [style]="'background: var(--eventos-accent)'"
+<swiper-container pagination="true">
+  <swiper-slide *ngFor="let event of eventos" class="ion-padding">
+    <ion-item lines="none" class="card">
+      <!-- Si el evento es cumpleaños se verá la foto, si es festividad u otro un icono -->
+      <ion-avatar slot="start" *ngIf="event.urlFotografia.length > 0">
+        <img [src]="event.urlFotografia" />
+      </ion-avatar>
+      <ion-avatar
+        slot="start"
+        *ngIf="event.urlFotografia.length < 1"
+        [style]="'background: var(--eventos-accent)'"
+      >
+        <fa-icon [icon]="['fal', 'party-horn']"></fa-icon>
+      </ion-avatar>
+      <ion-label>
+        <h2
+          style="color: var(--eventos-accent)"
+          *ngIf="event.urlFotografia.length == 0"
         >
-          <fa-icon [icon]="['fal', 'party-horn']"></fa-icon>
-        </ion-avatar>
-        <ion-label>
-          <h2
-            style="color: var(--eventos-accent)"
-            *ngIf="event.urlFotografia.length == 0"
-          >
-            Festividad
-          </h2>
-          <h2
-            style="color: var(--eventos-accent)"
-            *ngIf="event.urlFotografia.length > 0"
-          >
-            Cumpleaños
-          </h2>
-          <h2>{{ event.referencia }}</h2>
-          <p>{{ event.inicio | date : "dd/mm/yyyy" }}</p>
-        </ion-label>
-      </ion-item>
-    </ion-card>
-  </div>
-</div>
+          Festividad
+        </h2>
+        <h2
+          style="color: var(--eventos-accent)"
+          *ngIf="event.urlFotografia.length > 0"
+        >
+          Cumpleaños
+        </h2>
+        <h2>{{ event.referencia }}</h2>
+        <p>{{ event.inicio | date : "dd/mm/yyyy" }}</p>
+      </ion-label>
+    </ion-item>
+  </swiper-slide>
+</swiper-container>

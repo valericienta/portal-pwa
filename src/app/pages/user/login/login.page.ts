@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ErrorHandler, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { GlobalService } from 'src/app/services/global.service';
@@ -56,23 +56,26 @@ export class LoginPage implements OnInit {
   }
 
   async checkFingerPrint() {
-    const result = await NativeBiometric.isAvailable();
-    alert(`Datos biométricos: ${JSON.stringify(result)}`)
-    if (!result.isAvailable) return;
 
-    const isFaceID = result.biometryType == BiometryType.FACE_ID;
+    NativeBiometric.isAvailable().then((result) => {
+      alert(`Datos biométricos: ${JSON.stringify(result)}`)
+      if (!result.isAvailable) return;
 
-    const verified = await NativeBiometric.verifyIdentity({
-      title: "Firma de documentos",
-      subtitle: "Utilice sus datos biometricos",
-      description: " para firmar el documento",
+      const isFaceID = result.biometryType == BiometryType.FACE_ID;
+
+      const verified = NativeBiometric.verifyIdentity({
+        title: "Firma de documentos",
+        subtitle: "Utilice sus datos biometricos",
+        description: " para firmar el documento",
+      })
+        .then(() => true)
+        .catch(() => false);
+
+      if (!verified) return;
+
     })
-      .then(() => true)
-      .catch(() => false);
+      .catch((error) => alert(error))
 
-    if (!verified) return;
-
-   
   }
 
 

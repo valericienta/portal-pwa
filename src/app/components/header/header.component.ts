@@ -12,19 +12,20 @@ import { GlobalService } from 'src/app/services/global.service';
 })
 export class HeaderComponent implements OnInit {
   @ViewChild('popover') popover: IonPopover;
-  @Input() title: string;
+  @Input() title: boolean;
   isOpen = false;
 
   constructor(
     public authService: AuthenticationService,
     public router: Router,
     public global: GlobalService
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   goMiCuenta() {
     this.router.navigate(['/mi-cuenta']);
+    this.popover.dismiss();
   }
 
   SignOut() {
@@ -35,4 +36,19 @@ export class HeaderComponent implements OnInit {
     localStorage.clear();
     this.router.navigate(['/login']);
   }
+
+  presentPopover(e: Event) {
+    this.popover.event = e;
+    this.isOpen = true;
+  }
+
+  selectTenant(item: any) {
+    this.global.tenant = item.identifier;
+    this.global.empresa = item.name.replace("Empresa", "");
+    this.authService.setUser(this.global.tenant).then(() => {
+      this.router.navigate(['/home']);
+      this.popover.dismiss();
+    })
+  }
 }
+

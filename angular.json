@@ -47,7 +47,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "8mb",
+                  "maximumWarning": "10mb",
                   "maximumError": "10mb"
                 },
                 {
@@ -86,10 +86,8 @@
             },
             "development": {
               "buildTarget": "app:build:development"
-            },
-            "ci": {
-              "progress": false
             }
+           
           },
           "defaultConfiguration": "development"
         },

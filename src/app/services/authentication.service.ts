@@ -29,13 +29,13 @@ export class AuthenticationService {
     public toastService: ToastService,
     public usuarioService: UsuarioService
   ) {
-    if (!isPlatform('capacitor')) {
+   
       GoogleAuth.initialize({
         clientId: environment.google.clientId,
         scopes: environment.google.scopes,
         grantOfflineAccess: true,
       });
-    }
+    
   }
 
   GoogleSignIn() {

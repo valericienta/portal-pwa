@@ -1,6 +1,7 @@
 <div class="background">
   <!-- tenemos el sexo del usuario? para mostrar el msj com bienvenido / a  -->
-  <h1>Bienvenida, {{ trabajador.nombre }}!</h1>
+  <h1 *ngIf="!trabajador.esMasculino">Bienvenida, {{ trabajador.nombre }}!</h1>
+  <h1 *ngIf="trabajador.esMasculino">Bienvenido, {{ trabajador.nombre }}!</h1>
   <ion-card>
     <p>Frecuentes</p>
     <ion-row class="ion-justify-content-between">

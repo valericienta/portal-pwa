@@ -9,6 +9,7 @@ import { ToastService } from 'src/app/services/toast.service';
 import * as moment from 'moment';
 import { IconName } from '@fortawesome/pro-solid-svg-icons';
 import { VacacionesService } from 'src/app/services/vacaciones.service';
+import { Documento } from 'src/app/interfaces/documento.interface';
 
 @Component({
   selector: 'app-home',
@@ -22,10 +23,12 @@ export class HomePage implements OnInit {
 
   alDiaSection = {
     title: '¡Estás al día!',
-    message: 'No tienes documentos ni solicitudes pendientes',
+    message: 'No tienes documentos ni solicitudes pendientes.',
     color: '--aldia-accent',
     icon: this.alDiaIcon,
   };
+
+  documentosPendientes: Documento[] = [];
 
   constructor(
     public usuarioService: UsuarioService,
@@ -39,7 +42,7 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
-    // this.loadingService.isLoading.next(true)
+
     this.validateHabilitacion();
   }
 

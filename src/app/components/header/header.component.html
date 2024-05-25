@@ -4,11 +4,10 @@
       <ion-menu-button menu="main"></ion-menu-button>
     </ion-buttons>
     <div class="ellipsis">
-      <ion-text class="ellipsis" *ngIf="!title">{{ global.empresa }}</ion-text>
-      <ion-text class="ellipsis" *ngIf="title">{{ title }}</ion-text>
+      <ion-text class="ellipsis" *ngIf="title">{{ global.empresa }}</ion-text>
     </div>
     <ion-buttons slot="end">
-      <ion-avatar slot="end" (click)="goMiCuenta()">
+      <ion-avatar slot="end" (click)="presentPopover($event)">
         <img [src]="global.trabajador.avatar" />
         <button class="status"></button>
       </ion-avatar>
@@ -16,17 +15,23 @@
   </ion-toolbar>
 </ion-header>
 
-<!-- <ion-popover
-  #popover
-  [isOpen]="isOpen"
-  (didDismiss)="isOpen = false"
-  class="my-custom-class"
->
+<ion-popover #popover [isOpen]="isOpen" (didDismiss)="isOpen = false" class="my-custom-class">
   <ng-template>
     <ion-content class="ion-padding">
       <ion-grid>
         <ion-row>
-          <ion-col>
+
+
+          <ion-grid *ngIf="this.global.tenants.length > 1">
+            <ion-row *ngFor="let tenant of global.tenants" (click)="selectTenant(tenant)">
+              <ion-col size="11"> <ion-label>{{ tenant.name}}</ion-label></ion-col>
+              <ion-col size="1" class="ion-text-end">
+                <ion-icon name="checkmark-outline" *ngIf="global.tenant == tenant.identifier"></ion-icon>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+          <!-- <ion-col>
             <ion-avatar>
               <img [src]="global.trabajador.avatar" />
               <button></button>
@@ -34,7 +39,7 @@
           </ion-col>
           <ion-col>
             {{ global.trabajador.nombre }}<br />{{ global.trabajador.paterno }}
-          </ion-col>
+          </ion-col> -->
         </ion-row>
         <ion-row>
           <ion-col>
@@ -46,10 +51,9 @@
         </ion-row>
         <ion-row>
           <ion-col (click)="SignOut()">
-            <fa-icon [icon]="['fal', 'power-off']"></fa-icon> Salir</ion-col
-          >
+            <fa-icon [icon]="['fal', 'power-off']"></fa-icon> Salir</ion-col>
         </ion-row>
       </ion-grid>
     </ion-content>
   </ng-template>
-</ion-popover> -->
+</ion-popover>
