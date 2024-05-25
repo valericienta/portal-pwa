@@ -4,5 +4,4 @@
     <string name="title_activity_main">Portal de Trabajadores</string>
     <string name="package_name">cl.skualo.portal.pwa</string>
     <string name="custom_url_scheme">cl.skualo.portal.pwa</string>
-    <string name="server_client_id">1005811561165-on19n463kt0jlbjkbbtr64o7po7r5rsb.apps.googleusercontent.com</string>
 </resources>
