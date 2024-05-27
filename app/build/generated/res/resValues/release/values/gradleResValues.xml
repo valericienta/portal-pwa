@@ -18,13 +18,13 @@
     <!-- Value from default config. -->
     <string name="fallbackType" translatable="false">customtabs</string>
     <!-- Value from default config. -->
-    <string name="fullScopeUrl" translatable="false">https://portal-148c8.web.app/</string>
+    <string name="fullScopeUrl" translatable="false">https://portal-trabajadores-423220.web.app/</string>
     <!-- Value from default config. -->
     <string name="generatorApp" translatable="false">bubblewrap-cli</string>
     <!-- Value from default config. -->
-    <string name="hostName" translatable="false">portal-148c8.web.app</string>
+    <string name="hostName" translatable="false">portal-trabajadores-423220.web.app</string>
     <!-- Value from default config. -->
-    <string name="launchUrl" translatable="false">https://portal-148c8.web.app/</string>
+    <string name="launchUrl" translatable="false">https://portal-trabajadores-423220.web.app/</string>
     <!-- Value from default config. -->
     <string name="launcherName" translatable="false">Portal</string>
     <!-- Value from default config. -->
@@ -38,10 +38,10 @@
     <!-- Value from default config. -->
     <string name="orientation" translatable="false">default</string>
     <!-- Value from default config. -->
-    <string name="providerAuthority" translatable="false">app.web.portal_148c8.twa.fileprovider</string>
+    <string name="providerAuthority" translatable="false">cl.skualo.portal.pwa.fileprovider</string>
     <!-- Value from default config. -->
     <integer name="splashScreenFadeOutDuration">300</integer>
     <!-- Value from default config. -->
-    <string name="webManifestUrl" translatable="false">https://portal-148c8.web.app/manifest.webmanifest</string>
+    <string name="webManifestUrl" translatable="false">https://portal-trabajadores-423220.web.app/manifest.webmanifest</string>
 
 </resources>

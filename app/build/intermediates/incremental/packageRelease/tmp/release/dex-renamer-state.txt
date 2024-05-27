@@ -1,4 +1,4 @@
-#Thu May 23 11:54:48 ART 2024
+#Mon May 27 20:49:34 ART 2024
 base.0=E\:\\Desarrollos\\skualo\\portal-pwa\\app\\build\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

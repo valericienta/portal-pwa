@@ -1,0 +1,14 @@
+[
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "cl.skualo.portal.pwa",
+            "sha256_cert_fingerprints": [
+                "C3:CC:78:CB:26:96:A1:7E:6C:C9:24:75:D6:6C:11:0B:B7:C8:83:DE:F3:D7:4F:18:89:39:7F:1F:08:64:90:AF"
+            ]
+        }
+    }
+]

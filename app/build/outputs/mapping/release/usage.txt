@@ -12,7 +12,6 @@ androidx.core.view.OneShotPreDrawListener
 com.google.android.gms.dynamic.zah
 com.google.android.gms.common.zzz
 androidx.browser.trusted.splashscreens.SplashScreenVersion
-app.web.portal_148c8.twa.R$string
 androidx.annotation.Size
 androidx.browser.browseractions.BrowserServiceFileProvider
 androidx.cursoradapter.widget.SimpleCursorAdapter$CursorToStringConverter
@@ -86,6 +85,7 @@ androidx.versionedparcelable.ParcelUtils
 androidx.core.text.util.LinkifyCompat$LinkifyMask
 com.google.android.gms.common.images.ImageManager
 com.google.android.gms.common.internal.AccountType
+cl.skualo.portal.pwa.R$id
 com.google.android.gms.common.zzab
 androidx.asynclayoutinflater.view.AsyncLayoutInflater$1
 com.google.android.gms.common.api.internal.TaskApiCall:
@@ -137,6 +137,7 @@ androidx.fragment.app.FragmentActivity$HostCallbacks:
     public boolean onShouldShowRequestPermissionRationale(java.lang.String)
     public synthetic bridge java.lang.Object onGetHost()
 androidx.core.view.ScrollingView
+cl.skualo.portal.pwa.R$bool
 androidx.core.graphics.BlendModeUtils$1
 androidx.core.hardware.display.DisplayManagerCompat
 androidx.core.widget.NestedScrollView$SavedState$1
@@ -215,7 +216,6 @@ com.google.android.gms.internal.common.zzi:
     public void <init>()
 android.support.customtabs.trusted.ITrustedWebActivityCallback$Stub$Proxy:
     public java.lang.String getInterfaceDescriptor()
-app.web.portal_148c8.twa.R$id
 com.google.androidbrowserhelper.locationdelegation.R
 androidx.versionedparcelable.VersionedParcelParcel:
     public void writeByteArray(byte[],int,int)
@@ -239,7 +239,6 @@ com.google.android.gms.common.R
 com.google.android.gms.common.zze
 com.google.android.gms.common.util.Clock$-CC
 androidx.core.widget.PopupMenuCompat
-app.web.portal_148c8.twa.R$xml
 androidx.lifecycle.R
 com.google.android.gms.internal.location.zzat
 androidx.core.app.RemoteInput$Builder
@@ -419,6 +418,7 @@ com.google.android.gms.base.R$drawable:
     public static final int common_google_signin_btn_text_light_normal_background
     public static final int googleg_disabled_color_18
     public static final int googleg_standard_color_18
+cl.skualo.portal.pwa.R$xml
 com.google.androidbrowserhelper.trusted.FocusActivity:
     private static final java.lang.String EXTRA_FOCUS_INTENT
 com.google.android.gms.location.LocationSettingsStates
@@ -737,6 +737,7 @@ androidx.lifecycle.ReportFragment:
     static androidx.lifecycle.ReportFragment get(android.app.Activity)
     void setProcessListener(androidx.lifecycle.ReportFragment$ActivityInitializationListener)
     private static final java.lang.String REPORT_FRAGMENT_TAG
+cl.skualo.portal.pwa.twa.LauncherActivity
 androidx.browser.trusted.TrustedWebActivityDisplayMode:
     public static androidx.browser.trusted.TrustedWebActivityDisplayMode fromBundle(android.os.Bundle)
     public static final java.lang.String KEY_ID
@@ -779,6 +780,7 @@ androidx.core.content.res.FontResourcesParserCompat$FontFileResourceEntry
 androidx.core.internal.view.SupportSubMenu
 androidx.core.view.NestedScrollingParent3
 androidx.core.provider.SelfDestructiveThread$1
+cl.skualo.portal.pwa.R$dimen
 androidx.core.graphics.PathParser$PathDataNode
 com.google.android.gms.internal.location.zzcr
 androidx.core.view.ViewParentCompat
@@ -826,7 +828,6 @@ androidx.core.location.LocationManagerCompat
 com.google.android.gms.common.internal.ServiceSpecificExtraArgs$CastExtraArgs
 com.google.android.gms.common.internal.zal:
     public void <init>()
-app.web.portal_148c8.twa.R$layout
 com.google.android.gms.internal.common.zzq
 com.google.android.gms.common.api.ResolvableApiException:
     public android.app.PendingIntent getResolution()
@@ -921,7 +922,6 @@ com.google.android.gms.common.api.internal.zabv:
 androidx.fragment.R$color
 com.google.android.gms.dynamite.zzl
 com.google.android.gms.common.moduleinstall.ModuleInstallStatusUpdate$InstallState
-app.web.portal_148c8.twa.R$dimen
 androidx.core.content.ContextCompat$MainHandlerExecutor
 androidx.core.app.JobIntentService
 com.google.android.gms.common.api.internal.zabe
@@ -1020,7 +1020,6 @@ androidx.collection.ContainerHelpers:
     private void <init>()
 com.google.android.gms.common.internal.LibraryVersion
 com.google.android.gms.location.SettingsClient
-app.web.portal_148c8.twa.R$color
 com.google.android.gms.common.internal.service.zac
 com.google.android.gms.common.zzaa
 androidx.core.hardware.fingerprint.FingerprintManagerCompat$CryptoObject
@@ -1265,7 +1264,6 @@ com.google.android.gms.location.zzj
 com.google.android.gms.common.api.internal.zaa
 com.google.android.gms.tasks.OnTokenCanceledListener
 com.google.android.gms.internal.base.zar
-app.web.portal_148c8.twa.R$mipmap
 androidx.browser.customtabs.TrustedWebUtils:
     private void <init>()
     public static void launchBrowserSiteSettings(android.content.Context,androidx.browser.customtabs.CustomTabsSession,android.net.Uri)
@@ -1533,6 +1531,7 @@ com.google.android.gms.internal.location.zzcq
 androidx.core.app.JobIntentService$CommandProcessor
 com.google.android.gms.location.ActivityTransitionEvent
 androidx.legacy.coreui.R$integer
+cl.skualo.portal.pwa.BuildConfig
 androidx.core.provider.FontsContractCompat$5
 androidx.core.view.ViewCompat$1
 com.google.android.gms.location.zzaj
@@ -1639,7 +1638,9 @@ com.google.android.gms.internal.common.zza:
     protected final void zzD(int,android.os.Parcel)
 androidx.core.view.KeyEventDispatcher:
     private void <init>()
+cl.skualo.portal.pwa.R$string
 androidx.core.view.NestedScrollingChild3
+cl.skualo.portal.pwa.R$integer
 com.google.android.gms.common.api.internal.zaaa
 com.google.android.gms.common.internal.service.zag
 androidx.core.content.res.TypedArrayUtils
@@ -1674,7 +1675,6 @@ androidx.browser.browseractions.BrowserActionsFallbackMenuUi$2
 com.google.android.gms.common.BlockingServiceConnection
 com.google.android.gms.common.api.internal.zaz
 androidx.core.widget.ScrollerCompat
-app.web.portal_148c8.twa.R$attr
 androidx.fragment.app.FragmentHostCallback:
     public void <init>(android.content.Context,android.os.Handler,int)
     public abstract java.lang.Object onGetHost()
@@ -1920,7 +1920,6 @@ androidx.browser.trusted.TrustedWebActivityServiceConnectionPool
 androidx.documentfile.provider.TreeDocumentFile
 com.google.android.gms.common.GoogleSourceStampsChecker
 androidx.core.view.MarginLayoutParamsCompat
-app.web.portal_148c8.twa.R
 androidx.viewpager.R
 androidx.core.widget.NestedScrollView$OnScrollChangeListener
 androidx.core.graphics.BlendModeCompat
@@ -1934,12 +1933,14 @@ androidx.customview.R$string
 com.google.android.gms.common.internal.zzaj
 com.google.android.gms.internal.location.zzck
 androidx.swiperefreshlayout.widget.SwipeRefreshLayout$3
+cl.skualo.portal.pwa.twa.Application
 androidx.annotation.IntRange
 com.google.android.gms.security.ProviderInstaller$ProviderInstallListener
 androidx.browser.customtabs.CustomTabColorSchemeParams$Builder:
     public androidx.browser.customtabs.CustomTabColorSchemeParams$Builder setSecondaryToolbarColor(int)
 androidx.browser.customtabs.CustomTabsSessionToken
 androidx.concurrent.futures.CallbackToFutureAdapter$Completer
+cl.skualo.portal.pwa.R$layout
 com.google.android.gms.common.api.internal.StatusCallback
 androidx.browser.customtabs.CustomTabsServiceConnection:
     android.content.Context getApplicationContext()
@@ -2018,7 +2019,6 @@ androidx.core.view.ViewCompat$FocusRealDirection
 com.google.android.gms.common.PackageVerificationResult
 androidx.core.math.MathUtils
 androidx.core.os.TraceCompat
-app.web.portal_148c8.twa.R$raw
 com.google.android.gms.common.zab
 androidx.core.app.JobIntentService$GenericWorkItem
 com.google.android.gms.common.config.zza
@@ -2113,6 +2113,7 @@ androidx.core.net.ConnectivityManagerCompat
 androidx.concurrent.futures.CallbackToFutureAdapter$FutureGarbageCollectedException
 androidx.core.content.res.ResourcesCompat$FontCallback$2
 androidx.browser.browseractions.BrowserActionsFallbackMenuAdapter$ViewHolderItem
+cl.skualo.portal.pwa.R$color
 androidx.customview.R$styleable
 com.google.android.gms.location.zzi
 com.google.android.gms.internal.common.zzak
@@ -2180,6 +2181,7 @@ com.google.androidbrowserhelper.locationdelegation.LocationProviderAndroid:
     private static final java.lang.String TAG
 com.google.androidbrowserhelper.R
 com.google.android.gms.internal.location.zzaa
+cl.skualo.portal.pwa.R$styleable
 androidx.loader.content.ModernAsyncTask$2
 com.google.android.gms.internal.location.zzo:
     public abstract com.google.android.gms.common.internal.ICancelToken zze(com.google.android.gms.location.CurrentLocationRequest,com.google.android.gms.internal.location.zzq)
@@ -2349,7 +2351,6 @@ com.google.androidbrowserhelper.trusted.ChromeOsSupport:
     public static final java.lang.String ARC_PAYMENT_APP
 androidx.swiperefreshlayout.R$styleable
 androidx.versionedparcelable.VersionedParcel$ParcelException
-app.web.portal_148c8.twa.R$drawable
 com.google.android.gms.dynamic.zzb
 androidx.browser.trusted.NotificationApiHelperForM:
     private void <init>()
@@ -2446,6 +2447,7 @@ android.support.customtabs.ICustomTabsCallback$Default
 androidx.asynclayoutinflater.view.AsyncLayoutInflater$OnInflateFinishedListener
 com.google.android.gms.internal.base.zav
 com.google.android.gms.security.zza
+cl.skualo.portal.pwa.R$raw
 com.google.android.gms.common.SupportErrorDialogFragment:
     public static com.google.android.gms.common.SupportErrorDialogFragment newInstance(android.app.Dialog)
 com.google.android.gms.internal.location.zzf
@@ -2567,6 +2569,7 @@ com.google.android.gms.common.api.HasApiKey
 com.google.android.gms.common.util.concurrent.NumberedThreadFactory
 androidx.core.content.SharedPreferencesCompat$EditorCompat$Helper
 androidx.core.view.inputmethod.InputConnectionCompat$2
+cl.skualo.portal.pwa.twa.DelegationService
 androidx.core.view.DragStartHelper$1
 androidx.core.view.accessibility.AccessibilityManagerCompat$AccessibilityStateChangeListenerWrapper
 androidx.core.app.JobIntentService$WorkEnqueuer
@@ -2580,7 +2583,6 @@ com.google.android.gms.common.SignInButton$ColorScheme
 com.google.android.gms.common.moduleinstall.internal.ApiFeatureRequest
 androidx.slidingpanelayout.widget.SlidingPaneLayout$PanelSlideListener
 com.google.android.gms.dynamite.zzj
-app.web.portal_148c8.twa.BuildConfig
 com.google.android.gms.common.internal.Preconditions:
     public static int checkNotZero(int)
     public static int checkNotZero(int,java.lang.Object)
@@ -2636,7 +2638,6 @@ androidx.core.widget.TintableImageSourceView
 androidx.browser.customtabs.CustomTabsSession$PendingSession
 androidx.legacy.widget.Space
 com.google.android.gms.common.api.internal.zabc
-app.web.portal_148c8.twa.R$integer
 com.google.android.gms.location.Geofence$GeofenceTransition
 com.google.android.gms.common.server.converter.zad
 androidx.core.app.FrameMetricsAggregator$FrameMetricsApi24Impl
@@ -2902,6 +2903,7 @@ com.google.androidbrowserhelper.locationdelegation.BuildConfig
 androidx.customview.widget.ExploreByTouchHelper
 androidx.annotation.CheckResult
 androidx.browser.customtabs.PostMessageService
+cl.skualo.portal.pwa.R$mipmap
 com.google.android.gms.common.server.response.zam
 androidx.swiperefreshlayout.widget.SwipeRefreshLayout$2
 androidx.core.graphics.drawable.WrappedDrawableApi21:
@@ -2974,6 +2976,7 @@ androidx.core.app.FrameMetricsAggregator
 com.google.android.gms.common.util.Strings
 com.google.android.gms.dynamic.zag
 com.google.android.gms.common.zzy
+cl.skualo.portal.pwa.R$style
 com.google.android.gms.dynamite.zzo
 com.google.android.gms.location.GeofencingRequest$Builder
 androidx.fragment.R$drawable
@@ -3041,6 +3044,7 @@ androidx.browser.trusted.TrustedWebActivityServiceConnection$1
 com.google.android.gms.common.server.response.FastJsonResponse$FieldConverter
 androidx.cursoradapter.widget.CursorFilter
 com.google.android.gms.common.internal.zzak
+cl.skualo.portal.pwa.R$drawable
 com.google.android.gms.auth.api.signin.GoogleSignInOptions$Builder
 androidx.versionedparcelable.VersionedParcel$1
 androidx.customview.widget.ExploreByTouchHelper$2
@@ -3367,7 +3371,6 @@ com.google.android.gms.common.internal.IGmsServiceBroker$Stub
 com.google.android.gms.location.LocationSettingsRequest$Builder
 com.google.android.gms.common.util.MapUtils
 com.google.android.gms.location.Granularity
-app.web.portal_148c8.twa.R$bool
 androidx.core.view.OnApplyWindowInsetsListener
 androidx.core.content.pm.PermissionInfoCompat$ProtectionFlags
 com.google.android.gms.dynamite.zzg
@@ -3381,6 +3384,7 @@ androidx.loader.app.LoaderManagerImpl$LoaderInfo:
     public void onLoadComplete(androidx.loader.content.Loader,java.lang.Object)
 androidx.core.provider.FontsContractCompat$FontRequestCallback$FontRequestFailReason
 androidx.lifecycle.ComputableLiveData$1
+cl.skualo.portal.pwa.R$attr
 androidx.drawerlayout.widget.DrawerLayout$1
 androidx.browser.browseractions.BrowserActionsIntent$BrowserActionsItemId
 com.google.android.gms.common.api.internal.zabf
@@ -3892,7 +3896,6 @@ com.google.android.gms.common.api.internal.zak
 com.google.android.gms.tasks.zzh
 androidx.core.view.DragStartHelper
 androidx.core.content.res.ResourcesCompat
-app.web.portal_148c8.twa.R$style
 com.google.androidbrowserhelper.R$id
 androidx.swiperefreshlayout.R
 com.google.android.gms.internal.location.zzco
@@ -4048,6 +4051,7 @@ com.google.android.gms.tasks.OnCanceledListener
 android.support.v4.os.IResultReceiver
 androidx.core.graphics.drawable.RoundedBitmapDrawable
 androidx.swiperefreshlayout.R$id
+cl.skualo.portal.pwa.R
 com.google.android.gms.dynamite.zzk
 androidx.browser.trusted.FutureUtils
 androidx.coordinatorlayout.widget.CoordinatorLayout$DispatchChangeEvent
@@ -4170,7 +4174,6 @@ com.google.androidbrowserhelper.trusted.LauncherActivityMetadata:
     private static final java.lang.String METADATA_SCREEN_ORIENTATION
     private static final int DEFAULT_COLOR_ID
     private static final int DEFAULT_DIVIDER_COLOR_ID
-app.web.portal_148c8.twa.R$styleable
 android.support.customtabs.IPostMessageService$Default
 com.google.android.gms.location.zzd
 com.google.androidbrowserhelper.trusted.ManageDataLauncherActivity:

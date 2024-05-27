@@ -1,7 +1,7 @@
 # compiler: R8
 # compiler_version: 2.1.86
 # min_api: 19
-# pg_map_id: c309579
+# pg_map_id: bef06eb
 # common_typos_disable
 android.support.customtabs.ICustomTabsCallback -> a.a.a.a:
     void onNavigationEvent(int,android.os.Bundle) -> K
@@ -1935,7 +1935,7 @@ androidx.versionedparcelable.VersionedParcelParcel -> androidx.versionedparcelab
     void setOutputField(int) -> w
     void writeBoolean(boolean) -> y
 androidx.versionedparcelable.VersionedParcelable -> androidx.versionedparcelable.c:
-app.web.portal_148c8.twa.LauncherActivity -> app.web.portal_148c8.twa.LauncherActivity:
+cl.skualo.portal.pwa.LauncherActivity -> cl.skualo.portal.pwa.LauncherActivity:
     android.net.Uri getLaunchingUrl() -> g
 com.google.android.gms.auth.api.signin.GoogleSignInAccount -> com.google.android.gms.auth.api.signin.GoogleSignInAccount:
     java.lang.String zai -> g

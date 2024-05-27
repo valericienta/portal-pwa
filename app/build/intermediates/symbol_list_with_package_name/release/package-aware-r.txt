@@ -1,4 +1,4 @@
-app.web.portal_148c8.twa
+cl.skualo.portal.pwa
 attr alpha
 attr buttonSize
 attr circleCrop

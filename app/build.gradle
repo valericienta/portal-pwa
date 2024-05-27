@@ -21,8 +21,8 @@ plugins {
 }
 
 def twaManifest = [
-    applicationId: 'app.web.portal_148c8.twa',
-    hostName: 'portal-148c8.web.app', // The domain being opened in the TWA.
+    applicationId: 'cl.skualo.portal.pwa',
+    hostName: 'portal-trabajadores-423220.web.app', // The domain being opened in the TWA.
     launchUrl: '/', // The start path for the TWA. Must be relative to the domain.
     name: 'Portal de Trabajadores', // The application name.
     launcherName: 'Portal', // The name shown on the Android Launcher.
@@ -53,7 +53,7 @@ def twaManifest = [
 android {
     compileSdkVersion 33
     defaultConfig {
-        applicationId "app.web.portal_148c8.twa"
+        applicationId "cl.skualo.portal.pwa"
         minSdkVersion 19
         targetSdkVersion 33
         versionCode 1
@@ -73,12 +73,12 @@ android {
             // The URL the Web Manifest for the Progressive Web App that the TWA points to. This
             // is used by Chrome OS and Meta Quest to open the Web version of the PWA instead of
             // the TWA, as it will probably give a better user experience for non-mobile devices.
-            resValue "string", "webManifestUrl", 'https://portal-148c8.web.app/manifest.webmanifest'
+            resValue "string", "webManifestUrl", 'https://portal-trabajadores-423220.web.app/manifest.webmanifest'
         
 
         
             // This is used by Meta Quest.
-            resValue "string", "fullScopeUrl", 'https://portal-148c8.web.app/'
+            resValue "string", "fullScopeUrl", 'https://portal-trabajadores-423220.web.app/'
         
 
         

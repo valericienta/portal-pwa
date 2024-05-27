@@ -1,8 +1,14 @@
-app/web/portal_148c8/twa/DelegationService.java
- app.web.portal_148c8.twa.DelegationService
-app/web/portal_148c8/twa/BuildConfig.java
- app.web.portal_148c8.twa.BuildConfig
-app/web/portal_148c8/twa/LauncherActivity.java
- app.web.portal_148c8.twa.LauncherActivity
-app/web/portal_148c8/twa/Application.java
- app.web.portal_148c8.twa.Application
+cl/skualo/portal/pwa/LauncherActivity.java
+ cl.skualo.portal.pwa.LauncherActivity
+cl/skualo/portal/pwa/twa/LauncherActivity.java
+ cl.skualo.portal.pwa.twa.LauncherActivity
+cl/skualo/portal/pwa/Application.java
+ cl.skualo.portal.pwa.Application
+cl/skualo/portal/pwa/twa/Application.java
+ cl.skualo.portal.pwa.twa.Application
+cl/skualo/portal/pwa/DelegationService.java
+ cl.skualo.portal.pwa.DelegationService
+cl/skualo/portal/pwa/BuildConfig.java
+ cl.skualo.portal.pwa.BuildConfig
+cl/skualo/portal/pwa/twa/DelegationService.java
+ cl.skualo.portal.pwa.twa.DelegationService

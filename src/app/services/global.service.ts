@@ -15,7 +15,7 @@ export class GlobalService {
   trabajador: Trabajador;
   habilitadoFirma: boolean = false;
 
-  appVersion: string = '1.0.2';
+  appVersion: string = '1.0.6';
 
 
   constructor() {
