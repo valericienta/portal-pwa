@@ -10,18 +10,14 @@ import { Trabajador } from 'src/app/models/trabajador.model';
 export class HomeCardComponent implements OnInit {
   @Input() trabajador: any;
 
+  liqPendientesBadge: number = 4;
+
   liqIcon: IconName = 'file-contract';
   perIcon: IconName = 'calendar-range';
   certIcon: IconName = 'stamp';
   vacIcon: IconName = 'umbrella-beach';
 
   icons = [
-    {
-      name: 'Liquidaciones',
-      color: '--liquidaciones-accent',
-      icon: this.liqIcon,
-      path: '/liquidaciones',
-    },
     {
       name: 'Vacaciones',
       color: '--vacaciones-accent',

@@ -10,7 +10,7 @@
         <h4 class="item-title">{{liquidacion.referencia}}</h4>
         <p>{{liquidacion.fecha | date : 'dd/MM/yy'}}</p>
       </ion-label>
-      <ion-badge class="badge-warning">Por firmar</ion-badge>
+      <ion-button slot="end"> Firmar </ion-button>
     </ion-item>
   </ion-list>
 
@@ -25,8 +25,7 @@
           <h4 class="item-title">{{liquidacion.referencia}}</h4>
           <p>{{liquidacion.fecha | date : 'dd/MM/yy'}}</p>
         </ion-label>
-
-        <ion-badge class="badge-success">Firmado</ion-badge>
+        <ion-button slot="end" color="light"> Ver </ion-button>
       </ion-item>
     </ion-list>
   </div>

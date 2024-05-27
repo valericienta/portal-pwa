@@ -1,7 +1,11 @@
 <app-section-title [section]="eventosSection"></app-section-title>
 
 <swiper-container pagination="true">
-  <swiper-slide *ngFor="let event of eventos" class="ion-padding">
+  <swiper-slide
+    *ngFor="let event of eventos"
+    class="ion-padding"
+    style="height: 9rem"
+  >
     <ion-item lines="none" class="card">
       <!-- Si el evento es cumpleaños se verá la foto, si es festividad u otro un icono -->
       <ion-avatar slot="start" *ngIf="event.urlFotografia.length > 0">
@@ -15,20 +19,11 @@
         <fa-icon [icon]="['fal', 'party-horn']"></fa-icon>
       </ion-avatar>
       <ion-label>
-        <h2
-          style="color: var(--eventos-accent)"
-          *ngIf="event.urlFotografia.length == 0"
-        >
-          Festividad
-        </h2>
-        <h2
-          style="color: var(--eventos-accent)"
-          *ngIf="event.urlFotografia.length > 0"
-        >
-          Cumpleaños
+        <h2 style="color: var(--eventos-accent)">
+          {{ event.tipoEvento }}
         </h2>
         <h2>{{ event.referencia }}</h2>
-        <p>{{ event.inicio | date : "dd/mm/yyyy" }}</p>
+        <p>{{ event.inicio | date : "dd/MM/yyyy" }}</p>
       </ion-label>
     </ion-item>
   </swiper-slide>

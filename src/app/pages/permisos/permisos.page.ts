@@ -46,7 +46,7 @@ export class PermisosPage implements OnInit {
           ? this.permisosAprobados.push(permiso)
           : this.permisosPendientes.push(permiso);
       });
-      // this.permisos = data;
+      this.setMensaje(this.permisosPendientes.length);
     });
   }
 
@@ -59,6 +59,18 @@ export class PermisosPage implements OnInit {
       });
       // this.permisos = data;
     });
+  }
+
+  setMensaje(porFirmarLength: number) {
+    if (porFirmarLength > 1) {
+      this.permisosTitle.message =
+        'Tienes ' + porFirmarLength + ' permisos pendientes de aprobación.';
+    } else if (porFirmarLength == 1) {
+      this.permisosTitle.message = 'Tienes 1 permiso pendiente de aprobación.';
+    } else if (porFirmarLength == 0) {
+      this.permisosTitle.message =
+        'No tienes permisos pendientes de aprobación.';
+    }
   }
 
   eliminarPermiso(id: any) {

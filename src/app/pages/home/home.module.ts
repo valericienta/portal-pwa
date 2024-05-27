@@ -19,6 +19,7 @@ import { HomeCardComponent } from './home-card/home-card.component';
     HomeCardsModule,
     ControlsModule,
     ComponentsModule,
+    
   ],
   declarations: [HomePage, HomeCardComponent],
 })

@@ -24,10 +24,7 @@
       <div class="divider my-4">
         <div class="divider-text">o con</div>
       </div>
-      <div class="mb-3">
-        <ion-button id="btnLogin" class="btn" color="secondary" expand="block" (click)="checkFingerPrint()">FingerPrint</ion-button>
-      </div>
-
+      
       <ion-row>
         <ion-col size="12" class="ion-text-center">
           <ion-button id="btn-google" color="google" (click)="Login('google')">
@@ -41,4 +38,4 @@
   </div>
   <app-select-tenant #tenant (hideTenant)="hideTenantDiv($event)" *ngIf="showTenants"></app-select-tenant>
 </ion-content>
-<span style="position: absolute; right: 10px; bottom:10px;">{{global.appVersion}}</span>
+<span style="position: absolute; right: 5px; bottom: 5px;">{{global.appVersion}}</span>

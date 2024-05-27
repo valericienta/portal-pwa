@@ -2,9 +2,26 @@
   <!-- tenemos el sexo del usuario? para mostrar el msj com bienvenido / a  -->
   <h1 *ngIf="!trabajador.esMasculino">Bienvenida, {{ trabajador.nombre }}!</h1>
   <h1 *ngIf="trabajador.esMasculino">Bienvenido, {{ trabajador.nombre }}!</h1>
+  <!-- <ion-avatar slot="end">
+    <ion-badge color="danger" style="position: absolute">5</ion-badge>
+    <img
+      src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg"
+    />
+  </ion-avatar> -->
   <ion-card>
     <p>Frecuentes</p>
     <ion-row class="ion-justify-content-between">
+      <div style="text-align: -webkit-center">
+        <a routerLink="/liquidaciones">
+          <ion-avatar>
+            <ion-badge color="danger" style="position: absolute">{{
+              liqPendientesBadge
+            }}</ion-badge>
+            <img src="../../../../assets/img/avatar-liq.png" />
+          </ion-avatar>
+          <p [style]="'color:var(--liquidaciones-accent)'">Liquidaciones</p>
+        </a>
+      </div>
       <div *ngFor="let icon of icons" style="text-align: -webkit-center">
         <a [routerLink]="icon.path">
           <div class="icon" [style]="'background: var(' + icon.color + ')'">

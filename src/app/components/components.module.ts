@@ -18,8 +18,7 @@ import { AddCodigoComponent } from './pdf-preview/add-codigo/add-codigo.componen
 import { FormsModule } from '@angular/forms';
 import { SelectMetodoComponent } from './pdf-preview/select-metodo/select-metodo.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
-import { FiltrarComponent } from './filtrar/filtrar.component';
-import { IonRangeCalendarModule } from '@googlproxer/ion-range-calendar';
+
 import { TwoFAComponent } from './twofa/twofa.component';
 import { FingerprintAIO } from '@awesome-cordova-plugins/fingerprint-aio/ngx';
 import { SectionTitleComponent } from './section-title/section-title.component';
@@ -28,7 +27,6 @@ const components = [
   PdfPreviewComponent,
   AddCodigoComponent,
   SelectMetodoComponent,
-  FiltrarComponent,
   TwoFAComponent,
   SectionTitleComponent,
   HeaderComponent,
@@ -40,7 +38,7 @@ const components = [
     CommonModule,
     RouterModule,
     FontAwesomeModule,
-    IonRangeCalendarModule,
+
     IonicModule,
     FormsModule,
     NgxExtendedPdfViewerModule,

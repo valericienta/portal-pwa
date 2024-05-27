@@ -138,12 +138,15 @@
   --vacaciones-accent: #41C360;
   --certificados-accent: #7658CB;
   --permisos-accent: #FFA736;
-  --todos-docs-accent: #2A55A8;
+  --documentos-accent: #2A55A8;
   --eventos-accent: #F38ADD;
   --aldia-accent: #178171;
-  --historial-accent: #a8a8a8;
+  --historial-accent: #646464;
 }
 
+.swiper-pagination-bullet-active {
+  background: var(--ion-color-primary) !important
+}
 
 // @media (prefers-color-scheme: dark) {
  

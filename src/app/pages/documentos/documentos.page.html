@@ -1,7 +1,31 @@
-<app-header>Documentos"></app-header>
+<app-header></app-header>
 <ion-content>
-  <app-section-title [section]="documentosTitle"></app-section-title>
+  <app-filtrar></app-filtrar>
+  <ion-list>
+    <ion-item *ngFor="let doc of documentos" (click)="showPDF(doc)">
+      <ion-label>
+        <h2 style="color: var(--documentos-accent)">{{doc.tipo}}</h2>
+        <h2 class="item-title">{{doc.referencia}}</h2>
+        <p>{{doc.creadoEl| date : 'dd/MM/yy'}}</p>
+      </ion-label>
+
+      <ion-button slot="end"> Firmar </ion-button>
+    </ion-item>
+  </ion-list>
+  <!-- LISTA DE DOCUMENTOS -->
   <app-section-title [section]="historialTitle"></app-section-title>
+  <ion-list>
+    <ion-item *ngFor="let doc of documentosHistorial" (click)="showPDF(doc)">
+      <ion-label>
+        <h2 style="color: var(--documentos-accent)">tipo</h2>
+        <h2 class="item-title">referencia</h2>
+        <p>fecha</p>
+      </ion-label>
+
+      <ion-button slot="end" color="light"> Ver </ion-button>
+    </ion-item>
+  </ion-list>
+  <!-- LISTA HISORIAL -->
 </ion-content>
 
 <!-- <ion-content>

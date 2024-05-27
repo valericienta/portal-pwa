@@ -10,8 +10,8 @@ import { DocumentosPage } from './documentos.page';
 import { DocumentosListaComponent } from './documentos-lista/documentos-lista.component';
 import { ComponentsModule } from '../../components/components.module';
 import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
-import { FiltrarComponent } from 'src/app/components/filtrar/filtrar.component';
-
+import { FiltrarComponent } from './filtrar/filtrar.component';
+import { IonRangeCalendarModule } from '@googlproxer/ion-range-calendar';
 
 @NgModule({
   imports: [
@@ -19,10 +19,10 @@ import { FiltrarComponent } from 'src/app/components/filtrar/filtrar.component';
     FormsModule,
     IonicModule,
     DocumentosPageRoutingModule,
-    ComponentsModule  ],
-  declarations: [DocumentosPage,
-    DocumentosListaComponent
+    ComponentsModule,
+    IonRangeCalendarModule,
   ],
-    providers:[InAppBrowser]
+  declarations: [DocumentosPage, DocumentosListaComponent, FiltrarComponent],
+  providers: [InAppBrowser],
 })
-export class DocumentosPageModule { }
+export class DocumentosPageModule {}

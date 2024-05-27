@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { IconName } from '@fortawesome/pro-solid-svg-icons';
 import { Evento } from 'src/app/interfaces/evento.interface';
 import { EventosService } from 'src/app/services/eventos.service';
+import { register } from 'swiper/element/bundle';
+
+register();
+
 
 @Component({
   selector: 'app-card-eventos',

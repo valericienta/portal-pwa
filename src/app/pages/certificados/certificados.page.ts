@@ -19,7 +19,7 @@ export class CertificadosPage implements OnInit {
   certIcon: IconName = 'stamp';
   certificadosTitle = {
     title: 'Certificados',
-    message: 'Aquí encontrarás todos los certificados.',
+    message: 'Aquí encontrarás todos tus certificados.',
     color: '--certificados-accent',
     icon: this.certIcon,
   };

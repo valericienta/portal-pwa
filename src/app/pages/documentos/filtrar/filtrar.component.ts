@@ -1,10 +1,18 @@
-import { Component, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
-import { CalendarComponentOptions, DayConfig } from '@googlproxer/ion-range-calendar';
+import {
+  Component,
+  OnInit,
+  Output,
+  ViewChild,
+  EventEmitter,
+} from '@angular/core';
+import {
+  CalendarComponentOptions,
+  DayConfig,
+} from '@googlproxer/ion-range-calendar';
 import { IonModal } from '@ionic/angular';
 import { DynamicObject } from 'src/app/interfaces/dynamic-object.interface';
+import { DocumentosService } from 'src/app/services/documentos.service';
 import * as moment from 'moment';
-import { DocumentosService } from '../../services/documentos.service';
-
 
 @Component({
   selector: 'app-filtrar',
@@ -12,7 +20,6 @@ import { DocumentosService } from '../../services/documentos.service';
   styleUrls: ['./filtrar.component.scss'],
 })
 export class FiltrarComponent implements OnInit {
-
   @ViewChild(IonModal) modal: IonModal;
   @Output() getFilter = new EventEmitter<any>();
   public filtro: DynamicObject = {};
@@ -23,39 +30,32 @@ export class FiltrarComponent implements OnInit {
   public tipo: number = -1;
   public tipos: any;
   type: 'string';
-  dateRange: { from: string; to: string; };
+  dateRange: { from: string; to: string };
   test: DayConfig[] = [];
 
   public optionsRange: CalendarComponentOptions = {
     pickMode: 'range',
     daysConfig: this.test,
     from: 1,
-    to: 0
+    to: 0,
   };
 
-  toggleItems: any =
-    [
-      { id: 0, opened: true, item: 'pendiente' },
-      { id: 1, opened: false, item: 'fechas' },
-      { id: 2, opened: false, item: 'tipos' },
-      { id: 3, opened: false, item: 'referencia' },
-    ]
-
-
+  toggleItems: any = [
+    { id: 0, opened: true, item: 'pendiente' },
+    { id: 1, opened: false, item: 'fechas' },
+    { id: 2, opened: false, item: 'tipos' },
+    { id: 3, opened: false, item: 'referencia' },
+  ];
 
   constructor(documentosService: DocumentosService) {
-    documentosService.getTipos()
-      .then(data => this.tipos = data)
+    documentosService.getTipos().then((data) => (this.tipos = data));
   }
 
   ngOnInit() {
     this.cleanFilters();
   }
 
-
-  showOptions() {
-
-  }
+  showOptions() {}
 
   acceptFilters() {
     this.setFiltro();
@@ -81,30 +81,29 @@ export class FiltrarComponent implements OnInit {
     if (this.tipo > 0) this.filtro['tipo'] = this.tipo;
     if (this.referencia) {
       advancedFilter.push({
-        field: "nombre",
-        operator: "contains",
-        value: this.referencia
+        field: 'nombre',
+        operator: 'contains',
+        value: this.referencia,
       });
     }
     if (this.dateRange.to != '') {
       advancedFilter.push({
-        field: "fecha",
-        operator: "gte",
-        value: moment(this.dateRange.from).format('YYYY-MM-DD')
+        field: 'fecha',
+        operator: 'gte',
+        value: moment(this.dateRange.from).format('YYYY-MM-DD'),
       });
 
       advancedFilter.push({
-        field: "fecha",
-        operator: "lte",
-        value: moment(this.dateRange.to).format('YYYY-MM-DD')
+        field: 'fecha',
+        operator: 'lte',
+        value: moment(this.dateRange.to).format('YYYY-MM-DD'),
       });
     }
 
-    if (advancedFilter.length > 0)
-    {
+    if (advancedFilter.length > 0) {
       this.filtro['advancedFilter'] = {
-        logic: "and",
-        filters: [...advancedFilter]
+        logic: 'and',
+        filters: [...advancedFilter],
       };
     }
 
@@ -116,5 +115,4 @@ export class FiltrarComponent implements OnInit {
   openModal() {
     this.modal.present();
   }
-
 }

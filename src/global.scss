@@ -87,8 +87,8 @@ ion-button {
 }
 
 .badge-warning {
-    background-color: #fff2d6 !important;
-    color: #ffab00 !important;
+    background-color: #fffac6 !important;
+color: #ffd200 !important;
 }
 
 /* ICONS */
@@ -146,9 +146,10 @@ fa-icon {
     color: #6c757d !important;
 }
 
-// .native-wrapper {
-//   border-bottom: solid 1px lightgray;
-// }
+.item-title {
+    font-weight: 600 !important;
+    font-size: 16px !important;
+}
 
 /* MODAL */
 ion-modal.authModal::part(content) {

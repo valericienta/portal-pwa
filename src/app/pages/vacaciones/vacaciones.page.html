@@ -1,21 +1,17 @@
 <app-header>Vacaciones"></app-header>
-<div class="diasdisp">
-  <p>Días disponibles</p>
-  <h2>{{dias}} <span>días</span></h2>
-</div>
 
 <ion-content>
   <!-- SOLICTUDES DE VACACIONES -->
   <app-section-title [section]="vacationTitle"></app-section-title>
+  <div class="diasdisp">
+    <p>Días disponibles</p>
+    <h2>{{dias}} <span>días</span></h2>
+  </div>
   <ion-list *ngIf="solicitudes.length > 0">
     <ion-item *ngFor="let sol of solicitudes">
       <ion-label>{{sol.tipo}}</ion-label>
     </ion-item>
   </ion-list>
-  <ion-button expand="block" style="margin: 16px" (click)="showSolicitar()">
-    <ion-icon name="add"></ion-icon>
-    Nueva solicitud
-  </ion-button>
 
   <!-- HISTORIAL DE VACACIONES -->
   <app-section-title [section]="historialTitle"></app-section-title>
@@ -23,7 +19,9 @@
     <ion-item *ngFor="let his of historial">
       <ion-label>
         <h4 class="item-title">{{his.tipo}}</h4>
-        <p>{{his.desde| date : 'dd/MM/yy'}}</p>
+        <p>
+          {{his.desde| date : 'dd/MM/yy'}} - {{his.hasta| date : 'dd/MM/yy'}}
+        </p>
       </ion-label>
     </ion-item>
   </ion-list>
@@ -69,10 +67,9 @@
   ></app-vacaciones-lista>
 </ion-fab>
 </ion-content> 
+-->
 <ion-fab slot="fixed" vertical="bottom" horizontal="end">
   <ion-fab-button (click)="showSolicitar()">
     <ion-icon name="add-outline"></ion-icon>
   </ion-fab-button>
 </ion-fab>
-
--->

@@ -42,7 +42,7 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
-
+    // this.loadingService.isLoading.next(true)
     this.validateHabilitacion();
   }
 
