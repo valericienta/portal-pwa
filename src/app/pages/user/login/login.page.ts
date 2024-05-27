@@ -14,6 +14,7 @@ import { environment } from 'src/environments/environment';
 import { Usuario } from 'src/app/models/usuario.model';
 import { jwtDecode } from 'jwt-decode';
 import { LoadingService } from '../../../services/loading.service';
+import { NativeBiometric, BiometryType } from "capacitor-native-biometric";
 
 @Component({
   selector: 'app-login',
@@ -54,6 +55,22 @@ export class LoginPage implements OnInit {
     this.CheckValidToken();
   }
 
+
+  async checkFingerPrint() {
+    NativeBiometric.isAvailable()
+      .then(result => {
+        alert(`Datos biométricos: ${JSON.stringify(result)}`)
+        if (!result.isAvailable) return;
+        NativeBiometric.verifyIdentity({
+          title: "Firma de documentos",
+          subtitle: "Utilice sus datos biometricos",
+          description: " para firmar el documento",
+        })
+          .then(() => true)
+          .catch(() => false);       
+      })
+      .catch(error => { alert(error) })
+  }
 
   CheckValidToken() {
     let storedToken = localStorage.getItem("token");
