@@ -1,5 +1,10 @@
 <app-section-title [section]="vacSection"></app-section-title>
 <div class="diasdisp">
   <p>Días disponibles</p>
-  <h2>{{ dias }} <span>días</span></h2>
+  <ion-skeleton-text
+    *ngIf="!dias"
+    [animated]="true"
+    style="width: 6rem; height: 3rem"
+  ></ion-skeleton-text>
+  <h2 *ngIf="dias">{{ dias }} <span>días</span></h2>
 </div>

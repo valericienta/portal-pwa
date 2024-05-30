@@ -1,3 +1,9 @@
-<p>
-  personal works!
-</p>
+<ion-list>
+  <ion-item *ngFor="let dato of personal">
+    <fa-icon [icon]="['fal', dato.icon]" slot="start"></fa-icon>
+    <ion-label>
+      <p>{{ dato.label }}</p>
+      <h2>{{ dato.value }}</h2>
+    </ion-label>
+  </ion-item>
+</ion-list>

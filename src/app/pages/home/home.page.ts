@@ -10,6 +10,8 @@ import * as moment from 'moment';
 import { IconName } from '@fortawesome/pro-solid-svg-icons';
 import { VacacionesService } from 'src/app/services/vacaciones.service';
 import { Documento } from 'src/app/interfaces/documento.interface';
+import { DocumentosService } from 'src/app/services/documentos.service';
+import { searchResponse } from 'src/app/models/search-response.model';
 
 @Component({
   selector: 'app-home',
@@ -36,7 +38,8 @@ export class HomePage implements OnInit {
     public menuController: MenuController,
     public loadingService: LoadingService,
     public modalCtrl: ModalController,
-    public toastService: ToastService
+    public toastService: ToastService,
+    private documentosService: DocumentosService
   ) {
     this.trabajador = this.global.trabajador;
   }
@@ -44,6 +47,7 @@ export class HomePage implements OnInit {
   ngOnInit() {
     // this.loadingService.isLoading.next(true)
     this.validateHabilitacion();
+    this.getDocumentosPendientes();
   }
 
   ionViewWillEnter() {
@@ -58,5 +62,13 @@ export class HomePage implements OnInit {
       let message = `Recuerde habilitar le segundo nivel de autenticación para firmar los documentos`;
       this.toastService.present_GoPortal(message, 'danger');
     }
+  }
+
+  getDocumentosPendientes(ev?: any) {
+    this.documentosService.getPendientes().then((data: searchResponse) => {
+      data.data.forEach((item: Documento) => {
+        this.documentosPendientes.push(item);
+      });
+    });
   }
 }

@@ -47,6 +47,7 @@ export class LiquidacionesPage implements OnInit {
   }
 
   ngOnInit() {
+    this.getPendientes();
     this.getLiquidaciones();
   }
 
@@ -66,21 +67,31 @@ export class LiquidacionesPage implements OnInit {
 
   onIonInfinite(ev: any) {
     this.getLiquidaciones(ev);
+    
   }
 
+  getPendientes() {
+    this.documentosService.getLiquidacionesPorFirmar().then((data: searchResponse) => {
+      data.data.forEach((item: Documento) => {
+
+        this.porFirmar.push(item);
+      });
+
+      this.setMensaje(this.porFirmar.length);
+
+    });
+  }
   getLiquidaciones(ev?: any) {
     this.pagina++;
 
     this.documentosService
-      .getLiquidaciones(this.pagina, 10)
+      .getLiquidacionesFirmadas(this.pagina, 10)
       .then((data: searchResponse) => {
         if (!data.hasNextPage) this.infiniteScroll.disabled = true;
         data.data.forEach((item: Documento) => {
-          item.estado == 'Firmado'
-            ? this.firmados.push(item)
-            : this.porFirmar.push(item);
-        });
-        this.firmados.reverse();
+          this.firmados.push(item)
+
+        });       
         this.setMensaje(this.porFirmar.length);
         if (ev) this.infiniteScroll.complete();
       });

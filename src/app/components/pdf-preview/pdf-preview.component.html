@@ -16,7 +16,7 @@
 </ion-fab>
 
 
-<ion-fab (click)="firmar()"
+<ion-fab (click)="firmarDocumento()"
   *ngIf="!showModalFirma && loaddoc && (documento.idEstado==3) && habilitadoFirma">
   <ion-fab-button size="small">
     <fa-icon [icon]="['fal', 'signature']"></fa-icon>

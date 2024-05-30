@@ -13,7 +13,7 @@ register();
   styleUrls: ['./card-eventos.component.scss'],
 })
 export class CardEventosComponent implements OnInit {
-  eventos: Evento[] = [];
+  eventos: Evento[];
 
   eventosIcon: IconName = 'calendar';
 

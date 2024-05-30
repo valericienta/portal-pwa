@@ -35,5 +35,6 @@ export class AppComponent {
     // this.platform.resume.subscribe(() => {
     //   this.router.navigate(['/home']);
     // });
+    console.log(this.menucompleto);
   }
 }

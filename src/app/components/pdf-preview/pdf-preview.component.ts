@@ -14,6 +14,7 @@ import { Geolocation } from '@capacitor/geolocation';
 import * as moment from 'moment';
 import { environment } from 'src/environments/environment';
 
+import { NativeBiometric, BiometryType } from "capacitor-native-biometric";
 
 @Component({
   selector: 'app-pdf-preview',
@@ -39,7 +40,7 @@ export class PdfPreviewComponent implements OnInit {
   showModalFirma: boolean = false;
   public spreadMode: 'off' | 'even' | 'odd' = 'off';
 
-  public available: boolean = false;
+  public BiometricAvailable: boolean = false;
   //'finger' | 'face' | 'biometric'
 
 
@@ -65,13 +66,27 @@ export class PdfPreviewComponent implements OnInit {
     this.habilitadoFirma = this.global.user.MFAByApp == "False" && this.global.user.MFAByPhone == "False" ? false : true;
   }
 
-
   checkFingerPrint() {
-  
+    NativeBiometric.isAvailable()
+      .then(result => {
+        if (!result.isAvailable) return;
+        else this.BiometricAvailable=true;
+       
+      })
+      .catch(error => { this.BiometricAvailable =false; })
   }
 
-  async firmarFingerPrint() {
-   
+
+  firmarBiometric() {
+    NativeBiometric.verifyIdentity({
+      title: "Firma de documentos",
+      subtitle: "Utilice sus datos biometricos",
+      description: " para firmar el documento",
+    })
+      .then(() => {
+        this.signDocumento();
+      })
+      .catch(() => this.toastService.present("Autenticación inválida","danger"));       
   }
 
 
@@ -120,10 +135,11 @@ export class PdfPreviewComponent implements OnInit {
       })
   }
 
-  firmar() {
-    if (this.available) this.firmarFingerPrint();
+ firmarDocumento() {
+    if (this.BiometricAvailable) this.firmarBiometric();
     else this.firmar2FA();
   }
+
   cancel() {
     this.modalCtrl.dismiss(null, 'cancel');
   }

@@ -18,7 +18,7 @@ export class VacacionesPage implements OnInit {
   vacIcon: IconName = 'umbrella-beach';
   vacationTitle = {
     title: 'Vacaciones',
-    message: this.setMessage(),
+    message: '',
     color: '--vacaciones-accent',
     icon: this.vacIcon,
   };
@@ -34,32 +34,31 @@ export class VacacionesPage implements OnInit {
   dias: number = 0;
 
   tipo: string;
-  // @Output() updateDiasEvent = new EventEmitter<string>();
+
   @ViewChild(VacacionesListaComponent, { static: false })
   listaVacaciones: VacacionesListaComponent;
   constructor(
     public vacacionesService: VacacionesService,
     public modalCtrl: ModalController
-  ) {
-    this.solicitudes = [];
-
-    this.getSolicitudes();
-    this.getVacaciones();
-  }
+  ) {}
 
   ngOnInit() {
+    this.getSolicitudes();
+    this.getVacaciones();
     this.mostrarDiasDisponibles('');
   }
 
   setMessage(): string {
-    if (this.solicitudes.length < 1) {
-      return 'No hay solicitudes nuevas';
-    } else {
+    if (this.solicitudes.length == 1) {
+      return 'Tienes 1 solicitud pendiente de aprobación.';
+    } else if (this.solicitudes.length > 1) {
       return (
         'Tienes ' +
         this.solicitudes.length +
-        ' solicitudes pendientes de aprobación'
+        ' solicitudes pendientes de aprobación.'
       );
+    } else {
+      return 'No tienes solicitudes pendientes de aprobación.';
     }
   }
 
@@ -67,6 +66,7 @@ export class VacacionesPage implements OnInit {
     this.solicitudes = [];
     this.vacacionesService.getSolicitudes().then((data: Vacaciones[]) => {
       this.solicitudes = data;
+      this.vacationTitle.message = this.setMessage();
     });
   }
 
@@ -78,18 +78,18 @@ export class VacacionesPage implements OnInit {
     });
   }
 
-  // eliminarSolicitud(id: string) {
-  //   this.vacacionesService
-  //     .eliminar(id)
-  //     .then(() => {
-  //       this.updateDiasEvent.emit('Se elimino la solicitud ');
-  //       if (this.tipo == 'vacaciones') this.getVacaciones();
-  //       else this.getSolicitudes();
-  //     })
-  //     .catch((error: any) => {
-  //       console.log(error);
-  //     });
-  // }
+  eliminarSolicitud(id: string) {
+    this.vacacionesService
+      .eliminar(id)
+      .then(() => {
+        // this.updateDiasEvent.emit('Se elimino la solicitud ');
+        if (this.tipo == 'vacaciones') this.getVacaciones();
+        else this.getSolicitudes();
+      })
+      .catch((error: any) => {
+        console.log(error);
+      });
+  }
 
   async showSolicitar() {
     const modal = await this.modalCtrl.create({

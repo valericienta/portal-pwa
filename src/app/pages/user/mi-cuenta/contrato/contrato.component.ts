@@ -22,22 +22,27 @@ export class ContratoComponent implements OnInit {
       {
         label: 'Tipo de contrato',
         value: this.trabajador.tipoContrato,
+        icon: 'business-time',
       },
       {
         label: 'Jornada',
         value: this.trabajador.jornada,
+        icon: 'clock',
       },
       {
         label: 'Sindicato',
         value: this.trabajador.sindicato,
+        icon: 'briefcase',
       },
       {
         label: 'Cuenta corriente',
         value: this.trabajador.numeroCtaCte,
+        icon: 'piggy-bank',
       },
       {
         label: 'Supervisor',
         value: this.trabajador.supervisor,
+        icon: 'user-tie',
       },
     ];
   }

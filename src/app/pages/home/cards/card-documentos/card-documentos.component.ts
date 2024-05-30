@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IconName } from '@fortawesome/pro-solid-svg-icons';
+import { ModalController } from '@ionic/angular';
+import { PdfPreviewComponent } from 'src/app/components/pdf-preview/pdf-preview.component';
 import { Documento } from 'src/app/interfaces/documento.interface';
 
 @Component({
@@ -18,10 +20,25 @@ export class CardDocumentosComponent implements OnInit {
     icon: this.docIcon,
   };
 
-  constructor() {}
+  constructor(private modalCtrl: ModalController) {}
 
   ngOnInit() {
     this.documentosTitle.message = this.setMessage();
+    console.log(this.documentos);
+  }
+
+  showPDF(document: Documento) {
+    this.modalCtrl
+      .create({
+        component: PdfPreviewComponent,
+        componentProps: {
+          id: document.id,
+          firmar: !document.firmado,
+          documento: document,
+        },
+        cssClass: 'modalPDF',
+      })
+      .then((modal) => modal.present());
   }
 
   setMessage() {

@@ -1,4 +1,4 @@
-<app-header>Vacaciones"></app-header>
+<app-header></app-header>
 
 <ion-content>
   <!-- SOLICTUDES DE VACACIONES -->
@@ -9,7 +9,22 @@
   </div>
   <ion-list *ngIf="solicitudes.length > 0">
     <ion-item *ngFor="let sol of solicitudes">
-      <ion-label>{{sol.tipo}}</ion-label>
+      <ion-label>
+        <h4 class="item-title">{{sol.tipo}}</h4>
+        <p>
+          {{sol.desde| date : 'dd/MM/yy'}} - {{sol.hasta| date : 'dd/MM/yy'}}
+        </p>
+        <p>{{sol.aprobada}}</p>
+      </ion-label>
+      <ion-button id="present-alert"
+        ><fa-icon [icon]="['fas', 'trash']"></fa-icon
+      ></ion-button>
+      <ion-alert
+        trigger="present-alert"
+        header="¿Quieres borrar esta solicitud de vacaciones?"
+        message="Esta acción es irreversible, tendrás que solicitar las vacaciones de vuelta."
+        [buttons]="[{label:'Cancelar'}, {label: 'Si, borrar', action: this.eliminarSolicitud(sol.id)}]"
+      ></ion-alert>
     </ion-item>
   </ion-list>
 

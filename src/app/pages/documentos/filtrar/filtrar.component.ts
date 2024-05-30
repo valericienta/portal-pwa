@@ -11,8 +11,8 @@ import {
 } from '@googlproxer/ion-range-calendar';
 import { IonModal } from '@ionic/angular';
 import { DynamicObject } from 'src/app/interfaces/dynamic-object.interface';
-import { DocumentosService } from 'src/app/services/documentos.service';
 import * as moment from 'moment';
+import { DocumentosService } from '../../../services/documentos.service';
 
 @Component({
   selector: 'app-filtrar',

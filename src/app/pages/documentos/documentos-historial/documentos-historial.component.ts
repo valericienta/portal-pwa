@@ -9,11 +9,11 @@ import { DocumentosService } from 'src/app/services/documentos.service';
 import { GlobalService } from 'src/app/services/global.service';
 
 @Component({
-  selector: 'app-documentos',
-  templateUrl: './documentos.page.html',
-  styleUrls: ['./documentos.page.scss'],
+  selector: 'app-documentos-historial',
+  templateUrl: './documentos-historial.component.html',
+  styleUrls: ['./documentos-historial.component.scss'],
 })
-export class DocumentosPage implements OnInit {
+export class DocumentosHistorialComponent implements OnInit {
   histIcon: IconName = 'history';
   historialTitle = {
     title: 'Historial de documentos',
@@ -22,12 +22,11 @@ export class DocumentosPage implements OnInit {
     icon: this.histIcon,
   };
 
-  pendientes: boolean = true;
-  documentosHistorial: any[] = [{}, {}];
-
   documentos: Documento[] = [];
+  pendientes: any;
   pagina: number = 0;
   filtros: any = {};
+
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
   constructor(
@@ -62,7 +61,7 @@ export class DocumentosPage implements OnInit {
         },
         cssClass: 'modalPDF',
       })
-      .then((modal) => modal.present());
+      .then((modal: { present: () => any }) => modal.present());
   }
 
   onIonInfinite(ev: any) {
@@ -70,6 +69,7 @@ export class DocumentosPage implements OnInit {
   }
 
   getDocuments(ev?: any) {
+    // OBTENER HISTORIAL DE DOCUMENTOS YA FIRMADOS, MÉTODO ÚNICO?
     this.pagina++;
     if (this.pendientes)
       this.documentosService.getPendientes().then((data: searchResponse) => {
@@ -88,7 +88,6 @@ export class DocumentosPage implements OnInit {
         firmado: this.filtros.firmado == false ? false : null,
         advancedFilter: this.filtros.advancedFilter,
       };
-
       this.documentosService.search(filtro).then((data: searchResponse) => {
         if (!data.hasNextPage) this.infiniteScroll.disabled = true;
         data.data.forEach((item: Documento) => {

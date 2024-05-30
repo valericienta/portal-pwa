@@ -4,13 +4,38 @@
     <ion-menu menuId="main" contentId="main-content" type="overlay">
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-list-header><img src="assets/img/logo_horizontal.png" alt="" class="img-logo"></ion-list-header>
+          <ion-list-header
+            ><img src="assets/img/logo_horizontal.png" alt="" class="img-logo"
+          /></ion-list-header>
 
           <ion-menu-toggle auto-hide="false">
-            <ion-item routerDirection="root" [routerLink]="[menucompleto[0].url]" lines="none" detail="false"
-              routerLinkActive="selected" class="mb-5">
-              <fa-duotone-icon [icon]="menucompleto[0].iconfull"
-                style="font-size:1.5em; margin-right: 8px;"></fa-duotone-icon>
+            <ion-item
+              *ngFor="let item of menucompleto"
+              [routerLink]="item.url"
+              style="font-size: 20px"
+            >
+              <fa-icon
+                [style]="'color:var(' + item.accent + ')'"
+                [icon]="['fal', item.iconfull]"
+                slot="start"
+              ></fa-icon>
+
+              <p [style]="'color:var(-' + item.accent + ')'">
+                {{ item.title }}
+              </p>
+            </ion-item>
+            <!-- <ion-item
+              routerDirection="root"
+              [routerLink]="[menucompleto[0].url]"
+              lines="none"
+              detail="false"
+              routerLinkActive="selected"
+              class="mb-5"
+            >
+              <fa-duotone-icon
+                [icon]="menucompleto[0].iconfull"
+                style="font-size: 1.5em; margin-right: 8px"
+              ></fa-duotone-icon>
               <ion-label>{{ menucompleto[0].title }}</ion-label>
             </ion-item>
 
@@ -19,10 +44,18 @@
             </ion-item>
 
             <div *ngFor="let p of gestion">
-              <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false"
-                routerLinkActive="selected">
-                <fa-duotone-icon [icon]="p.iconfull" [className]="p.clase"
-                  style="font-size:1.5em; margin-right: 8px;"></fa-duotone-icon>
+              <ion-item
+                routerDirection="root"
+                [routerLink]="[p.url]"
+                lines="none"
+                detail="false"
+                routerLinkActive="selected"
+              >
+                <fa-icon
+                  [icon]="p.iconfull"
+                  [className]="p.clase"
+                  style="font-size: 1.5em; margin-right: 8px"
+                ></fa-icon>
                 <ion-label>{{ p.title }}</ion-label>
               </ion-item>
             </div>
@@ -32,18 +65,24 @@
             </ion-item>
 
             <div *ngFor="let p of documentos">
-              <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false"
-                routerLinkActive="selected">
-                <fa-duotone-icon [icon]="p.iconfull" [className]="p.clase"
-                  style="font-size:1.5em; margin-right: 8px;"></fa-duotone-icon>
+              <ion-item
+                routerDirection="root"
+                [routerLink]="[p.url]"
+                lines="none"
+                detail="false"
+                routerLinkActive="selected"
+              >
+                <fa-icon
+                  [icon]="p.iconfull"
+                  [className]="p.clase"
+                  style="font-size: 1.5em; margin-right: 8px"
+                ></fa-icon>
                 <ion-label>{{ p.title }}</ion-label>
               </ion-item>
-            </div>
+            </div> -->
           </ion-menu-toggle>
         </ion-list>
-        <span style="position: absolute; right: 10px; bottom: 5px;">
-          {{ global.appVersion}}
-        </span>
+        <span class="version"> Versión {{ global.appVersion }} </span>
       </ion-content>
     </ion-menu>
 
