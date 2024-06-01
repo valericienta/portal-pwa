@@ -2,9 +2,9 @@
 <ion-content [fullscreen]="true">
   <div id="container">
     <div class="container-fluid flex-grow-1 container-p-y" *ngIf="trabajador">
-      <app-home-card [trabajador]="trabajador"></app-home-card>
-      <app-card-eventos></app-card-eventos>
+      <app-card-accesos [trabajador]="trabajador"></app-card-accesos>
       <app-card-vacaciones></app-card-vacaciones>
+      <app-card-eventos></app-card-eventos>
 
       <app-section-title
         *ngIf="documentosPendientes.length == 0"

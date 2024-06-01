@@ -10,10 +10,12 @@ import { GlobalService } from 'src/app/services/global.service';
 export class PersonalComponent implements OnInit {
   trabajador: Trabajador;
   personal: any;
+  emergencias: any;
 
   constructor(public global: GlobalService) {
     this.trabajador = this.global.trabajador;
     this.setPersonal();
+    this.setEmergencias();
   }
 
   ngOnInit() {}
@@ -44,6 +46,26 @@ export class PersonalComponent implements OnInit {
         label: 'RUT',
         value: this.trabajador.rut,
         icon: 'tag',
+      },
+    ];
+  }
+
+  setEmergencias() {
+    this.emergencias = [
+      {
+        label: 'Nombre',
+        value: this.trabajador.emergenciaContacto,
+        icon: 'user',
+      },
+      {
+        label: 'Relación',
+        value: this.trabajador.emergenciaRelacion,
+        icon: 'family',
+      },
+      {
+        label: 'Teléfono',
+        value: this.trabajador.emergenciaTelefono,
+        icon: 'phone',
       },
     ];
   }

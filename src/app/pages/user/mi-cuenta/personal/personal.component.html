@@ -1,8 +1,34 @@
 <ion-list>
+  <ion-item>
+    <h2 style="color: var(--ion-color-primary)">
+      <fa-icon [icon]="['fal', 'user']" slot="start"></fa-icon>
+      Datos personales
+    </h2>
+  </ion-item>
   <ion-item *ngFor="let dato of personal">
-    <fa-icon [icon]="['fal', dato.icon]" slot="start"></fa-icon>
     <ion-label>
-      <p>{{ dato.label }}</p>
+      <p>
+        <fa-icon [icon]="['fal', dato.icon]" slot="start"></fa-icon>
+        {{ dato.label }}
+      </p>
+      <h2>{{ dato.value }}</h2>
+    </ion-label>
+  </ion-item>
+</ion-list>
+
+<ion-list class="ion-margin-top">
+  <ion-item>
+    <h2 style="color: rgb(178, 33, 31)">
+      <fa-icon [icon]="['fal', 'light-emergency-on']" slot="start"></fa-icon>
+      Datos de emergencia
+    </h2>
+  </ion-item>
+  <ion-item *ngFor="let dato of emergencias">
+    <ion-label>
+      <p>
+        <fa-icon [icon]="['fal', dato.icon]" slot="start"></fa-icon>
+        {{ dato.label }}
+      </p>
       <h2>{{ dato.value }}</h2>
     </ion-label>
   </ion-item>

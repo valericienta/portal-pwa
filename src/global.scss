@@ -81,6 +81,10 @@ ion-button {
 
 /* BADGES */
 
+.badge-primary {
+    background-color: #696cff50 !important;
+    color: #696cff !important;
+}
 .badge-success {
     background-color: #e8fadf !important;
     color: #71dd37 !important;
@@ -150,7 +154,9 @@ fa-icon {
     font-weight: 600 !important;
     font-size: 16px !important;
 }
-
+.swiper-pagination-bullet-active {
+    background: #f38add !important;
+}
 /* MODAL */
 ion-modal.authModal::part(content) {
     --width: 80%;

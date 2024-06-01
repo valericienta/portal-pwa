@@ -67,31 +67,30 @@ export class LiquidacionesPage implements OnInit {
 
   onIonInfinite(ev: any) {
     this.getLiquidaciones(ev);
-    
   }
 
   getPendientes() {
-    this.documentosService.getLiquidacionesPorFirmar().then((data: searchResponse) => {
-      data.data.forEach((item: Documento) => {
+    this.documentosService
+      .getLiquidacionesPorFirmar()
+      .then((data: searchResponse) => {
+        data.data.forEach((item: Documento) => {
+          this.porFirmar.push(item);
+        });
 
-        this.porFirmar.push(item);
+        this.setMensaje(this.porFirmar.length);
       });
-
-      this.setMensaje(this.porFirmar.length);
-
-    });
   }
+  
   getLiquidaciones(ev?: any) {
     this.pagina++;
 
     this.documentosService
-      .getLiquidacionesFirmadas(this.pagina, 10)
+      .getLiquidacionesFirmadas(this.pagina, 5)
       .then((data: searchResponse) => {
         if (!data.hasNextPage) this.infiniteScroll.disabled = true;
         data.data.forEach((item: Documento) => {
-          this.firmados.push(item)
-
-        });       
+          this.firmados.push(item);
+        });
         this.setMensaje(this.porFirmar.length);
         if (ev) this.infiniteScroll.complete();
       });

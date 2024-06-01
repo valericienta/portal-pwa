@@ -1,0 +1,29 @@
+<div class="background">
+  <!-- tenemos el sexo del usuario? para mostrar el msj com bienvenido / a  -->
+  <h1 *ngIf="!trabajador.esMasculino">Bienvenida, {{ trabajador.nombre }}!</h1>
+  <h1 *ngIf="trabajador.esMasculino">Bienvenido, {{ trabajador.nombre }}!</h1>
+  <div class="half-colored"></div>
+
+  <ion-card>
+    <p>Frecuentes</p>
+    <ion-row class="ion-justify-content-between">
+      <ion-col
+        size="3"
+        *ngFor="let icon of icons"
+        style="text-align: -webkit-center"
+      >
+        <a [routerLink]="icon.path">
+          <ion-avatar slot="end">
+            <img src="../../../../assets/img/{{ icon.avatar }}.png" />
+          </ion-avatar>
+          <div
+            class="ion-padding-top text-container"
+            [style]="'color:var(' + icon.color + ')'"
+          >
+            {{ icon.name }}
+          </div>
+        </a>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+</div>

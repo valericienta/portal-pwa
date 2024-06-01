@@ -9,10 +9,12 @@ import {
   CalendarComponentOptions,
   DayConfig,
 } from '@googlproxer/ion-range-calendar';
-import { IonModal } from '@ionic/angular';
+import { IonModal, ModalController } from '@ionic/angular';
 import { DynamicObject } from 'src/app/interfaces/dynamic-object.interface';
 import * as moment from 'moment';
 import { DocumentosService } from '../../../services/documentos.service';
+
+import { IconName } from '@fortawesome/pro-solid-svg-icons';
 
 @Component({
   selector: 'app-filtrar',
@@ -47,7 +49,10 @@ export class FiltrarComponent implements OnInit {
     { id: 3, opened: false, item: 'referencia' },
   ];
 
-  constructor(documentosService: DocumentosService) {
+  constructor(
+    documentosService: DocumentosService,
+    public modalCtrl: ModalController
+  ) {
     documentosService.getTipos().then((data) => (this.tipos = data));
   }
 
@@ -112,7 +117,7 @@ export class FiltrarComponent implements OnInit {
     this.modal.dismiss();
   }
 
-  openModal() {
-    this.modal.present();
+  dismiss() {
+    this.modalCtrl.dismiss();
   }
 }

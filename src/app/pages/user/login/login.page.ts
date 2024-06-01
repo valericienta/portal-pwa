@@ -14,13 +14,14 @@ import { environment } from 'src/environments/environment';
 import { Usuario } from 'src/app/models/usuario.model';
 import { jwtDecode } from 'jwt-decode';
 import { LoadingService } from '../../../services/loading.service';
-import { NativeBiometric, BiometryType } from "capacitor-native-biometric";
+import { UpdateStoresService } from 'src/app/services/update-stores.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
+
 export class LoginPage implements OnInit {
 
 
@@ -38,7 +39,8 @@ export class LoginPage implements OnInit {
     private msalService: MsalService,
     private msalBroadcastService: MsalBroadcastService,
     public authenticationService: AuthenticationService,
-    public loadingService: LoadingService
+    public loadingService: LoadingService,
+    public updates: UpdateStoresService
   ) {
 
     this.global.user = new Usuario();
@@ -48,6 +50,7 @@ export class LoginPage implements OnInit {
     this.msalService.instance.setNavigationClient(new CustomNavigationClient(this.iab));
   }
 
+  
   ngOnInit() {
     if (environment.dev) this.user = { email: "valericienta@gmail.com", password: "Joluca05*" }
     this.menuController.enable(false);
@@ -55,22 +58,11 @@ export class LoginPage implements OnInit {
     this.CheckValidToken();
   }
 
-
-  async checkFingerPrint() {
-    NativeBiometric.isAvailable()
-      .then(result => {
-        alert(`Datos biométricos: ${JSON.stringify(result)}`)
-        if (!result.isAvailable) return;
-        NativeBiometric.verifyIdentity({
-          title: "Firma de documentos",
-          subtitle: "Utilice sus datos biometricos",
-          description: " para firmar el documento",
-        })
-          .then(() => true)
-          .catch(() => false);       
-      })
-      .catch(error => { alert(error) })
+  checkVersion() {
+    console.log(this.updates.getCurrentAppVersion());
+    console.log(this.updates.getAvailableAppVersion());
   }
+
 
   CheckValidToken() {
     let storedToken = localStorage.getItem("token");

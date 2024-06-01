@@ -13,52 +13,59 @@ import { PdfPreviewComponent } from 'src/app/components/pdf-preview/pdf-preview.
   styleUrls: ['./certificado-solicitar.component.scss'],
 })
 export class CertificadoSolicitarComponent implements OnInit {
-
   tipos: TiposCertificado[] = [];
   certificado: Certificado;
-  constructor(public toastService: ToastService,
+  constructor(
+    public toastService: ToastService,
     public documentosService: DocumentosService,
-    public modalCtrl: ModalController) {
+    public modalCtrl: ModalController
+  ) {
     this.getTipos();
     this.certificado = new Certificado();
-
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   getTipos() {
-    this.documentosService.getTiposCertificados().then(data => {
+    this.documentosService.getTiposCertificados().then((data) => {
       this.tipos = data;
-    })
+    });
+  }
+
+  selectTipo(id: any) {
+    this.certificado.idFormato = id;
   }
   dismiss() {
     this.modalCtrl.dismiss();
   }
 
   solicitar() {
+    let nombre = this.tipos.find(
+      (x) => x.id == this.certificado.idFormato
+    )?.nombre;
 
-    let nombre = (this.tipos.find(x => x.id == this.certificado.idFormato))?.nombre;
-
-
-    this.documentosService.solicitarCertificado(this.certificado.idFormato)
+    this.documentosService
+      .solicitarCertificado(this.certificado.idFormato)
       .then((data: any) => {
         let documento = {
           tipo: nombre,
-          id: data.data
-        }
+          id: data.data,
+        };
         this.showPDF(documento);
-      })
+      });
   }
 
   showPDF(item: Documento) {
-    this.modalCtrl.create({
-      component: PdfPreviewComponent,
-      componentProps: {
-        documento: item,
-        id: item.id,
-        firmar: false
-      },
-      cssClass: 'modalPDF'
-    }).then((modal) => modal.present())
+    this.modalCtrl
+      .create({
+        component: PdfPreviewComponent,
+        componentProps: {
+          documento: item,
+          id: item.id,
+          firmar: false,
+        },
+        cssClass: 'modalPDF',
+      })
+      .then((modal) => modal.present());
   }
 }

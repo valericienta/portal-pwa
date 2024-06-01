@@ -1,3 +1,24 @@
+<app-section-title [section]="permisosTitle"></app-section-title>
+<ion-list>
+  <ion-item-sliding *ngFor="let permiso of permisosPendientes">
+    <ion-item>
+      <ion-label>
+        <h4 class="item-title">{{ permiso.tipoPermiso }}</h4>
+        <p>{{ permiso.creadoEl | date : "dd/MM/yy" }}</p>
+      </ion-label>
+      <ion-badge class="badge-warning">Pendiente</ion-badge>
+    </ion-item>
+    <ion-item-options>
+      <ion-item-option
+        color="danger"
+        (click)="alertaEliminarPermiso(permiso.id)"
+        ><fa-icon [icon]="['fas', 'trash']"></fa-icon>Eliminar</ion-item-option
+      >
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-list>
+
+<!-- 
 <ion-card *ngIf="permisos.length>0">
 
   <ion-list>
@@ -19,4 +40,4 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-</ion-card>
+</ion-card> -->

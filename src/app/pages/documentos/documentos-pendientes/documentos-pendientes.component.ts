@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IconName } from '@fortawesome/pro-solid-svg-icons';
 import { ModalController } from '@ionic/angular';
 import { PdfPreviewComponent } from 'src/app/components/pdf-preview/pdf-preview.component';
 import { Documento } from 'src/app/interfaces/documento.interface';
@@ -15,6 +16,14 @@ export class DocumentosPendientesComponent implements OnInit {
   documentos: Documento[] = [];
   pagina: number = 0;
   filtros: any = {};
+
+  docIcon: IconName = 'folder';
+  docTitle = {
+    title: 'Documentos',
+    message: 'Aquí encontraras todos tus documentos.',
+    color: '--documentos-accent',
+    icon: this.docIcon,
+  };
 
   constructor(
     public global: GlobalService,

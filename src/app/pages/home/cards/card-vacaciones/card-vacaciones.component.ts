@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { VacacionesService } from '../../../../services/vacaciones.service';
 import { IconName } from '@fortawesome/pro-solid-svg-icons';
 import { Vacaciones } from 'src/app/models/vacaciones.model';
+import { GlobalService } from 'src/app/services/global.service';
 
 @Component({
   selector: 'app-card-vacaciones',
@@ -15,13 +16,20 @@ export class CardVacacionesComponent implements OnInit {
   vacIcon: IconName = 'umbrella-beach';
   vacSection = {
     title: 'Vacaciones',
-    message: 'No tienes documentos pendientes de aprobación',
+    message: '',
     color: '--vacaciones-accent',
     icon: this.vacIcon,
   };
-  constructor(public vacacionesService: VacacionesService) {}
+  constructor(public vacacionesService: VacacionesService, public global: GlobalService) { }
 
   ngOnInit() {
+    this.getDias();
+    this.global.getTenant().subscribe(() => {
+      this.getDias();
+    });
+  }
+
+  getDias() {
     this.vacacionesService
       .getDiasDisponibles()
       .then((dias: any) => (this.dias = dias));
@@ -41,12 +49,4 @@ export class CardVacacionesComponent implements OnInit {
     }
   }
 
-  getSolicitudes() {
-    this.solicitudes = [];
-    this.vacacionesService.getSolicitudes().then((data: Vacaciones[]) => {
-      this.solicitudes = data;
-
-      this.vacSection.message = this.setMessage();
-    });
-  }
 }

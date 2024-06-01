@@ -35,14 +35,14 @@ export class ContratoComponent implements OnInit {
         icon: 'briefcase',
       },
       {
+        label: 'Banco',
+        value: this.trabajador.banco,
+        icon: 'building-columns',
+      },
+      {
         label: 'Cuenta corriente',
         value: this.trabajador.numeroCtaCte,
         icon: 'piggy-bank',
-      },
-      {
-        label: 'Supervisor',
-        value: this.trabajador.supervisor,
-        icon: 'user-tie',
       },
     ];
   }

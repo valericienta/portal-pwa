@@ -12,7 +12,8 @@ import localeEsAr from '@angular/common/locales/es-AR';
 
 import { VacacionesPageRoutingModule } from './vacaciones-routing.module';
 import { VacacionesSolicitarComponent } from './vacaciones-solicitar/vacaciones-solicitar.component';
-import { VacacionesListaComponent } from './vacaciones-lista/vacaciones-lista.component';
+import { VacacionesHistorialComponent } from './vacaciones-historial/vacaciones-historial.component';
+import { VacacionesSolicitudesComponent } from './vacaciones-solicitudes/vacaciones-solicitudes.component';
 
 
 registerLocaleData(localeEsAr, 'es-Ar');
@@ -27,8 +28,9 @@ registerLocaleData(localeEsAr, 'es-Ar');
     IonRangeCalendarModule
   ],
   declarations: [VacacionesPage,
-    VacacionesListaComponent, 
-    VacacionesSolicitarComponent
-    ],
+    VacacionesSolicitarComponent,
+    VacacionesSolicitudesComponent,
+    VacacionesHistorialComponent
+  ],
 })
 export class VacacionesPageModule { }

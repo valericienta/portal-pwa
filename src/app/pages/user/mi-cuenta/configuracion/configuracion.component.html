@@ -1,6 +1,6 @@
-<ion-list>
+<!-- <ion-list>
   <ion-item>
-    <h4>¿Cómo quieres recibir notificaciones?</h4>
+    <h5>¿Cómo quieres recibir notificaciones?</h5>
   </ion-item>
   <ion-item>
     <ion-checkbox slot="start" disabled="true" checked="true"> </ion-checkbox>
@@ -30,21 +30,13 @@
       <h2>SMS</h2>
     </ion-label>
   </ion-item>
-</ion-list>
-<!-- <ion-card class="card">
-  <ion-card-header>
-    <ion-card-title>Notificaciones</ion-card-title>
-    <ion-card-subtitle>¿Como quieres recibir notificaciones?</ion-card-subtitle>
-  </ion-card-header>
-  <ion-card-content>
-    <ion-checkbox labelPlacement="end" disabled="true" checked="true">
-      <fa-icon [icon]="['fal', 'envelope']"></fa-icon>Email</ion-checkbox
-    ><br />
-    <ion-checkbox labelPlacement="end" (ionChange)="grabar()" [(ngModel)]="WA"
-      ><fa-icon [icon]="['fab', 'whatsapp']"></fa-icon>WhatsApp</ion-checkbox
-    ><br />
-    <ion-checkbox labelPlacement="end" (ionChange)="grabar()" [(ngModel)]="SMS"
-      ><fa-icon [icon]="['fal', 'comment-sms']"></fa-icon>SMS</ion-checkbox
-    ><br />
-  </ion-card-content>
-</ion-card> -->
+</ion-list> -->
+<ion-button
+  (click)="redirectClave()"
+  id="btnCambiar"
+  class="ion-padding"
+  expand="block"
+>
+  <fa-icon [icon]="['fal', 'arrow-up-right-from-square']"></fa-icon>
+  Cambiar contraseña
+</ion-button>

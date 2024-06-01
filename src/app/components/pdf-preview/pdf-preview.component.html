@@ -5,8 +5,9 @@
         <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-
+    {{documento.referencia}}
   </ion-toolbar>
+
 </ion-header>
 
 <ion-fab (click)="share()" *ngIf="!showModalFirma && loaddoc && (documento.idEstado!=3)">
@@ -16,24 +17,29 @@
 </ion-fab>
 
 
-<ion-fab (click)="firmarDocumento()"
-  *ngIf="!showModalFirma && loaddoc && (documento.idEstado==3) && habilitadoFirma">
-  <ion-fab-button size="small">
-    <fa-icon [icon]="['fal', 'signature']"></fa-icon>
-  </ion-fab-button>
-</ion-fab>
+
 
 <ion-content>
-
-  <div *ngIf="!showModalFirma">
-    <ngx-extended-pdf-viewer *ngIf="loaddoc" [src]="pdfSrc" backgroundColor="#ffffff" [showToolbar]="true"
+  <div class="div-pdf" *ngIf="!showModalFirma">
+    <ngx-extended-pdf-viewer id="pdfVIEWER" *ngIf="loaddoc" [src]="pdfSrc" backgroundColor="#ffffff" [showToolbar]="true"
       [showSidebarButton]="false" [showFindButton]="false" [showPagingButtons]="false" [showDrawEditor]="false"
       [showStampEditor]="false" [showTextEditor]="false" [showZoomButtons]="false" [showPresentationModeButton]="false"
       [showOpenFileButton]="false" [showPrintButton]="false" [showDownloadButton]="false"
       [showSecondaryToolbarButton]="false" [showRotateButton]="false" [showHandToolButton]="false"
       [showScrollingButton]="false" [showSpreadButton]="false" [showPropertiesButton]="false"
-      [zoom]="'page-width'"></ngx-extended-pdf-viewer>
+      [zoom]="'page-width'"
+      (pageRender)="getPageSize($event)"
+      (pdfLoaded)="pdfLoaded($event)"></ngx-extended-pdf-viewer>
   </div>
-
-  <app-select-metodo *ngIf="showModalFirma" (hideSelectMethod)="hideSelectComponent($event)" [id]="id"></app-select-metodo>
+  
+  <div class="div-button" [ngStyle]="{'top':  pageHeight + 'px'}" *ngIf="loadpage">
+    <ion-fab (click)="firmarDocumento()"
+      *ngIf="!showModalFirma && loaddoc && (documento.idEstado==3) && habilitadoFirma">
+      <ion-fab-button size="small">
+        <fa-icon [icon]="['fal', 'signature']"></fa-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
+  <app-select-metodo *ngIf="showModalFirma" (hideSelectMethod)="hideSelectComponent($event)"
+    [id]="id"></app-select-metodo>
 </ion-content>

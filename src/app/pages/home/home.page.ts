@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, viewChild } from '@angular/core';
 import { MenuController, ModalController } from '@ionic/angular';
 import { Trabajador } from 'src/app/models/trabajador.model';
 import { GlobalService } from 'src/app/services/global.service';
@@ -8,10 +8,11 @@ import { LoadingService } from '../../services/loading.service';
 import { ToastService } from 'src/app/services/toast.service';
 import * as moment from 'moment';
 import { IconName } from '@fortawesome/pro-solid-svg-icons';
-import { VacacionesService } from 'src/app/services/vacaciones.service';
+
 import { Documento } from 'src/app/interfaces/documento.interface';
 import { DocumentosService } from 'src/app/services/documentos.service';
 import { searchResponse } from 'src/app/models/search-response.model';
+import { CardVacacionesComponent } from './cards/card-vacaciones/card-vacaciones.component';
 
 @Component({
   selector: 'app-home',
@@ -19,6 +20,8 @@ import { searchResponse } from 'src/app/models/search-response.model';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
+
+  @ViewChild(CardVacacionesComponent) cardvacaciones: CardVacacionesComponent;
   trabajador = new Trabajador();
 
   alDiaIcon: IconName = 'badge-check';
@@ -31,7 +34,7 @@ export class HomePage implements OnInit {
   };
 
   documentosPendientes: Documento[] = [];
-
+  pagina: number = 0;
   constructor(
     public usuarioService: UsuarioService,
     public global: GlobalService,
@@ -39,36 +42,43 @@ export class HomePage implements OnInit {
     public loadingService: LoadingService,
     public modalCtrl: ModalController,
     public toastService: ToastService,
-    private documentosService: DocumentosService
-  ) {
+    private documentosService: DocumentosService) {
     this.trabajador = this.global.trabajador;
+    this.pagina = 0;
   }
 
   ngOnInit() {
-    // this.loadingService.isLoading.next(true)
     this.validateHabilitacion();
-    this.getDocumentosPendientes();
+    this.global.getTenant().subscribe((value) => {
+      this.getPendientesHome();
+    })
   }
 
   ionViewWillEnter() {
     this.menuController.enable(true);
+
   }
 
   validateHabilitacion() {
     if (!this.global.habilitadoFirma) {
       let entorno = '';
-
       let url = `https://app${entorno}.portaltrabajadores.cl/account/forgotpassword`;
       let message = `Recuerde habilitar le segundo nivel de autenticación para firmar los documentos`;
       this.toastService.present_GoPortal(message, 'danger');
     }
   }
 
-  getDocumentosPendientes(ev?: any) {
-    this.documentosService.getPendientes().then((data: searchResponse) => {
+  getPendientesHome(ev?: any) {
+    this.pagina++;
+    this.documentosPendientes = [];
+    this.documentosService.getPendientesHome().then((data: searchResponse) => {
       data.data.forEach((item: Documento) => {
         this.documentosPendientes.push(item);
-      });
+      });     
     });
+  }
+
+  onIonInfinite(ev: any) {
+    this.getPendientesHome(ev);
   }
 }

@@ -8,17 +8,27 @@ ion-content{
   --background: white;
 }
 
+.div-button {
+  height: 60px;
+  width: 100%;
+  display: block;
+  position: absolute;
+}
+
 ion-fab{
   position: absolute;
   right: 5px;
   bottom: 5px;
-}
+  }
 
 .zoom {
   font-size: 1.75em;
 }
 
-
+.div-pdf {
+  background-color: blue;
+  display: block;
+}
 #fingerprint{
   position: absolute;
   left: 5px;

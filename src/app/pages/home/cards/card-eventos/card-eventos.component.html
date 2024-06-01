@@ -30,19 +30,17 @@
   <swiper-slide
     *ngFor="let event of eventos"
     class="ion-padding"
-    style="height: 9rem"
+    style="height: 170px !important"
   >
-    <ion-item lines="none" class="card">
-      <!-- Si el evento es cumpleaños se verá la foto, si es festividad u otro un icono -->
+    <ion-item class="card" lines="none">
       <ion-avatar slot="start" *ngIf="event.urlFotografia.length > 0">
         <img [src]="event.urlFotografia" />
       </ion-avatar>
-      <ion-avatar
-        slot="start"
-        *ngIf="event.urlFotografia.length < 1"
-        [style]="'background: var(--eventos-accent)'"
-      >
-        <fa-icon [icon]="['fal', 'party-horn']"></fa-icon>
+      <ion-avatar slot="start" *ngIf="event.urlFotografia.length < 1">
+        <fa-icon
+          [style]="'color: var(--eventos-accent)'"
+          [icon]="['fal', 'party-horn']"
+        ></fa-icon>
       </ion-avatar>
       <ion-label>
         <h2 style="color: var(--eventos-accent)">

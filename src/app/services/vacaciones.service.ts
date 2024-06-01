@@ -18,7 +18,6 @@ export class VacacionesService {
     return firstValueFrom(source$)
   }
 
-
   getSolicitudes() {
     let url = `/vacaciones/solicitudes/search`;
     let source$ = this.http.post(url, {}).pipe(map(((response: any) => response.data.map((item: any) => new Vacaciones(item)))))
@@ -42,6 +41,12 @@ export class VacacionesService {
   eliminar(id: string) {
     let url = `/vacaciones/solicitudes/${id}`;
     const source$ = this.http.delete(url);
+    return firstValueFrom(source$)
+  }
+
+  getCantidadSolicitudesPendientes(){
+    let url = '/vacaciones/solicitudes/pendientes'
+    const source$ = this.http.get(url).pipe(map(((response: any) => response.data)))
     return firstValueFrom(source$)
   }
 

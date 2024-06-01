@@ -1,34 +1,7 @@
-<app-header>Permisos"></app-header>
+<app-header></app-header>
 <ion-content>
-  <app-section-title [section]="permisosTitle"></app-section-title>
-  <ion-list>
-    <ion-item *ngFor="let permiso of permisosPendientes">
-      <ion-label>
-        <h4 class="item-title">{{permiso.tipoPermiso}}</h4>
-        <p>{{permiso.creadoEl| date : 'dd/MM/yy'}}</p>
-      </ion-label>
-      <ion-badge class="badge-warning">Pendiente</ion-badge>
-    </ion-item>
-  </ion-list>
-
-  <div *ngIf="permisosAprobados.length>0">
-    <app-section-title [section]="historialTitle"></app-section-title>
-    <ion-list>
-      <ion-item *ngFor="let per of permisosAprobados">
-        <ion-label>
-          <h4 class="item-title">{{per.tipoPermiso}}</h4>
-          <p>{{per.desde| date : 'dd/MM/yy'}}</p>
-        </ion-label>
-
-        <ion-badge class="badge-success">Aprobado</ion-badge>
-      </ion-item>
-    </ion-list>
-  </div>
-  <!-- <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
-    <ion-infinite-scroll-content
-      class="spinner-hide"
-    ></ion-infinite-scroll-content>
-  </ion-infinite-scroll> -->
+  <app-permisos-lista></app-permisos-lista>
+  <app-permisos-historial></app-permisos-historial>
 </ion-content>
 
 <!-- <ion-content>

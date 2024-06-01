@@ -4,6 +4,7 @@ import { ModalController } from '@ionic/angular';
 import { GlobalService } from 'src/app/services/global.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-configuracion',
@@ -39,5 +40,14 @@ export class ConfiguracionComponent implements OnInit {
         );
       })
       .catch(() => {});
+  }
+
+  redirectClave() {
+    let entorno = '';
+    if (environment.dev) entorno = '-test';
+    let url = `https://app${entorno}.portaltrabajadores.cl/account/forgotpassword`;
+    url = 'https://app.portaltrabajadores.cl/';
+    let browser = this.iab.create(url);
+    browser.show();
   }
 }

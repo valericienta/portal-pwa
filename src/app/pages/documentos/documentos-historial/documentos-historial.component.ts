@@ -7,6 +7,7 @@ import { Documento } from 'src/app/interfaces/documento.interface';
 import { searchResponse } from 'src/app/models/search-response.model';
 import { DocumentosService } from 'src/app/services/documentos.service';
 import { GlobalService } from 'src/app/services/global.service';
+import { FiltrarComponent } from '../filtrar/filtrar.component';
 
 @Component({
   selector: 'app-documentos-historial',
@@ -14,14 +15,6 @@ import { GlobalService } from 'src/app/services/global.service';
   styleUrls: ['./documentos-historial.component.scss'],
 })
 export class DocumentosHistorialComponent implements OnInit {
-  histIcon: IconName = 'history';
-  historialTitle = {
-    title: 'Historial de documentos',
-    message: 'Aquí encontraras todos tus documentos.',
-    color: '--historial-accent',
-    icon: this.histIcon,
-  };
-
   documentos: Documento[] = [];
   pendientes: any;
   pagina: number = 0;
@@ -82,7 +75,7 @@ export class DocumentosHistorialComponent implements OnInit {
     else {
       let filtro = {
         pageNumber: this.pagina,
-        pageSize: 10,
+        pageSize: 5,
         orderby: ['fecha DESC'],
         tipo: this.filtros.tipo > 0 ? this.filtros.tipo : null,
         firmado: this.filtros.firmado == false ? false : null,
@@ -96,5 +89,14 @@ export class DocumentosHistorialComponent implements OnInit {
         if (ev) this.infiniteScroll.complete();
       });
     }
+  }
+
+  openModal() {
+    this.modalCtrl
+      .create({
+        component: FiltrarComponent,
+        componentProps: {},
+      })
+      .then((modal) => modal.present());
   }
 }

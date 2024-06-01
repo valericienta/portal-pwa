@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, OnInit, afterNextRender } from '@angular/core';
 import { ModalController, Platform } from '@ionic/angular';
 import { Share } from '@capacitor/share';
 import { Filesystem, Directory } from '@capacitor/filesystem';
@@ -15,6 +15,7 @@ import * as moment from 'moment';
 import { environment } from 'src/environments/environment';
 
 import { NativeBiometric, BiometryType } from "capacitor-native-biometric";
+import { PDFDocumentProxy } from 'ngx-extended-pdf-viewer';
 
 @Component({
   selector: 'app-pdf-preview',
@@ -29,21 +30,19 @@ export class PdfPreviewComponent implements OnInit {
   documento: Documento;
   habilitadoFirma: boolean = false;
   zoom = 1.0;
-
+  pageHeight: number = 0;
   pdfSrc: any;
   base64: any;
   loaddoc: boolean = false;
+  loadpage: boolean = false;
   blobFile: any;
   dataFileFromAPI: any;
-
-  page: number = 5;
   showModalFirma: boolean = false;
   public spreadMode: 'off' | 'even' | 'odd' = 'off';
-
   public BiometricAvailable: boolean = false;
-  //'finger' | 'face' | 'biometric'
 
-
+  pagecount: number = 1;
+  pagesloaded: any;
   constructor(public documentosService: DocumentosService,
     public global: GlobalService,
     public modalCtrl: ModalController,
@@ -56,6 +55,7 @@ export class PdfPreviewComponent implements OnInit {
     // this.platform.pause.subscribe(() => { this.modalCtrl.dismiss() });
     // this.platform.resume.subscribe(() => { this.router.navigate(['/home']) });
     this.checkFingerPrint();
+
   }
 
   getFile() {
@@ -66,14 +66,42 @@ export class PdfPreviewComponent implements OnInit {
     this.habilitadoFirma = this.global.user.MFAByApp == "False" && this.global.user.MFAByPhone == "False" ? false : true;
   }
 
+  pdfLoaded(e: any) {
+    this.pagecount = e.pagesCount;
+    console.log('pdfLoaded: ' + this.pagecount)
+
+    //   debugger;
+    //   let pagesCount= pdfDocument.pagesCount;
+    //   this.pageHeight = (pdf[0].clientHeight * pagesCount)+ 50; 
+    //   this.loadpage = true;
+
+  }
+
+  getPageSize(e: any) {
+    if (e.pageNumber == this.pagecount) {
+      let pdfCanva = document.getElementsByClassName("canvasWrapper")[0];
+      let pdfLoading = document.getElementsByClassName("page loadingIcon")[0];
+      let pdfPage = document.getElementsByClassName("page")[0];
+      let pdf: any;
+      if (pdfPage) pdf = pdfPage;
+      if (pdfCanva) pdf = pdfCanva;
+      if (pdfLoading) pdf = pdfLoading;
+      console.log(pdf);
+      this.pageHeight = (pdf.clientHeight * this.pagecount) + 50;
+      console.log('llego al final');
+      this.loadpage = true;
+    }
+
+  }
+
   checkFingerPrint() {
     NativeBiometric.isAvailable()
       .then(result => {
         if (!result.isAvailable) return;
-        else this.BiometricAvailable=true;
-       
+        else this.BiometricAvailable = true;
+
       })
-      .catch(error => { this.BiometricAvailable =false; })
+      .catch(error => { this.BiometricAvailable = false; })
   }
 
 
@@ -86,7 +114,7 @@ export class PdfPreviewComponent implements OnInit {
       .then(() => {
         this.signDocumento();
       })
-      .catch(() => this.toastService.present("Autenticación inválida","danger"));       
+      .catch(() => this.toastService.present("Autenticación inválida", "danger"));
   }
 
 
@@ -135,7 +163,7 @@ export class PdfPreviewComponent implements OnInit {
       })
   }
 
- firmarDocumento() {
+  firmarDocumento() {
     if (this.BiometricAvailable) this.firmarBiometric();
     else this.firmar2FA();
   }

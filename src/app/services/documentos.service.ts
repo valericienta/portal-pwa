@@ -68,16 +68,20 @@ export class DocumentosService {
     return this.search(filtro);
   }
 
-  getPendientes(page?: number, size?: number) {
-    let filtro = {
-      pageNumber: page,
-      pageSize: size,
-      orderby: ["fecha ASC"],
-      firmado: false
-    }
+  getPendientes() {
     let url = '/documentos/porfirmar';
     let source$ = this.http.get(url).pipe(map((response: any) => <searchResponse>response))
     return firstValueFrom(source$)
+  }
+
+  getPendientesHome() {
+    let filtro = {
+      pageNumber: 1,
+      pageSize: 5,
+      orderby: ["fecha ASC"],
+      idEstado: 3
+    }
+    return this.search(filtro);
   }
 
   search(filtro: any) {
@@ -112,7 +116,7 @@ export class DocumentosService {
   }
 
   firmar(via: string, id: string, code: string, coordinates: string) {
-    let url = `/documentos/${id}/firmar/wa/${code}`;
+    let url = `/documentos/${id}/firmar/${via}/${code}`;
     const source$ = this.http.put(url, {}, { params: { location: coordinates } });
     return firstValueFrom(source$)
   }

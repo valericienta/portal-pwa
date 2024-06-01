@@ -10,7 +10,7 @@ import { Documento } from 'src/app/interfaces/documento.interface';
   styleUrls: ['./card-documentos.component.scss'],
 })
 export class CardDocumentosComponent implements OnInit {
-  @Input() documentos: Documento[] = [];
+  @Input() documentos: Documento[];
 
   docIcon: IconName = 'folder';
   documentosTitle = {
@@ -24,7 +24,6 @@ export class CardDocumentosComponent implements OnInit {
 
   ngOnInit() {
     this.documentosTitle.message = this.setMessage();
-    console.log(this.documentos);
   }
 
   showPDF(document: Documento) {
