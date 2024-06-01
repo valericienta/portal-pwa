@@ -104,7 +104,7 @@ export class AuthenticationService {
   setUser(identifier: string) {
     return new Promise((resolve, reject) => {
       this.global.tenant = identifier;
-      this.global.setTenant(identifier);
+      this.global.setTenant(true);
       this.usuarioService.getusuario()
         .then((data: Trabajador) => {
           this.global.trabajador = data;

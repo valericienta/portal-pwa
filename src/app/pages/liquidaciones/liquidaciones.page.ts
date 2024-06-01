@@ -48,8 +48,7 @@ export class LiquidacionesPage implements OnInit {
 
   ngOnInit() {
     this.getPendientes();
-    this.getLiquidaciones();
-  }
+    this.getLiquidaciones();  }
 
   showPDF(item: Documento) {
     this.modalCtrl
@@ -83,7 +82,6 @@ export class LiquidacionesPage implements OnInit {
   
   getLiquidaciones(ev?: any) {
     this.pagina++;
-
     this.documentosService
       .getLiquidacionesFirmadas(this.pagina, 5)
       .then((data: searchResponse) => {

@@ -37,7 +37,6 @@ export class DocumentosService {
     return this.search(filtro);
   }
 
-
   getLiquidacionesPorFirmar(page?: number, size?: number) {
     let filtro = {
       tipo: 6,
@@ -48,7 +47,7 @@ export class DocumentosService {
     }
     return this.search(filtro);
   }
-  
+
   getCertificados(page?: number, size?: number) {
     let filtro = {
       tipo: 4,
@@ -59,32 +58,34 @@ export class DocumentosService {
     return this.search(filtro);
   }
 
-  getTodos(page?: number, size?: number) {
+  getDocumentosHistorial(page?: number, size?: number){
     let filtro = {
       pageNumber: page,
       pageSize: size,
-      orderby: ["fecha DESC"]
+      orderby: ["fecha DESC"],
+      idEstado: 4
     }
     return this.search(filtro);
   }
-
-  getPendientes() {
+  getDocumentosPendientesTodos() {
     let url = '/documentos/porfirmar';
     let source$ = this.http.get(url).pipe(map((response: any) => <searchResponse>response))
     return firstValueFrom(source$)
   }
 
-  getPendientesHome() {
+
+  //SE USA EN HOME DONDE MOSTRAMOS INICIALMENTE LOS 5 PRIMEROS
+  getPendientes(page?: number, size?: number) {
     let filtro = {
-      pageNumber: 1,
-      pageSize: 5,
+      pageNumber: page,
+      pageSize: size,
       orderby: ["fecha ASC"],
       idEstado: 3
     }
     return this.search(filtro);
   }
 
-  search(filtro: any) {
+  private search(filtro: any) {
     let url = `/documentos/search`;
     let source$ = this.http.post(url, filtro).pipe(map((response: any) => <searchResponse>response))
     return firstValueFrom(source$)
@@ -124,6 +125,18 @@ export class DocumentosService {
   getTipos() {
     let url = '../../assets/data/tipos-documentos.json'
     const source$ = this.http.get(url);
+    return firstValueFrom(source$)
+  }
+
+  getCntSolicitudesPendientes() {
+    let url = `/vacaciones/solicitudes/pendientes`;
+    const source$ = this.http.get(url).pipe(map(((response: any) => response.data)));
+    return firstValueFrom(source$)
+  }
+
+  getCntPermisosPendientes() {
+    let url = `/permisos/pendientes`;
+    const source$ = this.http.get(url).pipe(map(((response: any) => response.data)));
     return firstValueFrom(source$)
   }
 }

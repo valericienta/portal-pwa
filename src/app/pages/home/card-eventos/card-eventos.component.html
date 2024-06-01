@@ -1,0 +1,54 @@
+<app-section-title [section]="eventosSection"></app-section-title>
+
+<ion-item class="ion-margin" style="border-radius: 9px" *ngIf="!eventos">
+  <ion-thumbnail slot="start">
+    <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+  </ion-thumbnail>
+  <ion-label>
+    <h3>
+      <ion-skeleton-text
+        [animated]="true"
+        style="width: 80%"
+      ></ion-skeleton-text>
+    </h3>
+    <p>
+      <ion-skeleton-text
+        [animated]="true"
+        style="width: 60%"
+      ></ion-skeleton-text>
+    </p>
+    <p>
+      <ion-skeleton-text
+        [animated]="true"
+        style="width: 30%"
+      ></ion-skeleton-text>
+    </p>
+  </ion-label>
+</ion-item>
+
+<swiper-container pagination="true" *ngIf="eventos">
+  <swiper-slide
+    *ngFor="let event of eventos"
+    class="ion-padding"
+    style="height: 170px !important"
+  >
+    <ion-item class="card" lines="none">
+      <ion-avatar slot="start" *ngIf="event.urlFotografia.length > 0">
+        <img [src]="event.urlFotografia" />
+      </ion-avatar>
+      <ion-avatar slot="start" *ngIf="event.urlFotografia.length < 1">
+        <fa-icon
+          [style]="'color: var(--eventos-accent)'"
+          [icon]="['fal', 'party-horn']"
+        ></fa-icon>
+      </ion-avatar>
+      <ion-label>
+        <h2 style="color: var(--eventos-accent)">
+          {{ event.tipoEvento }}
+        </h2>
+        <h2>{{ event.referencia }}</h2>
+        <p>{{ event.inicio | date : "dd/MM/yyyy" }}</p>
+      </ion-label>
+    </ion-item>
+  </swiper-slide>
+</swiper-container>

@@ -1,18 +1,16 @@
-import { Component, OnInit, ViewChild, viewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MenuController, ModalController } from '@ionic/angular';
 import { Trabajador } from 'src/app/models/trabajador.model';
 import { GlobalService } from 'src/app/services/global.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { LoadingService } from '../../services/loading.service';
 
-import { ToastService } from 'src/app/services/toast.service';
-import * as moment from 'moment';
 import { IconName } from '@fortawesome/pro-solid-svg-icons';
-
-import { Documento } from 'src/app/interfaces/documento.interface';
 import { DocumentosService } from 'src/app/services/documentos.service';
-import { searchResponse } from 'src/app/models/search-response.model';
-import { CardVacacionesComponent } from './cards/card-vacaciones/card-vacaciones.component';
+import { ToastService } from 'src/app/services/toast.service';
+import { CardVacacionesComponent } from './card-vacaciones/card-vacaciones.component';
+import { CardEventosComponent } from './card-eventos/card-eventos.component';
+import { CardPendientesComponent } from './card-pendientes/card-pendientes.component';
 
 @Component({
   selector: 'app-home',
@@ -22,8 +20,14 @@ import { CardVacacionesComponent } from './cards/card-vacaciones/card-vacaciones
 export class HomePage implements OnInit {
 
   @ViewChild(CardVacacionesComponent) cardvacaciones: CardVacacionesComponent;
-  trabajador = new Trabajador();
+  @ViewChild(CardEventosComponent) cardeventos: CardEventosComponent;
+  @ViewChild(CardPendientesComponent) cardpendientes: CardPendientesComponent;
 
+
+  trabajador = new Trabajador();
+  tramitependientes: boolean = true;
+  cntdocumentospendientes: number = 0;
+  pendientes: boolean = true;
   alDiaIcon: IconName = 'badge-check';
 
   alDiaSection = {
@@ -33,8 +37,7 @@ export class HomePage implements OnInit {
     icon: this.alDiaIcon,
   };
 
-  documentosPendientes: Documento[] = [];
-  pagina: number = 0;
+
   constructor(
     public usuarioService: UsuarioService,
     public global: GlobalService,
@@ -43,20 +46,29 @@ export class HomePage implements OnInit {
     public modalCtrl: ModalController,
     public toastService: ToastService,
     private documentosService: DocumentosService) {
+
     this.trabajador = this.global.trabajador;
-    this.pagina = 0;
+
   }
 
   ngOnInit() {
-    this.validateHabilitacion();
-    this.global.getTenant().subscribe((value) => {
-      this.getPendientesHome();
+    this.menuController.enable(true);
+    // this.validateHabilitacion();
+
+  }
+
+  async loadData() {
+    this.cardvacaciones.getDias();
+    this.cardeventos.getEventos();
+    this.cardpendientes.getPendientesFirma();
+    this.checkPendientes().then(data => {
+      this.tramitependientes = data;
     })
   }
 
   ionViewWillEnter() {
-    this.menuController.enable(true);
-
+    console.log('HomePage LoadData()');
+    this.loadData();
   }
 
   validateHabilitacion() {
@@ -68,17 +80,10 @@ export class HomePage implements OnInit {
     }
   }
 
-  getPendientesHome(ev?: any) {
-    this.pagina++;
-    this.documentosPendientes = [];
-    this.documentosService.getPendientesHome().then((data: searchResponse) => {
-      data.data.forEach((item: Documento) => {
-        this.documentosPendientes.push(item);
-      });     
-    });
-  }
 
-  onIonInfinite(ev: any) {
-    this.getPendientesHome(ev);
+  async checkPendientes(): Promise<boolean> {
+    let cntsolicitudes = await this.documentosService.getCntSolicitudesPendientes();
+    let cntpermisos = await this.documentosService.getCntPermisosPendientes();
+    return cntsolicitudes + cntpermisos > 0 ? true : false;
   }
 }

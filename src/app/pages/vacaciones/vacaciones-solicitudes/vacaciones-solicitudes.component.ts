@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { Vacaciones } from 'src/app/models/vacaciones.model';
@@ -10,6 +10,9 @@ import { VacacionesService } from 'src/app/services/vacaciones.service';
   styleUrls: ['./vacaciones-solicitudes.component.scss'],
 })
 export class VacacionesSolicitudesComponent implements OnInit {
+  
+  @Output() updatediasEvent = new EventEmitter<boolean>();
+
   solicitudes: Vacaciones[] = [];
   vacIcon: IconName = 'umbrella-beach';
   vacationTitle = {
@@ -33,7 +36,6 @@ export class VacacionesSolicitudesComponent implements OnInit {
     this.solicitudes = [];
     this.vacacionesService.getSolicitudes().then((data: Vacaciones[]) => {
       this.solicitudes = data;
-      console.log(this.solicitudes);
       this.vacationTitle.message = this.setMessage();
     });
   }
@@ -56,6 +58,7 @@ export class VacacionesSolicitudesComponent implements OnInit {
     this.vacacionesService
       .eliminar(id)
       .then(() => {
+        this.updatediasEvent.emit(true);
         this.getSolicitudes();
       })
       .catch((error: any) => {

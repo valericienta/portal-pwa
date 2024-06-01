@@ -29,17 +29,9 @@ export class DocumentosPendientesComponent implements OnInit {
     public global: GlobalService,
     public modalCtrl: ModalController,
     private documentosService: DocumentosService
-  ) {}
+  ) { }
 
-  ngOnInit() {
-    this.getDocuments();
-  }
-
-  getFiltrados(e: any) {
-    this.documentos = [];
-    this.pagina = 0;
-    this.filtros = e;
-  }
+  ngOnInit() { }
 
   showPDF(document: Documento) {
     this.modalCtrl
@@ -55,13 +47,9 @@ export class DocumentosPendientesComponent implements OnInit {
       .then((modal: { present: () => any }) => modal.present());
   }
 
-  onIonInfinite(ev: any) {
-    this.getDocuments(ev);
-  }
-
-  getDocuments(ev?: any) {
-    this.pagina++;
-    this.documentosService.getPendientes().then((data: searchResponse) => {
+  loadPendientes() {
+    this.documentos = [];
+    this.documentosService.getDocumentosPendientesTodos().then((data: searchResponse) => {
       data.data.forEach((item: Documento) => {
         this.documentos.push(item);
       });

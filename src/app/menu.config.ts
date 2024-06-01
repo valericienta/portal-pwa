@@ -1,4 +1,4 @@
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
+
 import { IconName } from '@fortawesome/pro-solid-svg-icons';
 
 export const menu: {
@@ -50,6 +50,4 @@ export const menu: {
     iconfull: 'stamp',
     accent: '--certificados-accent',
   },
-
-  // { index: 6, title: 'Pendientes de Firma', url: '/documentos/P', iconfull: ['fal', 'file-signature'], clase: 'text-info' },
 ];

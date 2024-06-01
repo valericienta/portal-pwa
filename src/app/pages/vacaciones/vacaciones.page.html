@@ -2,7 +2,7 @@
 
 <ion-content>
   <!-- SOLICTUDES DE VACACIONES -->
-  <app-vacaciones-solicitudes></app-vacaciones-solicitudes>
+  <app-vacaciones-solicitudes (updatediasEvent)="mostrarDiasDisponibles($event)"></app-vacaciones-solicitudes>
   
   <div class="diasdisp">
     <p>Días disponibles</p>

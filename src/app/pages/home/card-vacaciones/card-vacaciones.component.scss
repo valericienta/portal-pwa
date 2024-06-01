@@ -1,0 +1,22 @@
+.diasdisp {
+    background-image: url('../../../../assets/img/vacaciones-back.png');
+    background-size: cover;
+    background-position: center;
+    color: #ffffff;
+    padding: 16px;
+    margin: 16px;
+    border-radius: 8px;
+
+    p {
+        margin: 0;
+    }
+
+    h2 {
+        font-size: 2rem;
+        margin: 0;
+    }
+
+    span {
+        font-size: 1.5rem;
+    }
+}

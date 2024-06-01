@@ -18,40 +18,10 @@ export class PermisosPage implements OnInit {
   constructor(
     public modalCtrl: ModalController,
     public permisosService: PermisosService
-  ) {}
+  ) { }
 
   ngOnInit() {
-    // this.permisosService.getPermisos().then((data: Permiso[]) => {
-    //   data.forEach((permiso) => {
-    //     permiso.estado == 'Aprobado'
-    //       ? this.permisosAprobados.push(permiso)
-    //       : this.permisosPendientes.push(permiso);
-    //   });
-    //   this.setMensaje(this.permisosPendientes.length);
-    // });
   }
-
-  // public getPermisos() {
-  //   this.permisosService.getPermisos().then((data: Permiso[]) => {
-  //     data.forEach((permiso) => {
-  //       permiso.estado == 'Aprobado'
-  //         ? this.permisosAprobados.push(permiso)
-  //         : this.permisosPendientes.push(permiso);
-  //     });
-  //     // this.permisos = data;
-  //   });
-  // }
-
-  // eliminarPermiso(id: any) {
-  //   this.permisosService
-  //     .eliminar(id)
-  //     .then(() => {
-  //       this.getPermisos();
-  //     })
-  //     .catch((error: any) => {
-  //       console.log(error);
-  //     });
-  // }
 
   async showSolicitar() {
     const modal = await this.modalCtrl.create({
@@ -60,6 +30,6 @@ export class PermisosPage implements OnInit {
     modal.present();
     const { data, role } = await modal.onWillDismiss();
 
-    if (role === 'save') this.listapermisos.getPermisos();
+    if (role === 'save') { this.listapermisos.getPermisos(); }
   }
 }

@@ -1,0 +1,22 @@
+.user-profile-img{
+width: 50%;
+}
+
+ion-avatar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  fa-icon{
+    font-size: 1.2rem;
+    color: #FFFFFF;
+    margin: 0
+  }
+}
+
+.card{
+  border-radius: 8px;
+  box-shadow: 1px 2px 5px 0px rgb(0 0 0 / 8%);
+  height: 90%;
+  background: #ffffff;
+}
+

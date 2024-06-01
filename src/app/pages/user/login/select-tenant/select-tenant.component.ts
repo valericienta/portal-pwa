@@ -4,6 +4,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { GlobalService } from 'src/app/services/global.service';
 import { Output, EventEmitter } from '@angular/core';
 import { LoadingService } from 'src/app/services/loading.service';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-select-tenant',
@@ -17,7 +18,8 @@ export class SelectTenantComponent implements OnInit {
   constructor(public global: GlobalService,
     public authService: AuthenticationService,
     public router: Router,
-    public loadingService: LoadingService) {
+    public loadingService: LoadingService,
+    public menuController: MenuController) {
 
   }
 
@@ -26,11 +28,12 @@ export class SelectTenantComponent implements OnInit {
 
   selectTenant(item: any) {
     this.global.tenant = item.identifier;
-    this.global.empresa = item.name.replace("Empresa","");
+    this.global.empresa = item.name.replace("Empresa", "");
     this.authService.setUser(this.global.tenant).then(() => {
-      this.router.navigate(['/home']);
       this.hideTenant.emit(true);
       this.loadingService.isLoading.next(false);
+
+      this.router.navigate(['/home']);
     })
   }
 

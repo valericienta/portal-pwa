@@ -69,11 +69,10 @@ export class CertificadosPage implements OnInit {
   getDocuments(ev?: any) {
     this.pagina++;
     this.documentosService
-      .getCertificados(this.pagina, 10)
+      .getCertificados(this.pagina, 5)
       .then((data: searchResponse) => {
         if (!data.hasNextPage) this.infiniteScroll.disabled = true;
         data.data.forEach((item: Documento) => {
-          console.log(item);
           this.certificados.push(item);
         });
         if (ev) this.infiniteScroll.complete();

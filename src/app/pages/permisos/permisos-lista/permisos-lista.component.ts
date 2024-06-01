@@ -32,7 +32,6 @@ export class PermisosListaComponent implements OnInit {
   getPermisos() {
     this.permisosService.getPermisosPendientes().then((data: Permiso[]) => {
       this.permisosPendientes = data;
-
       this.setMensaje(data.length);
     });
   }

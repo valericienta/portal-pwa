@@ -15,23 +15,23 @@ export class GlobalService {
   trabajador: Trabajador;
   habilitadoFirma: boolean = false;
 
-  appVersion: string = '24.05.31 @ 1';
+  appVersion: string = '24.06.01 @ 1.0';
 
-  private tenantChange: BehaviorSubject<string>;
+  private tenantChange: BehaviorSubject<boolean>;
 
   constructor() {
-    this.tenantChange = new BehaviorSubject<string>('');
+    this.tenantChange = new BehaviorSubject<boolean>(false);
   }
 
   setHabilitadoValue() {
     this.habilitadoFirma = this.user.MFAByApp == "False" && this.user.MFAByPhone == "False" ? false : true;
   }
 
-  setTenant(newValue: string): void {
+  setTenant(newValue: boolean): void {
     this.tenantChange.next(newValue);
   }
 
-  getTenant(): Observable<string> {
+  getTenant(): Observable<boolean> {
     return this.tenantChange.asObservable();
   }
 }
