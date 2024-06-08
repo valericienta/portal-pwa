@@ -1,25 +1,26 @@
-
-fa-icon{
+fa-icon {
   font-size: 1.75em;
   margin-right: 0 !important;
 }
 
-ion-content{
+ion-content {
   --background: white;
 }
 
-.div-button {
-  height: 60px;
-  width: 100%;
-  display: block;
-  position: absolute;
+// --offset-bottom: auto!important;
+ion-content {
+  --overflow: hidden;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
-ion-fab{
+ion-fab {
   position: absolute;
   right: 5px;
   bottom: 5px;
-  }
+}
 
 .zoom {
   font-size: 1.75em;
@@ -29,8 +30,22 @@ ion-fab{
   background-color: blue;
   display: block;
 }
-#fingerprint{
+
+#fingerprint {
   position: absolute;
   left: 5px;
   bottom: 5px;
- }
+}
+
+
+#pdfVIEWER{
+  z-index: 0;
+}
+
+.actionButtons {
+  height: 60px;
+  width: 100%;
+  position: absolute;
+  right: 5px;
+  z-index: 1;
+}

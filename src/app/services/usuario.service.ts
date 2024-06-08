@@ -16,6 +16,7 @@ export class UsuarioService {
   constructor(public http: HttpClient, public global: GlobalService) {
 
   }
+
   async getusuario() {
     let url = "/fichas";
     const source$ = this.http.get(url).pipe(
@@ -49,6 +50,12 @@ export class UsuarioService {
   getHabilitacion() {
     let url = '/auth/2fa';
     const source$ = this.http.get(url).pipe(map((data: any) => data.data));
+    return firstValueFrom(source$)
+  }
+
+  sendUpdate(data: any){
+    let url = `/fichas`;
+    const source$ = this.http.put(url, data);
     return firstValueFrom(source$)
   }
 }

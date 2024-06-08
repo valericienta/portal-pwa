@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MenuController, ModalController } from '@ionic/angular';
+import { InfiniteScrollCustomEvent, MenuController, ModalController } from '@ionic/angular';
 import { Trabajador } from 'src/app/models/trabajador.model';
 import { GlobalService } from 'src/app/services/global.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -53,8 +53,7 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.menuController.enable(true);
-    // this.validateHabilitacion();
-
+    //this.validateHabilitacion();
   }
 
   async loadData() {
@@ -67,7 +66,6 @@ export class HomePage implements OnInit {
   }
 
   ionViewWillEnter() {
-    console.log('HomePage LoadData()');
     this.loadData();
   }
 
@@ -86,4 +84,5 @@ export class HomePage implements OnInit {
     let cntpermisos = await this.documentosService.getCntPermisosPendientes();
     return cntsolicitudes + cntpermisos > 0 ? true : false;
   }
+
 }

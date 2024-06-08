@@ -10,36 +10,35 @@
 
 </ion-header>
 
-<ion-fab (click)="share()" *ngIf="!showModalFirma && loaddoc && (documento.idEstado!=3)">
-  <ion-fab-button size="small">
-    <fa-icon [icon]="['fal', 'share-nodes']"></fa-icon>
-  </ion-fab-button>
-</ion-fab>
-
-
 
 
 <ion-content>
   <div class="div-pdf" *ngIf="!showModalFirma">
-    <ngx-extended-pdf-viewer id="pdfVIEWER" *ngIf="loaddoc" [src]="pdfSrc" backgroundColor="#ffffff" [showToolbar]="true"
-      [showSidebarButton]="false" [showFindButton]="false" [showPagingButtons]="false" [showDrawEditor]="false"
-      [showStampEditor]="false" [showTextEditor]="false" [showZoomButtons]="false" [showPresentationModeButton]="false"
-      [showOpenFileButton]="false" [showPrintButton]="false" [showDownloadButton]="false"
-      [showSecondaryToolbarButton]="false" [showRotateButton]="false" [showHandToolButton]="false"
-      [showScrollingButton]="false" [showSpreadButton]="false" [showPropertiesButton]="false"
-      [zoom]="'page-width'"
-      (pageRender)="getPageSize($event)"
-      (pdfLoaded)="pdfLoaded($event)"></ngx-extended-pdf-viewer>
-  </div>
-  
-  <div class="div-button" [ngStyle]="{'top':  pageHeight + 'px'}" *ngIf="loadpage">
+    <ngx-extended-pdf-viewer id="pdfVIEWER" *ngIf="loaddoc" [src]="pdfSrc" backgroundColor="#ffffff"
+      [showToolbar]="true" [showSidebarButton]="false" [showFindButton]="false" [showPagingButtons]="false"
+      [showDrawEditor]="false" [showStampEditor]="false" [showTextEditor]="false" [showZoomButtons]="false"
+      [showPresentationModeButton]="false" [showOpenFileButton]="false" [showPrintButton]="false"
+      [showDownloadButton]="false" [showSecondaryToolbarButton]="false" [showRotateButton]="false"
+      [showHandToolButton]="false" [showScrollingButton]="false" [showSpreadButton]="false"
+      [showPropertiesButton]="false" [zoom]="'page-width'"       
+      (pageChange)="onPageChange($event)"
+      (pagesLoaded)="onPagesLoaded($event)"
+      ></ngx-extended-pdf-viewer>
+
     <ion-fab (click)="firmarDocumento()"
-      *ngIf="!showModalFirma && loaddoc && (documento.idEstado==3) && habilitadoFirma">
+    *ngIf="showFirmaFab">
       <ion-fab-button size="small">
         <fa-icon [icon]="['fal', 'signature']"></fa-icon>
       </ion-fab-button>
     </ion-fab>
+
+    <ion-fab (click)="share()" *ngIf="showShareFab">
+      <ion-fab-button size="small">
+        <fa-icon [icon]="['fal', 'share-nodes']"></fa-icon>
+      </ion-fab-button>
+    </ion-fab>
   </div>
+
   <app-select-metodo *ngIf="showModalFirma" (hideSelectMethod)="hideSelectComponent($event)"
     [id]="id"></app-select-metodo>
-</ion-content>
+  <ion-content>

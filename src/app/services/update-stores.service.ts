@@ -1,25 +1,23 @@
 import { Injectable } from '@angular/core';
-import { AppUpdate,AppUpdateAvailability } from '@capawesome/capacitor-app-update';
+import { AppUpdate, AppUpdateAvailability } from '@capawesome/capacitor-app-update';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UpdateStoresService {
 
-  getCurrentAppVersion = async () => {
-    const result = await AppUpdate.getAppUpdateInfo();
-    return result.currentVersionCode;
-  };
-  
-  getAvailableAppVersion = async () => {
-    const result = await AppUpdate.getAppUpdateInfo();
-    return result.availableVersionName;
-  };
-  
+
+
   openAppStore = async () => {
     await AppUpdate.openAppStore();
   };
-  
+
+
+  mustUpdate = async () => {
+    const result = await AppUpdate.getAppUpdateInfo();
+    if (result.updateAvailability !== AppUpdateAvailability.UPDATE_AVAILABLE) return false; 
+    else return true;
+  };
   performImmediateUpdate = async () => {
     const result = await AppUpdate.getAppUpdateInfo();
     if (result.updateAvailability !== AppUpdateAvailability.UPDATE_AVAILABLE) {
@@ -29,7 +27,7 @@ export class UpdateStoresService {
       await AppUpdate.performImmediateUpdate();
     }
   };
-  
+
   startFlexibleUpdate = async () => {
     const result = await AppUpdate.getAppUpdateInfo();
     if (result.updateAvailability !== AppUpdateAvailability.UPDATE_AVAILABLE) {
@@ -39,7 +37,7 @@ export class UpdateStoresService {
       await AppUpdate.startFlexibleUpdate();
     }
   };
-  
+
   completeFlexibleUpdate = async () => {
     await AppUpdate.completeFlexibleUpdate();
   };

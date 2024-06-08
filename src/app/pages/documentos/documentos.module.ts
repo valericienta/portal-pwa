@@ -9,7 +9,7 @@ import { DocumentosPageRoutingModule } from './documentos-routing.module';
 import { DocumentosPage } from './documentos.page';
 import { ComponentsModule } from '../../components/components.module';
 import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
-import { FiltrarComponent } from 'src/app/pages/documentos/filtrar/filtrar.component';
+import { FiltrarComponent } from 'src/app/pages/documentos/documentos-historial/filtrar/filtrar.component';
 import { DocumentosPendientesComponent } from './documentos-pendientes/documentos-pendientes.component';
 import { DocumentosHistorialComponent } from './documentos-historial/documentos-historial.component';
 import { IonRangeCalendarModule } from '@googlproxer/ion-range-calendar';

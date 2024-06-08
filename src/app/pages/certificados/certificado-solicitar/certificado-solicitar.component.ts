@@ -13,6 +13,7 @@ import { PdfPreviewComponent } from 'src/app/components/pdf-preview/pdf-preview.
   styleUrls: ['./certificado-solicitar.component.scss'],
 })
 export class CertificadoSolicitarComponent implements OnInit {
+
   tipos: TiposCertificado[] = [];
   certificado: Certificado;
   constructor(
@@ -24,7 +25,7 @@ export class CertificadoSolicitarComponent implements OnInit {
     this.certificado = new Certificado();
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   getTipos() {
     this.documentosService.getTiposCertificados().then((data) => {
@@ -40,32 +41,11 @@ export class CertificadoSolicitarComponent implements OnInit {
   }
 
   solicitar() {
-    let nombre = this.tipos.find(
-      (x) => x.id == this.certificado.idFormato
-    )?.nombre;
-
     this.documentosService
       .solicitarCertificado(this.certificado.idFormato)
       .then((data: any) => {
-        let documento = {
-          tipo: nombre,
-          id: data.data,
-        };
-        this.showPDF(documento);
+        this.modalCtrl.dismiss(null, 'save');
       });
   }
 
-  showPDF(item: Documento) {
-    this.modalCtrl
-      .create({
-        component: PdfPreviewComponent,
-        componentProps: {
-          documento: item,
-          id: item.id,
-          firmar: false,
-        },
-        cssClass: 'modalPDF',
-      })
-      .then((modal) => modal.present());
-  }
 }

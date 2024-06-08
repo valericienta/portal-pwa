@@ -1,31 +1,7 @@
 <app-header></app-header>
 <ion-content>
-  <app-section-title [section]="certificadosTitle"></app-section-title>
-  <ion-list *ngIf="certificados.length > 1">
-    <ion-item *ngFor="let certificado of certificados">
-      <ion-label>
-        <h4 class="item-title">{{certificado.referencia}}</h4>
-        <p>{{certificado.fecha | date: 'dd/MM/yyyy'}}</p>
-      </ion-label>
-      <ion-badge class="badge-success">Aprobado</ion-badge>
-    </ion-item>
-  </ion-list>
-
-  <ion-content *ngIf="certificados.length == 0">
-    <div class="no-cert">
-      <fa-icon
-        style="color: var(--certificados-accent)"
-        [icon]="['fal','file-slash']"
-      ></fa-icon>
-      <p>Todavía no solicitaste ningún certificado.</p>
-    </div>
-  </ion-content>
-
-  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
-    <ion-infinite-scroll-content
-      class="spinner-hide"
-    ></ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+  <app-section-title [section]="certificadosTitle" [displayEmpty]="cantidad==0"></app-section-title>
+  <app-certificado-lista (LoadCertificadosEmitter)="checkCertificadosLength($event)"></app-certificado-lista>
 </ion-content>
 
 <ion-fab slot="fixed" vertical="bottom" horizontal="end">

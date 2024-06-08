@@ -1,7 +1,13 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { Vacaciones } from 'src/app/models/vacaciones.model';
+import { ToastService } from 'src/app/services/toast.service';
 import { VacacionesService } from 'src/app/services/vacaciones.service';
 
 @Component({
@@ -10,13 +16,12 @@ import { VacacionesService } from 'src/app/services/vacaciones.service';
   styleUrls: ['./vacaciones-solicitudes.component.scss'],
 })
 export class VacacionesSolicitudesComponent implements OnInit {
-  
   @Output() updatediasEvent = new EventEmitter<boolean>();
-
+  loaddata: boolean = false;
   solicitudes: Vacaciones[] = [];
   vacIcon: IconName = 'umbrella-beach';
   vacationTitle = {
-    title: 'Vacaciones',
+    title: 'Solicitudes de Vacaciones',
     message: '',
     color: '--vacaciones-accent',
     icon: this.vacIcon,
@@ -25,8 +30,9 @@ export class VacacionesSolicitudesComponent implements OnInit {
   constructor(
     public vacacionesService: VacacionesService,
     public modalCtrl: ModalController,
-    private alertController: AlertController
-  ) {}
+    private alertController: AlertController,
+    private toastService: ToastService
+  ) { }
 
   ngOnInit() {
     this.getSolicitudes();
@@ -35,9 +41,14 @@ export class VacacionesSolicitudesComponent implements OnInit {
   getSolicitudes() {
     this.solicitudes = [];
     this.vacacionesService.getSolicitudes().then((data: Vacaciones[]) => {
+      this.loaddata=true;
       this.solicitudes = data;
       this.vacationTitle.message = this.setMessage();
     });
+  }
+
+  checkSolicitudesLength() {
+    return this.solicitudes.length === 0;
   }
 
   setMessage(): string {
@@ -62,7 +73,7 @@ export class VacacionesSolicitudesComponent implements OnInit {
         this.getSolicitudes();
       })
       .catch((error: any) => {
-        console.log(error);
+        this.toastService.present(JSON.stringify(error), 'danger');
       });
   }
 
@@ -75,9 +86,6 @@ export class VacacionesSolicitudesComponent implements OnInit {
           text: 'Cancelar',
           role: 'cancel',
           cssClass: 'secondary',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          },
         },
         {
           text: 'Si, eliminar',

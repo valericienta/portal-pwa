@@ -16,13 +16,19 @@
       </p>
       <h2>{{ trabajador.supervisor }}</h2>
       <p>
-        <fa-icon [icon]="['fal', 'phone']" slot="start"></fa-icon>
-        {{ trabajador.supervisorTelefono }}
+        <a [href]="trabajador.supervisorTelefono" style="color: #566a7f">
+          <fa-icon [icon]="['fal', 'phone']" slot="start"></fa-icon>
+          {{ trabajador.supervisorTelefono }}
+        </a>
       </p>
       <p>
-        <fa-icon [icon]="['fal', 'envelope']" slot="start"></fa-icon>
-        {{ trabajador.supervisorEmail }}
+        <a [href]="trabajador.supervisorEmail" style="color: #566a7f">
+          <fa-icon [icon]="['fal', 'envelope']" slot="start"></fa-icon>
+          {{ trabajador.supervisorEmail }}
+        </a>
       </p>
     </ion-label>
   </ion-item>
+
+  <ion-button expand="block" (click)="openModal()">Editar datos</ion-button>
 </ion-list>

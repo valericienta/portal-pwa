@@ -15,7 +15,7 @@ export class GlobalService {
   trabajador: Trabajador;
   habilitadoFirma: boolean = false;
 
-  appVersion: string = '24.06.01 @ 1.0';
+  appVersion: string = '24.06.07';
 
   private tenantChange: BehaviorSubject<boolean>;
 

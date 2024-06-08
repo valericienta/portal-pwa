@@ -34,8 +34,6 @@ export class SelectMetodoComponent implements OnInit {
     this.showAddCode = false;
   }
 
-  ngOnInit() {
-    console.log(this.id)
-  }
+  ngOnInit() {  }
 
 }

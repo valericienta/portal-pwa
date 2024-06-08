@@ -1,6 +1,7 @@
-ion-content  {
-    z-index: 9999;
-    position: absolute;
-    left: 0;
-    right: 0;
-}
+ion-content {
+    --overflow: hidden;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }

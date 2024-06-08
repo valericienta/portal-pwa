@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <h6 class="ion-padding-start">Edición datos personales</h6>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <fa-icon icon="close"></fa-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item *ngFor="let dato of contrato">
+      <ion-label>
+        <p>
+          <fa-icon [icon]="['fal', dato.icon]" slot="start"></fa-icon>
+          {{ dato.label }}
+        </p>
+        <ion-input
+          [(ngModel)]="dato.value"
+          [disabled]="disableInput(dato.label)"
+        >
+        </ion-input>
+      </ion-label>
+    </ion-item>
+
+    <ion-button expand="block" (click)="save()">Guardar cambios</ion-button>
+  </ion-list>
+</ion-content>

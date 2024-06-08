@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  hostAPI: 'https://api.portaltrabajadores.cl/',
+  hostAPI: 'https://apimobile.skualo.io/',
   dev: true,
   gps: true,
   google: {
@@ -12,10 +12,10 @@ export const environment = {
    scopes: ['profile', 'email']
   },
   msal: {
-    // appId: '8e8a4e37-f111-4220-85df-725ebb9ba678',
-    appId: 'be0bf2cf-8f4b-46f7-939d-50e429564d64',
-    authority: 'https://login.microsoftonline.com/consumers',
+   // appId: 'be0bf2cf-8f4b-46f7-939d-50e429564d64',
+    appId: '8e8a4e37-f111-4220-85df-725ebb9ba678',
     redirectUri: 'http://localhost:8100',
+    authority: 'https://login.microsoftonline.com/consumers',
     scope: 'https://graph.microsoft.com/User.Read',
     authorizationBaseUrl: `https://login.microsoftonline.com/consumers/oauth2/v2.0/authorize`,
     accessTokenEndpoint: 'https://login.microsoftonline.com/consumers/oauth2/v2.0/token',

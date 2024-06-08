@@ -32,8 +32,8 @@ export class SelectTenantComponent implements OnInit {
     this.authService.setUser(this.global.tenant).then(() => {
       this.hideTenant.emit(true);
       this.loadingService.isLoading.next(false);
-
-      this.router.navigate(['/home']);
+      if (localStorage.getItem("discardOnBoarding") == "true") this.router.navigate(['/home']);
+      else this.router.navigate(['/onboarding']);
     })
   }
 

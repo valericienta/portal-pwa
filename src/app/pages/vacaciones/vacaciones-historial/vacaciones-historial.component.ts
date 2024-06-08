@@ -12,6 +12,7 @@ export class VacacionesHistorialComponent  implements OnInit {
   
   historial: Vacaciones[] = [];
   histIcon: IconName = 'history';
+  loaddata = false;
   historialTitle = {
     title: 'Historial de vacaciones',
     message: 'Aquí encontrarás el historial de vacaciones.',
@@ -21,11 +22,13 @@ export class VacacionesHistorialComponent  implements OnInit {
   
   constructor(public vacacionesService: VacacionesService) { }
   ngOnInit() {
+    this.loaddata = false;
     this.getHistorial();
   }
 
   getHistorial() {
     this.vacacionesService.getVacaciones().then((data: Vacaciones[]) => {
+      this.loaddata=true;
       this.historial = data;  
     });
   }

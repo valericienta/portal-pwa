@@ -30,4 +30,9 @@ export class DocumentosPage implements OnInit {
     this.historial.loadHistorial();
   }
 
+  getHistorial(ev: boolean){
+    if (ev) this.historial.loadHistorial();
+
+  }
+
 }

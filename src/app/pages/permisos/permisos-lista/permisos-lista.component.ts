@@ -3,6 +3,7 @@ import { IconName } from '@fortawesome/fontawesome-svg-core';
 import { AlertController } from '@ionic/angular';
 import { Permiso } from 'src/app/interfaces/permiso.interface';
 import { PermisosService } from 'src/app/services/permisos.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-permisos-lista',
@@ -11,7 +12,7 @@ import { PermisosService } from 'src/app/services/permisos.service';
 })
 export class PermisosListaComponent implements OnInit {
   permisosPendientes: Permiso[];
-
+  loaddata = false;
   perIcon: IconName = 'calendar-range';
   permisosTitle = {
     title: 'Permisos',
@@ -22,8 +23,11 @@ export class PermisosListaComponent implements OnInit {
 
   constructor(
     public permisosService: PermisosService,
-    private alertController: AlertController
-  ) {}
+    private alertController: AlertController,
+    public toastService: ToastService
+  ) {
+    this.permisosPendientes = [];
+  }
 
   ngOnInit() {
     this.getPermisos();
@@ -32,6 +36,7 @@ export class PermisosListaComponent implements OnInit {
   getPermisos() {
     this.permisosService.getPermisosPendientes().then((data: Permiso[]) => {
       this.permisosPendientes = data;
+      this.loaddata=true;
       this.setMensaje(data.length);
     });
   }
@@ -45,9 +50,6 @@ export class PermisosListaComponent implements OnInit {
           text: 'Cancelar',
           role: 'cancel',
           cssClass: 'secondary',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          },
         },
         {
           text: 'Si, eliminar',
@@ -61,6 +63,10 @@ export class PermisosListaComponent implements OnInit {
     await alert.present();
   }
 
+  checkPermisosLength() {
+    return this.permisosPendientes.length === 0;
+  }
+
   eliminarPermiso(id: any) {
     this.permisosService
       .eliminar(id)
@@ -68,7 +74,7 @@ export class PermisosListaComponent implements OnInit {
         this.getPermisos();
       })
       .catch((error: any) => {
-        console.log(error);
+        this.toastService.present(JSON.stringify(error), 'danger');
       });
   }
 

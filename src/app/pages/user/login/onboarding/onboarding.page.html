@@ -44,7 +44,14 @@
             todo lo que pasa en la oficina.
           </p>
         </ion-col>
-        <!-- <ion-button color="primary" (click)="goHome()">¡VSamos!</ion-button> -->
+        <ion-col size="11">
+          <ion-checkbox [(ngModel)]="discardOnBoarding"
+            >No volver a mostrar</ion-checkbox
+          >
+          <ion-button color="primary" expand="block" (click)="goHome()"
+            >¡Vamos!</ion-button
+          >
+        </ion-col>
       </ion-row>
     </swiper-slide>
   </swiper-container>

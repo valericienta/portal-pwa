@@ -58,12 +58,13 @@ export class DocumentosService {
     return this.search(filtro);
   }
 
-  getDocumentosHistorial(page?: number, size?: number){
+  getDocumentosHistorial(page?: number, size?: number, filtros?: any) {
     let filtro = {
       pageNumber: page,
       pageSize: size,
       orderby: ["fecha DESC"],
-      idEstado: 4
+      idEstado: 4,
+      advancedFilter: filtros
     }
     return this.search(filtro);
   }

@@ -1,6 +1,9 @@
 <app-header>Liquidaciones</app-header>
 <ion-content>
-  <app-section-title [section]="liquidacionesTitle"></app-section-title>
+  <app-section-title
+    [section]="liquidacionesTitle"
+    [displayEmpty]="checkLiquidacionesLength()"
+  ></app-section-title>
   <ion-list>
     <ion-item
       (click)="showPDF(liquidacion)"
@@ -14,7 +17,7 @@
     </ion-item>
   </ion-list>
 
-  <div *ngIf="firmados.length>0">
+  <div *ngIf="firmados.length > 0">
     <app-section-title [section]="historialTitle"></app-section-title>
     <ion-list>
       <ion-item

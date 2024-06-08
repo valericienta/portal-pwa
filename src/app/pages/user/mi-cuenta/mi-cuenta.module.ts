@@ -12,6 +12,8 @@ import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 import { ConfiguracionComponent } from './configuracion/configuracion.component';
 import { PersonalComponent } from './personal/personal.component';
 import { ContratoComponent } from './contrato/contrato.component';
+import { EditarPersonalComponent } from './personal/editar-personal/editar-personal.component';
+import { EditarContratoComponent } from './contrato/editar-contrato/editar-contrato.component';
 
 @NgModule({
   imports: [
@@ -26,6 +28,8 @@ import { ContratoComponent } from './contrato/contrato.component';
     ConfiguracionComponent,
     PersonalComponent,
     ContratoComponent,
+    EditarPersonalComponent,
+    EditarContratoComponent,
   ],
   providers: [InAppBrowser],
 })

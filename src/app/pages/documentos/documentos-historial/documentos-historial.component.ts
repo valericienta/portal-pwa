@@ -1,11 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { InfiniteScrollCustomEvent, IonInfiniteScroll, ModalController } from '@ionic/angular';
+import {
+  InfiniteScrollCustomEvent,
+  IonInfiniteScroll,
+  ModalController,
+} from '@ionic/angular';
 import { PdfPreviewComponent } from 'src/app/components/pdf-preview/pdf-preview.component';
 import { Documento } from 'src/app/interfaces/documento.interface';
 import { searchResponse } from 'src/app/models/search-response.model';
 import { DocumentosService } from 'src/app/services/documentos.service';
 import { GlobalService } from 'src/app/services/global.service';
-import { FiltrarComponent } from '../filtrar/filtrar.component';
+import { FiltrarComponent } from './filtrar/filtrar.component';
 
 @Component({
   selector: 'app-documentos-historial',
@@ -15,35 +19,36 @@ import { FiltrarComponent } from '../filtrar/filtrar.component';
 export class DocumentosHistorialComponent implements OnInit {
   documentos: Documento[] = [];
   pendientes: any;
-  pagina: number = 0;
+  pagina: number = 1;
   filtros: any = {};
-
+  tipos: any = [];
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   hasNextPage: boolean = true;
+
+  chipsFilters: any = [];
 
   constructor(
     public global: GlobalService,
     public modalCtrl: ModalController,
     private documentosService: DocumentosService
-  ) { }
+  ) {
+    documentosService.getTipos().then((data) => (this.tipos = data));
 
-  ngOnInit() { }
+  }
 
+  ngOnInit() {
+
+  }
 
   loadHistorial() {
-    console.log('loadHistorial from server');
     this.documentos = [];
-    this.pagina = 0;
+    this.hasNextPage = true;
+    this.pagina = 1;
     this.getDocuments();
+
   }
 
-  getFiltrados(e: any) {
-    this.documentos = [];
-    this.pagina = 0;
-    this.filtros = e;
-  }
-
-  showPDF(document: Documento) {
+  verPDF(document: Documento) {
     this.modalCtrl
       .create({
         component: PdfPreviewComponent,
@@ -57,45 +62,71 @@ export class DocumentosHistorialComponent implements OnInit {
       .then((modal: { present: () => any }) => modal.present());
   }
 
-  async onIonInfinite(ev: any) {
-    this.getDocuments(ev);
-    await (ev as InfiniteScrollCustomEvent).target.complete();
-    if (!this.hasNextPage) this.infiniteScroll.disabled = true;
-    else this.infiniteScroll.disabled = false;
+  onIonInfinite(ev: any) {
+    if (this.hasNextPage) this.getDocuments(ev);
   }
 
-  getDocuments(ev?: any) {
-    this.pagina++;
-    this.documentosService.getDocumentosHistorial(this.pagina, 5).then((data: searchResponse) => {     
-      data.data.forEach((item: Documento) => {
-        this.documentos.push(item);
+  private getDocuments(ev?: any) {
+    let advancedFilter = null;
+    if (this.filtros.length > 0) advancedFilter = { filters: this.filtros, logic: "and" };
+    this.documentosService
+      .getDocumentosHistorial(this.pagina, 5, advancedFilter)
+      .then((data: searchResponse) => {
+        this.hasNextPage = data.hasNextPage;
+        console.log(`busco pagina ${this.pagina}`);
+        this.pagina++;
+        data.data.forEach((item: Documento) => {
+          this.documentos.push(item);
+        });
+        this.infiniteScroll.complete();
       });
-    });
-    // else {
-    //   let filtro = {
-    //     pageNumber: this.pagina,
-    //     pageSize: 5,
-    //     orderby: ['fecha DESC'],
-    //     tipo: this.filtros.tipo > 0 ? this.filtros.tipo : null,
-    //     firmado: this.filtros.firmado == false ? false : null,
-    //     advancedFilter: this.filtros.advancedFilter,
-    //   };
-    //   this.documentosService.search(filtro).then((data: searchResponse) => {
-    //     if (!data.hasNextPage) this.infiniteScroll.disabled = true;
-    //     data.data.forEach((item: Documento) => {
-    //       this.documentos.push(item);
-    //     });
-    //     if (ev) this.infiniteScroll.complete();
-    //   });
-    // }
   }
 
-  openModal() {
-    this.modalCtrl
-      .create({
-        component: FiltrarComponent,
-        componentProps: {},
-      })
-      .then((modal) => modal.present());
+  async openModal() {
+    const modal = await this.modalCtrl.create({
+      component: FiltrarComponent,
+      componentProps: { currentFilter: this.filtros, tipos: this.tipos }
+    });
+    modal.present();
+    const { data, role } = await modal.onWillDismiss();
+    if (role === 'filtrar') {
+      this.filtros = data;
+      this.loadHistorial();
+      this.showFilters();
+    }
+  }
+
+  showFilters() {
+    const filtros = this.filtros;
+    this.chipsFilters = [];
+    if (filtros) {
+      let tipo = filtros.find((x: any) => x.field == 'tipo');
+      let referencia = filtros.find((x: any) => x.field == 'nombre');
+      let fechas = filtros.filter((x: any) => x.field == 'fecha');
+      if (referencia)
+        this.chipsFilters.push({
+          filterName: 'nombre',
+          value: referencia.value,
+        });
+      if (tipo)
+        this.chipsFilters.push({
+          filterName: 'tipo',
+          value: this.tipos.find((x: any) => x.id === tipo.value).tipo,
+        });
+      if (fechas)
+        this.chipsFilters.push({
+          filterName: 'fecha',
+          value: `Entre ${fechas.find((x: any) => x.operator == 'gte').value} y ${fechas.find((x: any) => x.operator == 'lte').value}`,
+        });
+    }
+  }
+
+  deleteFilter(filter:any) {
+    this.filtros=this.filtros.filter((x:any)=>x.field !== filter.filterName);
+    this.loadHistorial();
+    let index = this.chipsFilters.indexOf(filter);
+    if (index !== -1) {
+      this.chipsFilters.splice(index, 1);
+    }
   }
 }

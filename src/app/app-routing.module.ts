@@ -19,32 +19,36 @@ const routes: Routes = [
   },
   {
     path: 'liquidaciones',
-  
-    loadChildren: () => import('./pages/liquidaciones/liquidaciones.module').then( m => m.LiquidacionesPageModule)
+
+    loadChildren: () => import('./pages/liquidaciones/liquidaciones.module').then(m => m.LiquidacionesPageModule)
   },
   {
     path: 'vacaciones',
-    loadChildren: () => import('./pages/vacaciones/vacaciones.module').then( m => m.VacacionesPageModule)
+    loadChildren: () => import('./pages/vacaciones/vacaciones.module').then(m => m.VacacionesPageModule)
   },
   {
     path: 'certificados',
-    loadChildren: () => import('./pages/certificados/certificados.module').then( m => m.CertificadosPageModule)
+    loadChildren: () => import('./pages/certificados/certificados.module').then(m => m.CertificadosPageModule)
   },
   {
     path: 'documentos',
-    loadChildren: () => import('./pages/documentos/documentos.module').then( m => m.DocumentosPageModule)
+    loadChildren: () => import('./pages/documentos/documentos.module').then(m => m.DocumentosPageModule)
   },
   {
     path: 'documentos/:tipo',
-    loadChildren: () => import('./pages/documentos/documentos.module').then( m => m.DocumentosPageModule)
+    loadChildren: () => import('./pages/documentos/documentos.module').then(m => m.DocumentosPageModule)
   },
   {
     path: 'mi-cuenta',
-    loadChildren: () => import('./pages/user/mi-cuenta/mi-cuenta.module').then( m => m.MiCuentaPageModule)
+    loadChildren: () => import('./pages/user/mi-cuenta/mi-cuenta.module').then(m => m.MiCuentaPageModule)
   },
   {
     path: 'permisos',
-    loadChildren: () => import('./pages/permisos/permisos.module').then( m => m.PermisosPageModule)
+    loadChildren: () => import('./pages/permisos/permisos.module').then(m => m.PermisosPageModule)
+  },
+  {
+    path: 'onboarding',
+    loadChildren: () => import('./pages/user/login/onboarding/onboarding.module').then(m => m.OnboardingPageModule)
   }
 ];
 

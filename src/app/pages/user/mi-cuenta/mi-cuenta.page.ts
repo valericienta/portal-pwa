@@ -13,7 +13,7 @@ export class MiCuentaPage implements OnInit {
   constructor(public global: GlobalService, public iab: InAppBrowser) {}
 
   ngOnInit() {
-    console.log('global', this.global);
+   
   }
 
   setSegment(ev: any) {

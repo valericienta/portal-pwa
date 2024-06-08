@@ -7,3 +7,13 @@
     <p>{{ section.message }}</p>
   </ion-label>
 </ion-item>
+
+<div *ngIf="displayEmpty" class="ion-text-center ion-margin-top">
+  <fa-icon
+    [style]="'color: var(' + section.color + '); font-size: 35px'"
+    [icon]="['fal', 'file-slash']"
+  ></fa-icon>
+  <p [style]="'color:var(' + section.color + ')'">
+    Todavía no hay documentos para listar.
+  </p>
+</div>

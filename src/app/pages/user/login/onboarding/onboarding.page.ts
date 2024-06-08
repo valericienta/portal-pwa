@@ -10,11 +10,15 @@ register();
   styleUrls: ['./onboarding.page.scss'],
 })
 export class OnboardingPage implements OnInit {
-  constructor(public router: Router) {}
 
-  ngOnInit() {}
+  discardOnBoarding: boolean;
+  constructor(public router: Router) { }
+
+  ngOnInit() { }
 
   goHome() {
+    let discard = this.discardOnBoarding ? "true" : "false";
+    localStorage.setItem("discardOnBoarding", discard);
     this.router.navigate(['/home']);
   }
 }

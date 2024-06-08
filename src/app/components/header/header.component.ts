@@ -30,12 +30,9 @@ export class HeaderComponent implements OnInit {
   }
 
   SignOut() {
-    this.global.user = new Usuario();
-    this.global.tenants = [];
-    this.global.tenant = '';
+
     this.popover.dismiss();
-    localStorage.clear();
-    this.router.navigate(['/login']);
+    this.authService.SignOut();
   }
 
   presentPopover(e: Event) {

@@ -1,43 +1,95 @@
+<img src="assets/img/header-login.png" alt="" style="background: #ffff" />
 <ion-content class="ion-padding">
+  <ion-row
+    *ngIf="!showTenants && !showAlertNoTenant"
+    class="ion-align-items-start ion-justify-content-center"
+    style="height: 100%"
+  >
+    <ion-col size="12">
+      <h4 class="title">¡Hola{{saludo}}!</h4>
+      <p class="bajada">Inicie sesión para continuar</p>
+      <ion-list style="background: none">
+        <ion-col size="12" class="ion-margin-bottom">
+          <ion-item class="box mb-3" lines="none">
+            <ion-input
+              labelPlacement="stacked"
+              label="Email"
+              [(ngModel)]="user.email"
+              type="email"
+              inputmode="email"
+              autofocus
+            ></ion-input>
+          </ion-item>
+          <ion-item class="box" lines="none">
+            <ion-input
+              labelPlacement="stacked"
+              label="Contraseña"
+              [(ngModel)]="user.password"
+              [type]="displayPassword? 'text' : 'password'"
+            ></ion-input>
+            <ion-button
+              fill="clear"
+              (click)="displayPassword = !displayPassword"
+            >
+              <ion-icon *ngIf="!displayPassword" name="eye-outline"></ion-icon>
+              <ion-icon
+                *ngIf="displayPassword"
+                name="eye-off-outline"
+              ></ion-icon>
+            </ion-button>
+          </ion-item>
+          <p class="text-underline" (click)="redirectClave()">
+            Olvidé mi contraseña
+          </p>
+        </ion-col>
+        <div class="mb-3">
+          <ion-button
+            id="btnLogin"
+            class="btn btn-primary"
+            size="block"
+            (click)="Login('portal')"
+            >Iniciar sesión</ion-button
+          >
+        </div>
+        <div class="divider mb-4">
+          <div class="divider-text">o</div>
+        </div>
+        <ion-row>
+          <ion-col size="12" class="ion-text-center">
+            <ion-button
+              fill="outline"
+              (click)="Login('google')"
+              style="margin: 0px 8px"
+              mode="ios"
+            >
+              <ion-icon src="assets/icon/google.svg" class="m-0"></ion-icon>
+            </ion-button>
+            <ion-button
+              fill="outline"
+              (click)="Login('microsoft')"
+              style="margin: 0px 8px"
+              mode="ios"
+            >
+              <ion-icon src="assets/icon/microsoft.svg"></ion-icon> </ion-button
+          ></ion-col>
+        </ion-row>
+      </ion-list>
+    </ion-col>
 
-  <div *ngIf="!showTenants">
-    <img src="assets/img/logo_horizontal.png" class="img-logo" />
-
-    <h4 class="mb-2 mt-2">Hola! 👋</h4>
-    <p class="mb-4">Para poder continuar, necesitamos algunos datos</p>
-    <ion-list>
-      <ion-col size="12" class="ion-margin-bottom">
-        <ion-item class="box mb-3">
-          <ion-input labelPlacement="stacked" label="EMAIL" [(ngModel)]="user.email" type="email" inputmode="email"
-            autofocus></ion-input>
-        </ion-item>
-        <ion-item class="box mb-3">
-          <ion-input labelPlacement="stacked" label="CLAVE SECRETA" [(ngModel)]="user.password"
-            type="password"></ion-input>
-        </ion-item>
-
-      </ion-col>
-      <div class="mb-3">
-        <ion-button id="btnLogin" class="btn btn-primary" expand="block" (click)="Login('portal')">Ingresar</ion-button>
-      </div>
-
-      <div class="divider my-4">
-        <div class="divider-text">o con</div>
-      </div>
-      <div class="mb-3">
-        <ion-button id="btnLogin" class="btn" color="secondary" expand="block" (click)="checkVersion()">Validar Versión</ion-button>
-      </div>
-      <ion-row>
-        <ion-col size="12" class="ion-text-center">
-          <ion-button id="btn-google" color="google" (click)="Login('google')">
-            <ion-icon name="logo-google" color="danger"></ion-icon>Google
-          </ion-button>
-          <ion-button id="btn-microsoft" color="microsoft" (click)="Login('microsoft')">
-            <ion-icon name="logo-microsoft"></ion-icon>Microsoft
-          </ion-button></ion-col>
-      </ion-row>
-    </ion-list>
-  </div>
-  <app-select-tenant #tenant (hideTenant)="hideTenantDiv($event)" *ngIf="showTenants"></app-select-tenant>
+    <ion-col size="5">
+      <img src="assets/img/logo_horizontal.png" class="w-100" />
+    </ion-col>
+  </ion-row>
+  <app-select-tenant
+    #tenant
+    (hideTenant)="hideTenantDiv($event)"
+    *ngIf="showTenants"
+  ></app-select-tenant>
+  <app-notenant-alert
+    *ngIf="showAlertNoTenant"
+    (backToLogin)="displayLogin()"
+  ></app-notenant-alert>
 </ion-content>
-<span style="position: absolute; right: 5px; bottom: 5px;">{{global.appVersion}}</span>
+<span style="position: absolute; right: 15px; top: 15px"
+  >{{global.appVersion}}</span
+>

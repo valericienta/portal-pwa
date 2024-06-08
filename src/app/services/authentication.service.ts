@@ -17,10 +17,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class AuthenticationService {
-
   userData: any;
   refreshToken: string;
-
 
   constructor(
     public http: HttpClient,
@@ -29,20 +27,22 @@ export class AuthenticationService {
     public toastService: ToastService,
     public usuarioService: UsuarioService
   ) {
-   
-      GoogleAuth.initialize({
-        clientId: environment.google.clientId,
-        scopes: environment.google.scopes,
-        grantOfflineAccess: true,
-      });
-    
+    GoogleAuth.initialize({
+      clientId: environment.google.clientId,
+      scopes: environment.google.scopes,
+      grantOfflineAccess: true,
+    });
   }
 
   GoogleSignIn() {
     return new Promise((resolve, reject) => {
       GoogleAuth.signIn()
-        .then((user: any) => { resolve(user.authentication.idToken) })
-        .catch((error) => { reject(error) })
+        .then((user: any) => {
+          resolve(user.authentication.idToken);
+        })
+        .catch((error) => {
+          reject(error);
+        });
     });
   }
 
@@ -50,54 +50,52 @@ export class AuthenticationService {
     return GoogleAuth.signOut();
   }
 
-  SignInPortal(data: any, connection: string) { 
-      let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-      let url = 'auth/token';
-      switch (connection) {
-        case 'google':
-        case 'microsoft':
-          url = 'auth/token/social';
-          break;
-      }
-
-      if (connection == "token") {
-        return new Promise((resolve, reject) => {
-          let storedToken = localStorage.getItem("token");
-          storedToken = storedToken === null ? '' : storedToken;
-          Object.assign(this.global.user, jwtDecode(storedToken));
-          this.global.setHabilitadoValue();
-          this.getTenants()
-            .then(data => resolve(data))
-            .catch(error => reject(error))
-        })
-
-      }
-      else {
-        return new Promise((resolve, reject) => {
-          this.http
-            .post(url, data, { headers: headers })
-            .subscribe({
-              next: (token: any) => {
-                this.global.user = new Usuario();
-                Object.assign(this.global.user, jwtDecode(token.accessToken));
-                this.global.setHabilitadoValue();
-                localStorage.setItem('token', token.accessToken);
-                localStorage.setItem('auth', connection);
-                this.getTenants()
-                  .then(data => resolve(data))
-                  .catch(error => reject(error))
-
-              },
-              error: (error) => {
-                reject(error);
-              }
-            });
+  SignInPortal(data: any, connection: string) {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    let url = 'auth/trabajador/token';
+    switch (connection) {
+      case 'google':
+      case 'microsoft':
+        url = 'auth/trabajador/token/social';
+        break;
+    }
+    if (connection == 'token') {
+      return new Promise((resolve, reject) => {
+        let storedToken = localStorage.getItem('token');
+        storedToken = storedToken === null ? '' : storedToken;
+        Object.assign(this.global.user, jwtDecode(storedToken));
+        this.global.setHabilitadoValue();
+        this.getTenants()
+          .then((data) => resolve(data))
+          .catch((error) => reject(error));
+      });
+    } else {
+      return new Promise((resolve, reject) => {
+        this.http.post(url, data, { headers: headers }).subscribe({
+          next: (token: any) => {
+            this.global.user = new Usuario();
+            Object.assign(this.global.user, jwtDecode(token.accessToken));
+            this.global.setHabilitadoValue();
+            localStorage.setItem('token', token.accessToken);
+            localStorage.setItem('auth', connection);
+            this.getTenants()
+              .then((data) => resolve(data))
+              .catch((error) => reject(error));
+          },
+          error: (error) => {
+            reject(error);
+          },
         });
-      }
-    
+      });
+    }
   }
 
   SignOut() {
+    this.global.user = new Usuario();
+    this.global.tenants = [];
+    this.global.tenant = '';
+    localStorage.removeItem('token');
+    localStorage.removeItem('auth');
     this.router.navigate(['/login']);
   }
 
@@ -105,30 +103,32 @@ export class AuthenticationService {
     return new Promise((resolve, reject) => {
       this.global.tenant = identifier;
       this.global.setTenant(true);
-      this.usuarioService.getusuario()
+      this.usuarioService
+        .getusuario()
         .then((data: Trabajador) => {
           this.global.trabajador = data;
           this.global.trabajador.defineAvatar();
-          resolve("SUCCESS")
+          resolve('SUCCESS');
         })
-        .catch((error) => reject(error))
-    })
+        .catch((error) => reject(error));
+    });
   }
 
   getTenants() {
     return new Promise((resolve, reject) => {
-        this.usuarioService.getTenants().then((tenants: Tenants[]) => {
-          if (tenants.length == 1) {
-            this.global.empresa= tenants[0].name.replace("Empresa","");
-            this.setUser(tenants[0].identifier)
-              .then(data => resolve(data))
-              .catch(error => reject(error))
-          }
-          else {
-            this.global.tenants = tenants;
-            resolve("SELECT-TENANT");
-          }
-        })
-    })
+      this.usuarioService.getTenants().then((tenants: Tenants[]) => {
+        // reject('WITHOUT TENANT');
+        if (tenants.length == 0) reject('WITHOUT TENANT');
+        if (tenants.length == 1) {
+          this.global.empresa = tenants[0].name.replace('Empresa', '');
+          this.setUser(tenants[0].identifier)
+            .then((data) => resolve(data))
+            .catch((error) => reject(error));
+        } else {
+          this.global.tenants = tenants;
+          resolve('SELECT-TENANT');
+        }
+      });
+    });
   }
 }

@@ -34,15 +34,13 @@ export class AddCodigoComponent implements OnInit {
     let location = `${coordinates.coords.latitude},${coordinates.coords.longitude}`;
     let code = ("000000" + this.codigo).slice(-6);
     if (!environment.gps) location = "-31.294444444444,-64.295277777778";
-    this.documentosService.firmar(this.via, this.id, code, location)
-      .then((data) => {
+    this.documentosService.firmar('mobile', this.id, code, location)
+      .then(() => {
         localStorage.setItem("2fa-via", this.via);
         localStorage.setItem("2fa-code", code);
         localStorage.setItem("2fa-date", new Date().getTime().toString());
-
         this.toastService.present("El documento ha sido firmado en forma exitosa", "success");
-        this.router.navigate(['documentos/P'])
-        this.modalCtrl.dismiss();
+        this.modalCtrl.dismiss({},'firmado');
       })
   }
 

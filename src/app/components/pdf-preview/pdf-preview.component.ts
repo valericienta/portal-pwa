@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, OnInit, afterNextRender } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, Renderer2, Inject } from '@angular/core';
 import { ModalController, Platform } from '@ionic/angular';
 import { Share } from '@capacitor/share';
 import { Filesystem, Directory } from '@capacitor/filesystem';
@@ -13,14 +13,15 @@ import { LoadingService } from '../../services/loading.service';
 import { Geolocation } from '@capacitor/geolocation';
 import * as moment from 'moment';
 import { environment } from 'src/environments/environment';
-
 import { NativeBiometric, BiometryType } from "capacitor-native-biometric";
-import { PDFDocumentProxy } from 'ngx-extended-pdf-viewer';
+import { DOCUMENT } from '@angular/common';
+
 
 @Component({
   selector: 'app-pdf-preview',
   templateUrl: './pdf-preview.component.html',
   styleUrls: ['./pdf-preview.component.scss'],
+
 })
 
 
@@ -28,21 +29,28 @@ export class PdfPreviewComponent implements OnInit {
 
   id: string;
   documento: Documento;
-  habilitadoFirma: boolean = false;
+  habilitado2FA: boolean = false;
   zoom = 1.0;
   pageHeight: number = 0;
   pdfSrc: any;
   base64: any;
-  loaddoc: boolean = false;
-  loadpage: boolean = false;
   blobFile: any;
   dataFileFromAPI: any;
   showModalFirma: boolean = false;
-  public spreadMode: 'off' | 'even' | 'odd' = 'off';
-  public BiometricAvailable: boolean = false;
+  spreadMode: 'off' | 'even' | 'odd' = 'off';
+  BiometricAvailable: boolean = false;
+  loaddoc: boolean = false;
+  showFirmaFab: boolean = false;
+  showShareFab: boolean = false;
+  top: number = 504;
 
   pagecount: number = 1;
   pagesloaded: any;
+  islistening: boolean = false;
+
+  @ViewChild('botonera') el: ElementRef;
+
+
   constructor(public documentosService: DocumentosService,
     public global: GlobalService,
     public modalCtrl: ModalController,
@@ -58,52 +66,44 @@ export class PdfPreviewComponent implements OnInit {
 
   }
 
+
+  ngOnInit() {
+    this.getFile();
+  }
+
   getFile() {
     this.documentosService.getFile(this.id).then((data: any) => {
       this.dataFileFromAPI = data;
       this.setPDFData();
     })
-    this.habilitadoFirma = this.global.user.MFAByApp == "False" && this.global.user.MFAByPhone == "False" ? false : true;
+    this.habilitado2FA = this.global.user.MFAByApp == "False" && this.global.user.MFAByPhone == "False" ? false : true;
+    this.habilitado2FA = true;
   }
 
-  pdfLoaded(e: any) {
-    this.pagecount = e.pagesCount;
-    console.log('pdfLoaded: ' + this.pagecount)
-
-    //   debugger;
-    //   let pagesCount= pdfDocument.pagesCount;
-    //   this.pageHeight = (pdf[0].clientHeight * pagesCount)+ 50; 
-    //   this.loadpage = true;
-
+  onPagesLoaded(e: any) {
+    this.pagesloaded = e.pagesCount;
+   if (this.pagesloaded ==1) this.setButtonsVisibility(true);
   }
 
-  getPageSize(e: any) {
-    if (e.pageNumber == this.pagecount) {
-      let pdfCanva = document.getElementsByClassName("canvasWrapper")[0];
-      let pdfLoading = document.getElementsByClassName("page loadingIcon")[0];
-      let pdfPage = document.getElementsByClassName("page")[0];
-      let pdf: any;
-      if (pdfPage) pdf = pdfPage;
-      if (pdfCanva) pdf = pdfCanva;
-      if (pdfLoading) pdf = pdfLoading;
-      console.log(pdf);
-      this.pageHeight = (pdf.clientHeight * this.pagecount) + 50;
-      console.log('llego al final');
-      this.loadpage = true;
-    }
+  
+  private setButtonsVisibility(visible: boolean) {
+    if (this.documento.idEstado == 3 && this.habilitado2FA) this.showFirmaFab = visible;
+    if (this.documento.idEstado != 3) this.showShareFab = visible;
 
   }
 
+  onPageChange( event:any){
+    if (this.pagesloaded == event) this.setButtonsVisibility(true);
+  }
+ 
   checkFingerPrint() {
     NativeBiometric.isAvailable()
       .then(result => {
         if (!result.isAvailable) return;
         else this.BiometricAvailable = true;
-
       })
       .catch(error => { this.BiometricAvailable = false; })
   }
-
 
   firmarBiometric() {
     NativeBiometric.verifyIdentity({
@@ -117,7 +117,6 @@ export class PdfPreviewComponent implements OnInit {
       .catch(() => this.toastService.present("Autenticación inválida", "danger"));
   }
 
-
   setPDFData() {
     const fileReader = new FileReader();
     fileReader.onload = () => {
@@ -127,12 +126,8 @@ export class PdfPreviewComponent implements OnInit {
       this.loadingService.isLoading.next(false);
     };
     fileReader.readAsArrayBuffer(this.dataFileFromAPI);
-
   }
 
-  ngOnInit() {
-    this.getFile();
-  }
 
   hideSelectComponent(e: any) {
     this.setPDFData();
@@ -148,7 +143,6 @@ export class PdfPreviewComponent implements OnInit {
       else this.signDocumento();
     }
     else this.showModalFirma = true;
-
   }
 
   async signDocumento() {
@@ -156,10 +150,9 @@ export class PdfPreviewComponent implements OnInit {
     let location = `${coordinates.coords.latitude},${coordinates.coords.longitude}`;
     if (!environment.gps) location = "-31.294444444444,-64.295277777778";
     this.documentosService.firmar('mobile', this.id, moment().format("YYYYMMDD"), location)
-      .then((data) => {
+      .then(() => {
         this.toastService.present("El documento ha sido firmado en forma exitosa", "success");
-        this.router.navigate(['documentos/P'])
-        this.modalCtrl.dismiss();
+        this.modalCtrl.dismiss({}, 'firmado');
       })
   }
 
@@ -179,7 +172,6 @@ export class PdfPreviewComponent implements OnInit {
     const fileReader = new FileReader();
     fileReader.onload = () => {
       b64 = fileReader.result as string;
-      console.log('b64 generated')
       return Filesystem.writeFile({
         path: filename,
         data: b64,

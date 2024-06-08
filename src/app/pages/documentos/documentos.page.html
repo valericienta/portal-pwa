@@ -1,5 +1,5 @@
 <app-header></app-header>
 <ion-content>
-  <app-documentos-pendientes></app-documentos-pendientes>
+  <app-documentos-pendientes (firmaEvent)="getHistorial($event)"></app-documentos-pendientes>
   <app-documentos-historial></app-documentos-historial>
 </ion-content>

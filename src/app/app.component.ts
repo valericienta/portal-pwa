@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { App } from '@capacitor/app';
 
 import { menu } from './menu.config';
+import { UpdateStoresService } from './services/update-stores.service';
 
 @Component({
   selector: 'app-root',
@@ -19,20 +20,19 @@ export class AppComponent {
     public platform: Platform,
     public menuController: MenuController,
     public global: GlobalService,
-    public router: Router
-  ) {}
+    public router: Router,
+    public updates: UpdateStoresService,
+  ) { }
 
   ngOnInit(): void {
-    if (this.platform.is('capacitor'))
-      App.getInfo().then((data) => {
-        this.global.appVersion = data.version;
-      });
-    // this.platform.pause.subscribe(() => {
-    //   this.router.navigate(['/home']);
-    // });
-    // this.platform.resume.subscribe(() => {
-    //   this.router.navigate(['/home']);
-    // });
-    // console.log(this.menucompleto);
+    if (this.platform.is('capacitor')) {
+      {
+        App.getInfo().then((data) => {
+          this.global.appVersion = data.version;
+        });
+      }
+
+    }
   }
+
 }

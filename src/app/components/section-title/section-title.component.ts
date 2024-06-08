@@ -8,6 +8,7 @@ import { Section } from './../../interfaces/UI/section-title.interface';
 })
 export class SectionTitleComponent implements OnInit {
   @Input() section: Section;
+  @Input() displayEmpty?: boolean = false;
 
   constructor() {}
 

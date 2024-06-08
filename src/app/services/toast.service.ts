@@ -29,7 +29,7 @@ export class ToastService {
   present(message: string, type: string) {
     this.toastCtrl.create({
       message: message,
-      duration: 1500,
+      duration: 5000,
       cssClass: type + "-toast",
       position: 'top',
     }).then((toast) => toast.present())

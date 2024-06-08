@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { IconName } from '@fortawesome/pro-solid-svg-icons';
 import { ModalController } from '@ionic/angular';
 import { PdfPreviewComponent } from 'src/app/components/pdf-preview/pdf-preview.component';
@@ -16,6 +16,7 @@ export class DocumentosPendientesComponent implements OnInit {
   documentos: Documento[] = [];
   pagina: number = 0;
   filtros: any = {};
+  @Output() firmaEvent = new EventEmitter<boolean>();
 
   docIcon: IconName = 'folder';
   docTitle = {
@@ -33,18 +34,22 @@ export class DocumentosPendientesComponent implements OnInit {
 
   ngOnInit() { }
 
-  showPDF(document: Documento) {
-    this.modalCtrl
-      .create({
-        component: PdfPreviewComponent,
-        componentProps: {
-          id: document.id,
-          firmar: !document.firmado,
-          documento: document,
-        },
-        cssClass: 'modalPDF',
-      })
-      .then((modal: { present: () => any }) => modal.present());
+  async showPDF(document: Documento) {
+    const modal = await this.modalCtrl.create({
+      component: PdfPreviewComponent,
+      componentProps: {
+        id: document.id,
+        firmar: !document.firmado,
+        documento: document
+      }
+    });
+    modal.present();
+    const { data, role } = await modal.onWillDismiss();
+    if (role === 'firmado') {
+      this.firmaEvent.emit(true);
+      this.loadPendientes();
+    }
+    else this.firmaEvent.emit(false);
   }
 
   loadPendientes() {

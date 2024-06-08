@@ -48,22 +48,25 @@ export class LiquidacionesPage implements OnInit {
 
   ngOnInit() {
     this.getPendientes();
-    this.getLiquidaciones();  }
-
-  showPDF(item: Documento) {
-    this.modalCtrl
-      .create({
-        component: PdfPreviewComponent,
-        componentProps: {
-          documento: item,
-          id: item.id,
-          firmar: !item.firmado,
-        },
-        cssClass: 'modalPDF',
-      })
-      .then((modal) => modal.present());
+    this.getLiquidaciones();
   }
 
+  async showPDF(document: Documento) {
+    const modal = await this.modalCtrl.create({
+      component: PdfPreviewComponent,
+      componentProps: {
+        id: document.id,
+        firmar: !document.firmado,
+        documento: document,
+      },
+    });
+    modal.present();
+    const { data, role } = await modal.onWillDismiss();
+    if (role === 'firmado') {
+      this.getPendientes();
+      this.getLiquidaciones();
+    }
+  }
   onIonInfinite(ev: any) {
     this.getLiquidaciones(ev);
   }
@@ -79,7 +82,11 @@ export class LiquidacionesPage implements OnInit {
         this.setMensaje(this.porFirmar.length);
       });
   }
-  
+
+  checkLiquidacionesLength() {
+    return this.porFirmar.length === 0;
+  }
+
   getLiquidaciones(ev?: any) {
     this.pagina++;
     this.documentosService
