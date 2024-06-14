@@ -1,6 +1,6 @@
-<ion-header>
+<ion-header [translucent]="true" mode="ios">
   <ion-toolbar>
-    <h6 class="ion-padding-start">Edición datos personales</h6>
+    <ion-title>Editar datos personales</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="dismiss()">
         <fa-icon icon="close"></fa-icon>
@@ -22,10 +22,7 @@
           <fa-icon [icon]="['fal', dato.icon]" slot="start"></fa-icon>
           {{ dato.label }}
         </p>
-        <ion-input
-          [(ngModel)]="dato.value"
-          [disabled]="disableInput(dato.label)"
-        >
+        <ion-input [(ngModel)]="dato.value" [disabled]="disableInput(dato.label)" placeholder="No Informado">
         </ion-input>
       </ion-label>
     </ion-item>
@@ -44,7 +41,7 @@
           <fa-icon [icon]="['fal', dato.icon]" slot="start"></fa-icon>
           {{ dato.label }}
         </p>
-        <ion-input [(ngModel)]="dato.value"> </ion-input>
+        <ion-input [(ngModel)]="dato.value" placeholder="No Informado"> </ion-input>
       </ion-label>
     </ion-item>
     <ion-button (click)="save()" expand="block">Guardar cambios</ion-button>

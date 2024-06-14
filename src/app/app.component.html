@@ -9,20 +9,18 @@
           /></ion-list-header>
 
           <ion-menu-toggle auto-hide="false">
-            <ion-item
-              *ngFor="let item of menucompleto"
-              [routerLink]="item.url"
-              style="font-size: 20px"
-            >
-              <fa-icon
-                [style]="'color:var(' + item.accent + ')'"
-                [icon]="['fal', item.iconfull]"
-                slot="start"
-              ></fa-icon>
+            <ion-item *ngFor="let item of menucompleto" style="font-size: 20px">
+              <a [routerLink]="item.url">
+                <fa-icon
+                  [style]="'color:var(' + item.accent + ')'"
+                  [icon]="['fal', item.iconfull]"
+                  slot="start"
+                ></fa-icon>
 
-              <p [style]="'color:var(-' + item.accent + ')'">
-                {{ item.title }}
-              </p>
+                <p [style]="'color:var(-' + item.accent + ')'">
+                  {{ item.title }}
+                </p>
+              </a>
             </ion-item>
             <!-- <ion-item
               routerDirection="root"

@@ -8,12 +8,10 @@ import { register } from 'swiper/element/bundle';
 
 register();
 
-
 @Component({
   selector: 'app-card-eventos',
   templateUrl: './card-eventos.component.html',
-  styleUrls: ['./card-eventos.component.scss']
-
+  styleUrls: ['./card-eventos.component.scss'],
 })
 export class CardEventosComponent implements OnInit {
   eventos: Evento[];
@@ -27,15 +25,19 @@ export class CardEventosComponent implements OnInit {
     icon: this.eventosIcon,
   };
 
-  constructor(public eventosService: EventosService, public global: GlobalService) {
+  serviceInvoked = false;
 
-  }
+  constructor(
+    public eventosService: EventosService,
+    public global: GlobalService
+  ) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   getEventos() {
     this.eventos = [];
     this.eventosService.getEventos().then((data: Evento[]) => {
+      this.serviceInvoked = true;
       this.eventos = data;
     });
   }

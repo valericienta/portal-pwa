@@ -1,5 +1,16 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { InfiniteScrollCustomEvent, IonInfiniteScroll, ModalController } from '@ionic/angular';
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { IconName } from '@fortawesome/pro-solid-svg-icons';
+import {
+  InfiniteScrollCustomEvent,
+  IonInfiniteScroll,
+  ModalController,
+} from '@ionic/angular';
 import { PdfPreviewComponent } from 'src/app/components/pdf-preview/pdf-preview.component';
 import { Documento } from 'src/app/interfaces/documento.interface';
 import { searchResponse } from 'src/app/models/search-response.model';
@@ -17,43 +28,61 @@ export class CertificadoListaComponent implements OnInit {
   pagina: number = 1;
   hasNextPage: boolean = true;
 
-  constructor(public documentosService: DocumentosService, public modalCtrl: ModalController) { }
+  certIcon: IconName = 'stamp';
+  certificadosTitle = {
+    title: 'Certificados',
+    message: 'Aquí encontrarás todos tus certificados.',
+    color: '--certificados-accent',
+    icon: this.certIcon,
+  };
+
+  serviceInvodek = false;
+
+  constructor(
+    public documentosService: DocumentosService,
+    public modalCtrl: ModalController
+  ) {}
 
   ngOnInit() {
     this.pagina = 1;
-    this.getDocuments()
+    this.getDocuments();
   }
 
   showPDF(document: Documento) {
-    this.modalCtrl.create({
-      component: PdfPreviewComponent,
-      componentProps: {
-        id: document.id,
-        firmar: !document.firmado,
-        documento: document
-      },
-      cssClass: 'modalPDF'
-    }).then((modal) => modal.present())
+    this.modalCtrl
+      .create({
+        component: PdfPreviewComponent,
+        componentProps: {
+          id: document.id,
+          firmar: !document.firmado,
+          documento: document,
+        },
+        cssClass: 'modalPDF',
+      })
+      .then((modal) => modal.present());
   }
 
   onIonInfinite(ev: any) {
     if (this.hasNextPage) this.getDocuments(ev);
   }
 
- private getDocuments(ev?: any) {
-    this.documentosService.getCertificados(this.pagina, 10).then((data: searchResponse) => {
-      this.pagina++;
-      this.hasNextPage = data.hasNextPage;
-      this.LoadCertificadosEmitter.emit(data.totalCount);
-      data.data.forEach((item: Documento) => {         
-        this.certificados.push(item)
+  private getDocuments(ev?: any) {
+    this.documentosService
+      .getCertificados(this.pagina, 10)
+      .then((data: searchResponse) => {
+        this.pagina++;
+        this.hasNextPage = data.hasNextPage;
+        this.LoadCertificadosEmitter.emit(data.totalCount);
+        this.serviceInvodek = true;
+        data.data.forEach((item: Documento) => {
+          this.certificados.push(item);
+        });
       });
-    })
   }
 
-  public getCertificados(){
+  public getCertificados() {
     this.pagina = 1;
-    this.certificados= [];
+    this.certificados = [];
     this.getDocuments();
   }
 }

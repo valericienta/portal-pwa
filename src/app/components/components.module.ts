@@ -20,6 +20,8 @@ import { SelectMetodoComponent } from './pdf-preview/select-metodo/select-metodo
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { TwoFAComponent } from './twofa/twofa.component';
 import { SectionTitleComponent } from './section-title/section-title.component';
+import { ItemSkeletonComponent } from './item-skeleton/item-skeleton.component';
+import { EmptyDataComponent } from './empty-data/empty-data.component';
 
 const components = [
   PdfPreviewComponent,
@@ -28,6 +30,8 @@ const components = [
   TwoFAComponent,
   SectionTitleComponent,
   HeaderComponent,
+  ItemSkeletonComponent,
+  EmptyDataComponent
 ];
 
 @NgModule({

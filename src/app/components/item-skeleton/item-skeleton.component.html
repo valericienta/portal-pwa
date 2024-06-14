@@ -1,0 +1,28 @@
+<ion-list>
+  <ion-item
+    class="ion-margin"
+    style="border-radius: 9px"
+    *ngFor="let item of items"
+  >
+    <ion-label>
+      <h3>
+        <ion-skeleton-text
+          [animated]="true"
+          style="width: 80%"
+        ></ion-skeleton-text>
+      </h3>
+      <p>
+        <ion-skeleton-text
+          [animated]="true"
+          style="width: 60%"
+        ></ion-skeleton-text>
+      </p>
+      <p>
+        <ion-skeleton-text
+          [animated]="true"
+          style="width: 30%"
+        ></ion-skeleton-text>
+      </p>
+    </ion-label>
+  </ion-item>
+</ion-list>

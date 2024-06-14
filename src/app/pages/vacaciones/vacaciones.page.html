@@ -5,14 +5,12 @@
     <p>Días disponibles</p>
     <h2>{{dias}} <span>días</span></h2>
   </div>
-  <app-vacaciones-solicitudes
-    (updatediasEvent)="mostrarDiasDisponibles($event)"
-  ></app-vacaciones-solicitudes>
+  <app-vacaciones-solicitudes (updatediasEvent)="mostrarDiasDisponibles($event)"></app-vacaciones-solicitudes>
 
   <app-vacaciones-historial></app-vacaciones-historial>
 
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button (click)="showSolicitar()">
+    <ion-fab-button (click)="modalSolicitar()">
       <ion-icon name="add-outline"></ion-icon>
-    </ion-fab-button> </ion-fab
-></ion-content>
+    </ion-fab-button> </ion-fab>
+</ion-content>

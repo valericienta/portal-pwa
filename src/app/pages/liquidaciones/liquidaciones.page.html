@@ -1,40 +1,6 @@
 <app-header>Liquidaciones</app-header>
 <ion-content>
-  <app-section-title
-    [section]="liquidacionesTitle"
-    [displayEmpty]="checkLiquidacionesLength()"
-  ></app-section-title>
-  <ion-list>
-    <ion-item
-      (click)="showPDF(liquidacion)"
-      *ngFor="let liquidacion of porFirmar"
-    >
-      <ion-label>
-        <h4 class="item-title">{{liquidacion.referencia}}</h4>
-        <p>{{liquidacion.fecha | date : 'dd/MM/yy'}}</p>
-      </ion-label>
-      <ion-button slot="end"> Firmar </ion-button>
-    </ion-item>
-  </ion-list>
-
-  <div *ngIf="firmados.length > 0">
-    <app-section-title [section]="historialTitle"></app-section-title>
-    <ion-list>
-      <ion-item
-        (click)="showPDF(liquidacion)"
-        *ngFor="let liquidacion of firmados"
-      >
-        <ion-label>
-          <h4 class="item-title">{{liquidacion.referencia}}</h4>
-          <p>{{liquidacion.fecha | date : 'dd/MM/yy'}}</p>
-        </ion-label>
-        <ion-button slot="end" color="light"> Ver </ion-button>
-      </ion-item>
-    </ion-list>
-  </div>
-  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
-    <ion-infinite-scroll-content
-      class="spinner-hide"
-    ></ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+<app-liquidaciones-pendientes></app-liquidaciones-pendientes>
+<app-liquidaciones-historial (firmaEvent)="getHistorial()"></app-liquidaciones-historial>
+ 
 </ion-content>

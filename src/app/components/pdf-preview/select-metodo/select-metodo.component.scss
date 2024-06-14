@@ -5,3 +5,8 @@ ion-content {
       display: none;
     }
   }
+
+  .input{
+    border: 1px solid var(--color-primary);
+    text-align: center;
+  }

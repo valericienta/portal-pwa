@@ -3,6 +3,10 @@ export const environment = {
   hostAPI: 'https://apimobile.skualo.io/',
   dev: false,
   gps: true,
+  onesignal: {
+    appId: "97b4210b-5ec6-45fc-87a8-5155265bc24b",
+    restApiKey:"ZTdkNThkYTMtNjRjNi00YzliLTgzMGMtOGY0NWNjNWQxY2Vh"
+  },
   google: {
     clientId: '968316479331-ngfvq9o0sj36hh5bg2ujtlndhuq26eds.apps.googleusercontent.com',
     scopes: ['profile', 'email']

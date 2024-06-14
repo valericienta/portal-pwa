@@ -1,41 +1,31 @@
-<app-section-title [section]="documentosTitle"></app-section-title>
+<app-section-title
+  [section]="alDiaSection"
+  *ngIf="serviceInvoked && documentos.length == 0"
+></app-section-title>
 
-<ion-list *ngIf="!documentos">
-  <ion-item>
-    <ion-label>
-      <h3>
-        <ion-skeleton-text
-          [animated]="true"
-          style="width: 40%; height: 16px"
-        ></ion-skeleton-text>
-      </h3>
-      <p>
-        <ion-skeleton-text
-          [animated]="true"
-          style="width: 80%; height: 16px"
-        ></ion-skeleton-text>
-      </p>
-      <p>
-        <ion-skeleton-text
-          [animated]="true"
-          style="width: 30%; height: 16px"
-        ></ion-skeleton-text>
-      </p>
-    </ion-label>
-  </ion-item>
-</ion-list>
-
-<ion-list *ngIf="documentos">
-  <ion-item *ngFor="let doc of documentos" (click)="showPDF(doc)">
-    <ion-label>
-      <h2 style="color: var(--documentos-accent)">{{ doc.tipo }}</h2>
-      <h2 class="item-title">{{ doc.referencia }}</h2>
-      <p>{{ doc.creadoEl | date : "dd/MM/yy" }}</p>
-    </ion-label>
-    <ion-button slot="end"> Firmar </ion-button>
-  </ion-item>
-</ion-list>
-<!--  -->
-<ion-infinite-scroll (ionInfinite)="onIonInfinite($event)" style="height: 1px;"threshold="1px">
-  <ion-infinite-scroll-content class="spinner-hide"></ion-infinite-scroll-content>
-</ion-infinite-scroll>
+<app-section-title
+  [section]="documentosTitle"
+  *ngIf="serviceInvoked && documentos.length > 0"
+></app-section-title>
+<app-item-skeleton *ngIf="!serviceInvoked" [size]="5"></app-item-skeleton>
+<div *ngIf="documentos.length > 0">
+  <ion-list *ngIf="documentos">
+    <ion-item *ngFor="let doc of documentos" (click)="showPDF(doc)">
+      <ion-label>
+        <h2 style="color: var(--documentos-accent)">{{ doc.tipo }}</h2>
+        <h2 class="item-title">{{ doc.referencia }}</h2>
+        <p>{{ doc.creadoEl | date : "dd/MM/yy" }}</p>
+      </ion-label>
+      <ion-button slot="end"> Firmar </ion-button>
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll
+    (ionInfinite)="onIonInfinite($event)"
+    style="height: 1px"
+    threshold="1px"
+  >
+    <ion-infinite-scroll-content
+      class="spinner-hide"
+    ></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</div>

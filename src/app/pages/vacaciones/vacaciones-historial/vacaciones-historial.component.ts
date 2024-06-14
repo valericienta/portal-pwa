@@ -8,8 +8,8 @@ import { VacacionesService } from 'src/app/services/vacaciones.service';
   templateUrl: './vacaciones-historial.component.html',
   styleUrls: ['./vacaciones-historial.component.scss'],
 })
-export class VacacionesHistorialComponent  implements OnInit {
-  
+export class VacacionesHistorialComponent implements OnInit {
+  serviceInvoked = false;
   historial: Vacaciones[] = [];
   histIcon: IconName = 'history';
   loaddata = false;
@@ -19,8 +19,8 @@ export class VacacionesHistorialComponent  implements OnInit {
     color: '--historial-accent',
     icon: this.histIcon,
   };
-  
-  constructor(public vacacionesService: VacacionesService) { }
+
+  constructor(public vacacionesService: VacacionesService) {}
   ngOnInit() {
     this.loaddata = false;
     this.getHistorial();
@@ -28,9 +28,9 @@ export class VacacionesHistorialComponent  implements OnInit {
 
   getHistorial() {
     this.vacacionesService.getVacaciones().then((data: Vacaciones[]) => {
-      this.loaddata=true;
-      this.historial = data;  
+      this.loaddata = true;
+      this.serviceInvoked = true;
+      this.historial = data;
     });
   }
-
 }

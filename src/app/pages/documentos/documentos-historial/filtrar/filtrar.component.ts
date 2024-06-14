@@ -1,6 +1,9 @@
 import {
   Component,
+  EventEmitter,
+  Input,
   OnInit,
+  Output,
   ViewChild,
 } from '@angular/core';
 import {
@@ -18,11 +21,12 @@ import { DocumentosService } from '../../../../services/documentos.service';
   styleUrls: ['./filtrar.component.scss'],
 })
 export class FiltrarComponent implements OnInit {
+  @Output() dismissChange = new EventEmitter<any>();
+  @Input() tipos: any[];
   @ViewChild(IonModal) modal: IonModal;
 
   currentFilter: [];
-  public tipos: any = [];
-  public porFirmar: boolean = false;
+  // public tipos: any = [];
   public hasDate: boolean = false;
   public referencia: string = '';
   public tipo: number = -1;
@@ -44,7 +48,7 @@ export class FiltrarComponent implements OnInit {
     { id: 3, opened: false, item: 'referencia' },
   ];
 
-  constructor(public modalCtrl: ModalController) { }
+  constructor(public modalCtrl: ModalController) {}
 
   ngOnInit() {
     this.defineCurrentFilter();
@@ -55,23 +59,23 @@ export class FiltrarComponent implements OnInit {
   }
 
   private defineCurrentFilter() {
-
     if (this.currentFilter.length > 0) {
       let tipo = this.currentFilter.find((x: any) => x.field == 'tipo');
       let referencia = this.currentFilter.find((x: any) => x.field == 'nombre');
       let fechas = this.currentFilter.filter((x: any) => x.field == 'fecha');
       this.tipo = tipo ? tipo['value'] : -1;
       this.referencia = referencia ? referencia['value'] : '';
-      if (fechas) {
+      if (fechas.length > 0) {
+        this.hasDate = true;
         let desde: any = fechas.find((x: any) => x.operator == 'gte');
         let hasta: any = fechas.find((x: any) => x.operator == 'lte');
-        if (desde && hasta) this.dateRange = { from: desde.value, to: hasta.value };
-        console.log(this.dateRange)
-
-      }
-      else this.dateRange = { from: '', to: '' };
-    }
-    else {
+        if (desde && hasta) {
+          this.dateRange = { from: desde.value, to: hasta.value };
+          this.hasDate = true;
+        }
+        console.log(this.dateRange);
+      } else this.dateRange = { from: '', to: '' };
+    } else {
       this.dateRange = { from: '', to: '' };
       this.hasDate = false;
       this.tipo = -1;
@@ -109,6 +113,7 @@ export class FiltrarComponent implements OnInit {
       });
     }
     console.log(advancedFilter);
+    this.dismissChange.emit();
     this.modalCtrl.dismiss(advancedFilter, 'filtrar');
   }
 

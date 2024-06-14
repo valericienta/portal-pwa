@@ -7,12 +7,16 @@ export const environment = {
   hostAPI: 'https://apimobile.skualo.io/',
   dev: true,
   gps: true,
+  onesignal: {
+    appId: "97b4210b-5ec6-45fc-87a8-5155265bc24b",
+    restApiKey:"ZTdkNThkYTMtNjRjNi00YzliLTgzMGMtOGY0NWNjNWQxY2Vh"
+  },
   google: {
-   clientId: '968316479331-ngfvq9o0sj36hh5bg2ujtlndhuq26eds.apps.googleusercontent.com',
-   scopes: ['profile', 'email']
+    clientId: '968316479331-ngfvq9o0sj36hh5bg2ujtlndhuq26eds.apps.googleusercontent.com',
+    scopes: ['profile', 'email']
   },
   msal: {
-   // appId: 'be0bf2cf-8f4b-46f7-939d-50e429564d64',
+    // appId: 'be0bf2cf-8f4b-46f7-939d-50e429564d64',
     appId: '8e8a4e37-f111-4220-85df-725ebb9ba678',
     redirectUri: 'http://localhost:8100',
     authority: 'https://login.microsoftonline.com/consumers',

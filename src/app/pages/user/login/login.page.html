@@ -78,6 +78,7 @@
 
     <ion-col size="5">
       <img src="assets/img/logo_horizontal.png" class="w-100" />
+      <p class="ion-text-center">v {{global.appVersion}}</p>
     </ion-col>
   </ion-row>
   <app-select-tenant
@@ -90,6 +91,3 @@
     (backToLogin)="displayLogin()"
   ></app-notenant-alert>
 </ion-content>
-<span style="position: absolute; right: 15px; top: 15px"
-  >{{global.appVersion}}</span
->

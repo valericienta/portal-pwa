@@ -1,11 +1,27 @@
 <app-header></app-header>
 <ion-content>
-  <app-section-title [section]="certificadosTitle" [displayEmpty]="cantidad==0"></app-section-title>
-  <app-certificado-lista (LoadCertificadosEmitter)="checkCertificadosLength($event)"></app-certificado-lista>
+  <app-certificado-lista
+    (LoadCertificadosEmitter)="checkCertificadosLength($event)"
+  ></app-certificado-lista>
 </ion-content>
 
 <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-  <ion-fab-button (click)="showSolicitar()">
+  <ion-fab-button id="open-modal">
     <ion-icon name="add-outline"></ion-icon>
   </ion-fab-button>
 </ion-fab>
+
+<ion-modal
+  #modal
+  trigger="open-modal"
+  [initialBreakpoint]="0.5"
+  [breakpoints]="[ 0.5, 0.75, 1]"
+>
+  <ng-template>
+    <ion-content>
+      <app-certificado-solicitar
+        (dismissChange)="dismissedModal()"
+      ></app-certificado-solicitar>
+    </ion-content>
+  </ng-template>
+</ion-modal>

@@ -35,15 +35,13 @@ export class PersonalComponent implements OnInit {
       },
       {
         label: 'Teléfono',
-        value: this.trabajador.telefono
-          ? this.trabajador.telefono
-          : this.sindatos,
+        value: this.trabajador.telefono,
         property: 'telefono',
         icon: 'phone',
       },
       {
         label: 'Celular',
-        value: this.trabajador.movil ? this.trabajador.movil : this.sindatos,
+        value: this.trabajador.movil,
         property: 'movil',
         icon: 'mobile',
       },
@@ -60,46 +58,42 @@ export class PersonalComponent implements OnInit {
         icon: 'tag',
       },
     ];
+    console.log(this.personal)
   }
 
   setEmergencias() {
     this.emergencias = [
       {
         label: 'Nombre',
-        value: this.trabajador.emergenciaContacto
-          ? this.trabajador.emergenciaContacto
-          : this.sindatos,
+        value: this.trabajador.emergenciaContacto,
+    
         property: 'emergenciaContacto',
         icon: 'user',
       },
       {
         label: 'Relación',
-        value: this.trabajador.emergenciaRelacion
-          ? this.trabajador.emergenciaRelacion
-          : this.sindatos,
+        value: this.trabajador.emergenciaRelacion,
         property: 'emergenciaRelacion',
         icon: 'family',
       },
       {
         label: 'Teléfono',
-        value: this.trabajador.emergenciaTelefono
-          ? this.trabajador.emergenciaTelefono
-          : this.sindatos,
+        value: this.trabajador.emergenciaTelefono,
         property: 'emergenciaTelefono',
         icon: 'phone',
       },
     ];
-}
+  }
 
   async openModal() {
-  const modal = await this.modalCtrl.create({
-    component: EditarPersonalComponent,
-    componentProps: {
-      personal: this.personal,
-      emergencias: this.emergencias,
-    },
-  });
-  modal.present();
-  const { data, role } = await modal.onWillDismiss();
-}
+    const modal = await this.modalCtrl.create({
+      component: EditarPersonalComponent,
+      componentProps: {
+        personal: this.personal,
+        emergencias: this.emergencias,
+      },
+    });
+    modal.present();
+    const { data, role } = await modal.onWillDismiss();
+  }
 }

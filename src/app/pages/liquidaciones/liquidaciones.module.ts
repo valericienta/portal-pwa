@@ -7,9 +7,12 @@ import { IonicModule } from '@ionic/angular';
 import { LiquidacionesPageRoutingModule } from './liquidaciones-routing.module';
 import { LiquidacionesPage } from './liquidaciones.page';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { LiquidacionesListaComponent } from './liquidaciones-lista/liquidaciones-lista.component';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { LiquidacionesHistorialComponent } from './liquidaciones-historial/liquidaciones-historial.component';
+import { LiquidacionesPendientesComponent } from './liquidaciones-pendientes/liquidaciones-pendientes.component';
 
+
+const components = [LiquidacionesHistorialComponent, LiquidacionesPendientesComponent, LiquidacionesPage]
 @NgModule({
   imports: [
     CommonModule,
@@ -19,7 +22,6 @@ import { ComponentsModule } from 'src/app/components/components.module';
     LiquidacionesPageRoutingModule,
     ComponentsModule
   ],
-  declarations: [LiquidacionesPage,
-    LiquidacionesListaComponent]
+  declarations: [components]
 })
 export class LiquidacionesPageModule { }

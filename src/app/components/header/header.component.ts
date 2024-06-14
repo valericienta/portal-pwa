@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { IonPopover, ToastController } from '@ionic/angular';
 import { Usuario } from 'src/app/models/usuario.model';
@@ -12,7 +19,6 @@ import { GlobalService } from 'src/app/services/global.service';
 })
 export class HeaderComponent implements OnInit {
   @ViewChild('popover') popover: IonPopover;
-  @Input() title: boolean;
   @Output() changeTenantEvent = new EventEmitter<boolean>();
   isOpen = false;
   constructor(
@@ -20,9 +26,9 @@ export class HeaderComponent implements OnInit {
     public router: Router,
     public global: GlobalService,
     public toastController: ToastController
-  ) { }
+  ) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   goMiCuenta() {
     this.router.navigate(['/mi-cuenta']);
@@ -30,7 +36,6 @@ export class HeaderComponent implements OnInit {
   }
 
   SignOut() {
-
     this.popover.dismiss();
     this.authService.SignOut();
   }

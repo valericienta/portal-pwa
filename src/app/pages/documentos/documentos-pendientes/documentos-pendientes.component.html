@@ -1,4 +1,10 @@
-<app-section-title [section]="docTitle"></app-section-title>
+<app-section-title
+  [section]="docTitle"
+  [displayEmpty]="documentos.length == 0 && serviceInvoked"
+></app-section-title>
+
+<app-item-skeleton [size]="3" *ngIf="!serviceInvoked"></app-item-skeleton>
+
 <ion-list>
   <ion-item *ngFor="let doc of documentos" (click)="showPDF(doc)">
     <ion-label>

@@ -1,15 +1,19 @@
-<app-section-title *ngIf="loaddata"
+<app-section-title
   [section]="permisosTitle"
-  [displayEmpty]="checkPermisosLength()"
+  [displayEmpty]="permisosPendientes.length == 0 && serviceInvoked"
 ></app-section-title>
+<app-item-skeleton *ngIf="!serviceInvoked" [size]="3"></app-item-skeleton>
 <ion-list>
   <ion-item-sliding *ngFor="let permiso of permisosPendientes">
     <ion-item>
       <ion-label>
         <h4 class="item-title">{{ permiso.tipoPermiso }}</h4>
-        <p>{{ permiso.creadoEl | date : "dd/MM/yy" }}</p>
+        <p>
+          {{ permiso.desde | date : "dd/MM/yy" }} -
+          {{ permiso.hasta | date : "dd/MM/yy" }}
+        </p>
       </ion-label>
-      <ion-badge class="badge-warning">Pendiente</ion-badge>
+      <ion-badge class="badge-warning">{{ permiso.estado }}</ion-badge>
     </ion-item>
     <ion-item-options>
       <ion-item-option

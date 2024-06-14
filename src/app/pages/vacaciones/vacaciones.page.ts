@@ -28,9 +28,11 @@ export class VacacionesPage implements OnInit {
     this.mostrarDiasDisponibles('');
   }
 
-  async showSolicitar() {
+  async modalSolicitar() {
     const modal = await this.modalCtrl.create({
       component: VacacionesSolicitarComponent,
+      initialBreakpoint: 0.75,
+      breakpoints: [0.75, 1]
     });
     modal.present();
     const { data, role } = await modal.onWillDismiss();

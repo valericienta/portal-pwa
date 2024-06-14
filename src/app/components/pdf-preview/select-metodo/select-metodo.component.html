@@ -1,12 +1,42 @@
 <ion-content class="ion-padding">
-  <div *ngIf="!showAddCode">
+  <div>
+    <h2>Último paso</h2>
+    <p>
+      Con el fin de garantizar tu propia seguridad, deberás ingresarel código
+      que enviaremos a {{ global.trabajador.eMail }} .
+    </p>
+    <ion-button (click)="sendCode('email')">Solicitar código</ion-button>
+  </div>
+
+  <ion-row *ngIf="codigoSolicitado">
+    <p>Código de autorización</p>
+    <ion-row>
+      <ion-col
+        size="2"
+        *ngFor="let item of inputArray; let i = index"
+        class="input"
+      >
+        <ion-input
+          #input{{i}}
+          maxlength="1"
+          (input)="onInput($event, i)"
+          type="number"
+          class="input-box"
+          autofocus="{{ i === 0 }}"
+        ></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-button class="ion-margin-top">Firmar</ion-button>
+  </ion-row>
+
+  <!--<div *ngIf="!showAddCode">
     <div class="ion-text-center">
       <h1>Método de Autentificación</h1>
       Debes indicar como quieres recibir tu código de validación para poder completar la firma del documento.
     </div>
     <ion-card>
 
-      <ion-grid fixed>
+       <ion-grid fixed>
         <ion-row>
           <ion-col size="3">
             <h1 style="margin-left: 1rem !important;">
@@ -45,5 +75,5 @@
       </ion-row>
     </ion-grid>
   </div>
-  <app-add-codigo *ngIf="showAddCode" (hideAddCode)="hideAddCodeComponent($event)" [id]="id" [via]="via"></app-add-codigo>
-</ion-content>  
+  <app-add-codigo *ngIf="showAddCode" (hideAddCode)="hideAddCodeComponent($event)" [id]="id" [via]="via"></app-add-codigo> -->
+</ion-content>

@@ -8,11 +8,15 @@ import { PermisosPageRoutingModule } from './permisos-routing.module';
 
 import { PermisosPage } from './permisos.page';
 import { ComponentsModule } from 'src/app/components/components.module';
-import { PermisosListaComponent } from './permisos-lista/permisos-lista.component';
+import { PermisosListaComponent } from './permisos-pendientes/permisos-pendientes.component';
 import { PermisosSolicitarComponent } from './permisos-solicitar/permisos-solicitar.component';
 import { IonRangeCalendarModule } from '@googlproxer/ion-range-calendar';
 import { PermisosHistorialComponent } from './permisos-historial/permisos-historial.component';
 
+const components = [PermisosPage,
+  PermisosListaComponent,
+  PermisosSolicitarComponent,
+  PermisosHistorialComponent]
 @NgModule({
   imports: [
     CommonModule,
@@ -22,11 +26,6 @@ import { PermisosHistorialComponent } from './permisos-historial/permisos-histor
     ComponentsModule,
     IonRangeCalendarModule,
   ],
-  declarations: [
-    PermisosPage,
-    PermisosListaComponent,
-    PermisosSolicitarComponent,
-    PermisosHistorialComponent,
-  ],
+  declarations: [ ... components ],
 })
-export class PermisosPageModule {}
+export class PermisosPageModule { }

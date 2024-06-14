@@ -1,11 +1,13 @@
 <app-header></app-header>
 <ion-content>
-  <app-permisos-lista></app-permisos-lista>
-  <app-permisos-historial></app-permisos-historial>
+  <app-permisos-pendientes *ngIf="cntPendientes===undefined" (onRecordsCount)="totalRecords($event,'pendientes')"></app-permisos-pendientes>
+  <app-permisos-historial  *ngIf="cntHistorial===undefined" (onRecordsCount)="totalRecords($event,'historial')"></app-permisos-historial>
+
+  <app-empty-data tipoDocumento="permisos" *ngIf="cntHistorial ==0 && cntPendientes==0"> </app-empty-data>
 </ion-content>
 
 <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-  <ion-fab-button (click)="showSolicitar()">
+  <ion-fab-button (click)="modalSolicitar()">
     <ion-icon name="add-outline"></ion-icon>
   </ion-fab-button>
 </ion-fab>

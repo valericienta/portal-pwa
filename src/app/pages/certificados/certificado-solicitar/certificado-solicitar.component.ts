@@ -1,11 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { TiposCertificado } from 'src/app/interfaces/tipos-certificado.interface';
 import { ToastService } from 'src/app/services/toast.service';
 import { DocumentosService } from '../../../services/documentos.service';
 import { Certificado } from 'src/app/models/certificados.model';
-import { Documento } from 'src/app/interfaces/documento.interface';
-import { PdfPreviewComponent } from 'src/app/components/pdf-preview/pdf-preview.component';
 
 @Component({
   selector: 'app-certificado-solicitar',
@@ -13,7 +11,7 @@ import { PdfPreviewComponent } from 'src/app/components/pdf-preview/pdf-preview.
   styleUrls: ['./certificado-solicitar.component.scss'],
 })
 export class CertificadoSolicitarComponent implements OnInit {
-
+  @Output() dismissChange = new EventEmitter<any>();
   tipos: TiposCertificado[] = [];
   certificado: Certificado;
   constructor(
@@ -25,7 +23,7 @@ export class CertificadoSolicitarComponent implements OnInit {
     this.certificado = new Certificado();
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   getTipos() {
     this.documentosService.getTiposCertificados().then((data) => {
@@ -44,8 +42,8 @@ export class CertificadoSolicitarComponent implements OnInit {
     this.documentosService
       .solicitarCertificado(this.certificado.idFormato)
       .then((data: any) => {
+        this.dismissChange.emit();
         this.modalCtrl.dismiss(null, 'save');
       });
   }
-
 }

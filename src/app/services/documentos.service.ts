@@ -64,6 +64,7 @@ export class DocumentosService {
       pageSize: size,
       orderby: ["fecha DESC"],
       idEstado: 4,
+      excluirTipo: 6,
       advancedFilter: filtros
     }
     return this.search(filtro);

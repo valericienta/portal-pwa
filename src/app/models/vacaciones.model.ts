@@ -15,33 +15,13 @@ export class Vacaciones {
     modificacion: string
     avatar: string
     aprobada: boolean
+    estado: string
 
     constructor(public values?: Object) {
-        let avatarLetters= '';
         if (values) {
             Object.assign(this, values);
-            switch (this.idTipo)
-            {
-                case 0: 
-                avatarLetters='O';
-                break;
-                case 1: 
-                avatarLetters='F+L';
-                break;
-                case 2: 
-                avatarLetters='F+P';
-                break;
-                case 3: 
-                avatarLetters='U+F';
-                break;
-                case 98: 
-                avatarLetters='S+F';
-                break;
-                case 99: 
-                avatarLetters='P+D';
-                break;
-            }
-            this.avatar= `https://ui-avatars.com/api/?rounded=true&name=${avatarLetters}&size=64`;
+         if (this.aprobada===false) this.estado = 'Pendiente';
+         if (this.aprobada===true) this.estado = 'Pendiente RRHH';
 
         }
 

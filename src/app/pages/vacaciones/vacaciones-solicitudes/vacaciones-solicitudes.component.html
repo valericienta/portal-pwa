@@ -1,9 +1,11 @@
-<app-section-title *ngIf="loaddata"
+<app-section-title
   [section]="vacationTitle"
-  [displayEmpty]="solicitudes.length==0"
+  [displayEmpty]="solicitudes.length == 0 && serviceInvoked"
 ></app-section-title>
 
-<ion-list *ngIf="solicitudes.length > 0">
+<app-item-skeleton [size]="3" *ngIf="!serviceInvoked"></app-item-skeleton>
+
+<ion-list>
   <ion-item-sliding *ngFor="let solicitud of solicitudes">
     <ion-item>
       <ion-label>

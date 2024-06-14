@@ -11,7 +11,7 @@
         <fa-icon [icon]="['fal', dato.icon]" slot="start"></fa-icon>
         {{ dato.label }}
       </p>
-      <h2>{{ dato.value }}</h2>
+      <h2>{{ dato.value==null || dato.value == undefined || dato.value==='' ? sindatos: dato.value }}</h2>
     </ion-label>
   </ion-item>
 </ion-list>
@@ -29,7 +29,8 @@
         <fa-icon [icon]="['fal', dato.icon]" slot="start"></fa-icon>
         {{ dato.label }}
       </p>
-      <h2>{{ dato.value }}</h2>
+      
+      <h2>{{ dato.value==null || dato.value == undefined || dato.value==='' ? sindatos: dato.value }}</h2>
     </ion-label>
   </ion-item>
   <ion-button expand="block" (click)="openModal()">Editar datos</ion-button>

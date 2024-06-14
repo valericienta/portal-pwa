@@ -1,5 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { InfiniteScrollCustomEvent, MenuController, ModalController } from '@ionic/angular';
+import {
+  InfiniteScrollCustomEvent,
+  MenuController,
+  ModalController,
+} from '@ionic/angular';
 import { Trabajador } from 'src/app/models/trabajador.model';
 import { GlobalService } from 'src/app/services/global.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -18,25 +22,14 @@ import { CardPendientesComponent } from './card-pendientes/card-pendientes.compo
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-
   @ViewChild(CardVacacionesComponent) cardvacaciones: CardVacacionesComponent;
   @ViewChild(CardEventosComponent) cardeventos: CardEventosComponent;
   @ViewChild(CardPendientesComponent) cardpendientes: CardPendientesComponent;
-
 
   trabajador = new Trabajador();
   tramitependientes: boolean = true;
   cntdocumentospendientes: number = 0;
   pendientes: boolean = true;
-  alDiaIcon: IconName = 'badge-check';
-
-  alDiaSection = {
-    title: '¡Estás al día!',
-    message: 'No tienes documentos ni solicitudes pendientes.',
-    color: '--aldia-accent',
-    icon: this.alDiaIcon,
-  };
-
 
   constructor(
     public usuarioService: UsuarioService,
@@ -45,10 +38,9 @@ export class HomePage implements OnInit {
     public loadingService: LoadingService,
     public modalCtrl: ModalController,
     public toastService: ToastService,
-    private documentosService: DocumentosService) {
-
+    private documentosService: DocumentosService
+  ) {
     this.trabajador = this.global.trabajador;
-
   }
 
   ngOnInit() {
@@ -60,9 +52,9 @@ export class HomePage implements OnInit {
     this.cardvacaciones.getDias();
     this.cardeventos.getEventos();
     this.cardpendientes.getPendientesFirma();
-    this.checkPendientes().then(data => {
+    this.checkPendientes().then((data) => {
       this.tramitependientes = data;
-    })
+    });
   }
 
   ionViewWillEnter() {
@@ -78,11 +70,10 @@ export class HomePage implements OnInit {
     }
   }
 
-
   async checkPendientes(): Promise<boolean> {
-    let cntsolicitudes = await this.documentosService.getCntSolicitudesPendientes();
+    let cntsolicitudes =
+      await this.documentosService.getCntSolicitudesPendientes();
     let cntpermisos = await this.documentosService.getCntPermisosPendientes();
     return cntsolicitudes + cntpermisos > 0 ? true : false;
   }
-
 }

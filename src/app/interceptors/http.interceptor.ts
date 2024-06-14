@@ -46,28 +46,11 @@ export class InterceptorService implements HttpInterceptor {
 
       let mensaje = "";
       return next.handle(req).pipe(
-        catchError((response) => {        
-          if (response.error) { 
-            switch (response.error.exception) {
-              case "Authentication Failed.":
-                mensaje = "Su sesión ha caducado", "danger";
-                break;
-              case "Token inválido o no existe.":
-                this.router.navigate(['/login']);
-                break;
-              default:
-                mensaje = response.error.exception;
-                break;
-            }
-          }
-          else 
-             mensaje = JSON.stringify(response);
-
-          
-          if (mensaje != "") this.toastService.present(mensaje, "danger")
-          if (response.status == 401) {
-            this.router.navigate(['/login']);
-          }
+        catchError((response) => {
+          this.handleError(response);
+          // if (response.status == 401) {
+          //   this.router.navigate(['/login']);
+          // }
           return throwError(() => response);
         }),
         finalize(() => {
@@ -81,5 +64,32 @@ export class InterceptorService implements HttpInterceptor {
     this.global.tenants = [];
     this.global.tenant = '';
     localStorage.clear();
+  }
+
+  private handleError(response: any) {
+    let mensaje = '';
+    if (response.error) {
+      if (response.error.exception) {
+        switch (response.error.exception) {
+          case "Authentication Failed.":
+            mensaje = "Su sesión ha caducado", "danger";
+            break;
+          case "Token inválido o no existe.":
+            this.router.navigate(['/login']);
+            break;
+          default:
+            mensaje = response.error.exception;
+            break;
+        }
+      }
+      else {
+        
+      }
+    }
+    else
+      mensaje = JSON.stringify(response);
+
+
+    if (mensaje != "") this.toastService.present(mensaje, "danger")
   }
 }

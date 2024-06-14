@@ -15,7 +15,6 @@ import { VacacionesSolicitarComponent } from './vacaciones-solicitar/vacaciones-
 import { VacacionesHistorialComponent } from './vacaciones-historial/vacaciones-historial.component';
 import { VacacionesSolicitudesComponent } from './vacaciones-solicitudes/vacaciones-solicitudes.component';
 
-
 registerLocaleData(localeEsAr, 'es-Ar');
 @NgModule({
   imports: [
@@ -25,12 +24,13 @@ registerLocaleData(localeEsAr, 'es-Ar');
     ComponentsModule,
     VacacionesPageRoutingModule,
     FontAwesomeModule,
-    IonRangeCalendarModule
+    IonRangeCalendarModule,
   ],
-  declarations: [VacacionesPage,
+  declarations: [
+    VacacionesPage,
     VacacionesSolicitarComponent,
     VacacionesSolicitudesComponent,
-    VacacionesHistorialComponent
+    VacacionesHistorialComponent,
   ],
 })
-export class VacacionesPageModule { }
+export class VacacionesPageModule {}

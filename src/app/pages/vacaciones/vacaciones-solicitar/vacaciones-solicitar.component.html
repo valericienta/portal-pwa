@@ -1,6 +1,6 @@
-<ion-header>
+<ion-header [translucent]="true" mode="ios">
   <ion-toolbar>
-    <h6>Nueva solicitud de vacaciones</h6>
+    <ion-title>Nueva solicitud</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="dismiss()">
         <fa-icon icon="close"></fa-icon>
@@ -8,21 +8,20 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content class="ion-padding">
-  <ion-range-calendar
-    [(ngModel)]="dateRange"
-    [options]="optionsRange"
-    [type]="type"
-    [format]="'yyyy-MM-dd'"
-  >
-  </ion-range-calendar>
 
-  <ion-item fill="outline" mode="md" style="margin-top: 15px">
-    <ion-label position="stacked">Observaciones</ion-label>
-    <ion-input type="text" [(ngModel)]="solicitud.observaciones"></ion-input>
-  </ion-item>
+<ion-range-calendar
+  [(ngModel)]="dateRange"
+  [options]="optionsRange"
+  [type]="type"
+  [format]="'yyyy-MM-dd'"
+>
+</ion-range-calendar>
 
-  <div style="display: flex; justify-content: end; margin-top: 1rem">
-    <ion-button id="btnSolicitar" (click)="solicitar()">Solicitar</ion-button>
-  </div>
-</ion-content>
+<ion-item fill="outline" mode="md" style="margin-top: 15px">
+  <ion-label position="stacked">Observaciones</ion-label>
+  <ion-input type="text" [(ngModel)]="solicitud.observaciones"></ion-input>
+</ion-item>
+
+<ion-button id="btnSolicitar" expand="block" (click)="solicitar()"
+  >Solicitar</ion-button
+>

@@ -15,11 +15,13 @@ export class PermisosListaComponent implements OnInit {
   loaddata = false;
   perIcon: IconName = 'calendar-range';
   permisosTitle = {
-    title: 'Permisos',
+    title: 'Solicitudes de permisos',
     message: '',
     color: '--permisos-accent',
     icon: this.perIcon,
   };
+
+  serviceInvoked = false;
 
   constructor(
     public permisosService: PermisosService,
@@ -35,8 +37,9 @@ export class PermisosListaComponent implements OnInit {
 
   getPermisos() {
     this.permisosService.getPermisosPendientes().then((data: Permiso[]) => {
+      this.serviceInvoked = true;
       this.permisosPendientes = data;
-      this.loaddata=true;
+      this.loaddata = true;
       this.setMensaje(data.length);
     });
   }
@@ -61,10 +64,6 @@ export class PermisosListaComponent implements OnInit {
     });
 
     await alert.present();
-  }
-
-  checkPermisosLength() {
-    return this.permisosPendientes.length === 0;
   }
 
   eliminarPermiso(id: any) {

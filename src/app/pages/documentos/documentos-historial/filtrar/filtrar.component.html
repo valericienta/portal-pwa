@@ -1,6 +1,6 @@
-<ion-header>
+<ion-header [translucent]="true" mode="ios">
   <ion-toolbar>
-    <h4>Filtar historial</h4>
+    <ion-title>Filtrar historial</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="dismiss()">
         <fa-icon icon="close"></fa-icon>
@@ -9,108 +9,94 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-item>
-    <ion-grid>
-      <ion-row (click)="ChangeOpened(1)">
-        <ion-col size="11"
-          ><span [ngClass]="{ selected: hasDate }">Fecha </span></ion-col
-        >
-        <ion-col size="1">
-          <fa-icon
-            *ngIf="toggleItems[1].opened"
-            [icon]="['fal', 'angle-up']"
-          ></fa-icon>
-          <fa-icon
-            *ngIf="!toggleItems[1].opened"
-            [icon]="['fal', 'angle-down']"
-          ></fa-icon>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="12" *ngIf="toggleItems[1].opened">
-          <ion-range-calendar
-            [options]="optionsRange"
-            [(ngModel)]="dateRange"
-            [type]="type"
-            [format]="'yyyy-MM-dd'"
-          >
-          </ion-range-calendar>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-item>
-  <ion-item>
-    <ion-grid>
-      <ion-row>
-        <ion-col size="11" (click)="ChangeOpened(2)"
-          ><span [ngClass]="{ selected: tipo >= 0 }"
-            >Tipo de Documento</span
-          ></ion-col
-        >
-        <ion-col size="1">
-          <fa-icon
-            *ngIf="toggleItems[2].opened"
-            [icon]="['fal', 'angle-up']"
-          ></fa-icon>
-          <fa-icon
-            *ngIf="!toggleItems[2].opened"
-            [icon]="['fal', 'angle-down']"
-          ></fa-icon>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="12" *ngIf="toggleItems[2].opened">
-          <ion-list>
-            <ion-radio-group [(ngModel)]="tipo">
-              <ion-item *ngFor="let item of tipos">
-                <ion-radio justify="space-between" [value]="item.id">{{
-                  item.tipo
-                }}</ion-radio
-                ><br />
-              </ion-item>
-            </ion-radio-group>
-          </ion-list>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-item>
-  <ion-item>
-    <ion-grid>
-      <ion-row>
-        <ion-col size="11" (click)="ChangeOpened(3)"
-          ><span [ngClass]="{ selected: referencia }">
-            Referencia</span
-          ></ion-col
-        >
-        <ion-col size="1">
-          <fa-icon
-            *ngIf="toggleItems[3].opened"
-            [icon]="['fal', 'angle-up']"
-          ></fa-icon>
-          <fa-icon
-            *ngIf="!toggleItems[3].opened"
-            [icon]="['fal', 'angle-down']"
-          ></fa-icon>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="12" *ngIf="toggleItems[3].opened">
-          <ion-input
-            type="text"
-            [(ngModel)]="referencia"
-            placeholder="Ingrese referencia"
-          ></ion-input>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-item>
-  <div class="ion-float-right" style="margin-top: 15px">
-    <!-- <ion-button (click)="cleanFilters()" fill="solid" item-end color="light">
-      Limpiar filtros
-    </ion-button> -->
-    <ion-button (click)="apply()" fill="solid">
-      Aplicar filtros
-    </ion-button>
-  </div>
-</ion-content>
+<ion-grid>
+  <ion-row
+    (click)="ChangeOpened(1)"
+    [ngClass]="{ selected: hasDate }"
+    class="ion-padding"
+  >
+    <ion-col size="11"><span>Fecha </span></ion-col>
+    <ion-col size="1">
+      <fa-icon
+        *ngIf="toggleItems[1].opened"
+        [icon]="['fal', 'angle-up']"
+      ></fa-icon>
+      <fa-icon
+        *ngIf="!toggleItems[1].opened"
+        [icon]="['fal', 'angle-down']"
+      ></fa-icon>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12" *ngIf="toggleItems[1].opened">
+      <ion-range-calendar
+        [options]="optionsRange"
+        [(ngModel)]="dateRange"
+        [type]="type"
+        [format]="'yyyy-MM-dd'"
+      >
+      </ion-range-calendar>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<ion-grid>
+  <ion-row [ngClass]="{ selected: tipo >= 0 }" class="ion-padding">
+    <ion-col size="11" (click)="ChangeOpened(2)"
+      ><span>Tipo de Documento</span></ion-col
+    >
+    <ion-col size="1">
+      <fa-icon
+        *ngIf="toggleItems[2].opened"
+        [icon]="['fal', 'angle-up']"
+      ></fa-icon>
+      <fa-icon
+        *ngIf="!toggleItems[2].opened"
+        [icon]="['fal', 'angle-down']"
+      ></fa-icon>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12" *ngIf="toggleItems[2].opened">
+      <ion-list>
+        <ion-radio-group [(ngModel)]="tipo">
+          <ion-item *ngFor="let item of tipos">
+            <ion-radio justify="space-between" [value]="item.id">{{
+              item.tipo
+            }}</ion-radio
+            ><br />
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<ion-grid>
+  <ion-row [ngClass]="{ selected: referencia }" class="ion-padding">
+    <ion-col size="11" (click)="ChangeOpened(3)"
+      ><span> Referencia</span></ion-col
+    >
+    <ion-col size="1">
+      <fa-icon
+        *ngIf="toggleItems[3].opened"
+        [icon]="['fal', 'angle-up']"
+      ></fa-icon>
+      <fa-icon
+        *ngIf="!toggleItems[3].opened"
+        [icon]="['fal', 'angle-down']"
+      ></fa-icon>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12" *ngIf="toggleItems[3].opened">
+      <ion-input
+        type="text"
+        [(ngModel)]="referencia"
+        placeholder="Ingrese referencia"
+      ></ion-input>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<ion-button (click)="apply()" expand="block"> Aplicar filtros </ion-button>

@@ -1,12 +1,20 @@
-<app-section-title [section]="historialTitle"></app-section-title>
+<app-section-title
+  [section]="historialTitle"
+  [displayEmpty]="permisosAprobados.length == 0 && serviceInvoked"
+></app-section-title>
+
+<app-item-skeleton *ngIf="!serviceInvoked" [size]="3"></app-item-skeleton>
 <ion-list>
-  <ion-item *ngFor="let per of permisosAprobados">
+  <ion-item *ngFor="let permiso of permisosAprobados">
     <ion-label>
-      <h4 class="item-title">{{ per.tipoPermiso }}</h4>
-      <p>{{ per.desde | date : "dd/MM/yy" }}</p>
+      <h4 class="item-title">{{ permiso.tipoPermiso }}</h4>
+      <p>
+        {{ permiso.desde | date : "dd/MM/yy" }} -
+        {{ permiso.hasta | date : "dd/MM/yy" }}
+      </p>
     </ion-label>
 
-    <ion-badge class="badge-success">Aprobado</ion-badge>
+    <ion-badge class="badge-success">{{ permiso.estado }}</ion-badge>
   </ion-item>
 </ion-list>
 <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">

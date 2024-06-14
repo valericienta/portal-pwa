@@ -1,9 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { Vacaciones } from 'src/app/models/vacaciones.model';
@@ -17,8 +12,8 @@ import { VacacionesService } from 'src/app/services/vacaciones.service';
 })
 export class VacacionesSolicitudesComponent implements OnInit {
   @Output() updatediasEvent = new EventEmitter<boolean>();
-  loaddata: boolean = false;
   solicitudes: Vacaciones[] = [];
+  serviceInvoked = false;
   vacIcon: IconName = 'umbrella-beach';
   vacationTitle = {
     title: 'Solicitudes de Vacaciones',
@@ -32,7 +27,7 @@ export class VacacionesSolicitudesComponent implements OnInit {
     public modalCtrl: ModalController,
     private alertController: AlertController,
     private toastService: ToastService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.getSolicitudes();
@@ -41,7 +36,7 @@ export class VacacionesSolicitudesComponent implements OnInit {
   getSolicitudes() {
     this.solicitudes = [];
     this.vacacionesService.getSolicitudes().then((data: Vacaciones[]) => {
-      this.loaddata=true;
+      this.serviceInvoked = true;
       this.solicitudes = data;
       this.vacationTitle.message = this.setMessage();
     });
@@ -52,17 +47,11 @@ export class VacacionesSolicitudesComponent implements OnInit {
   }
 
   setMessage(): string {
-    if (this.solicitudes.length == 1) {
+    if (this.solicitudes.length == 1)
       return 'Tienes 1 solicitud pendiente de aprobación.';
-    } else if (this.solicitudes.length > 1) {
-      return (
-        'Tienes ' +
-        this.solicitudes.length +
-        ' solicitudes pendientes de aprobación.'
-      );
-    } else {
-      return 'No tienes solicitudes pendientes de aprobación.';
-    }
+    else if (this.solicitudes.length > 1)
+      return `Tienes ' ${this.solicitudes.length} solicitudes pendientes de aprobación.`;
+    else return 'No tienes solicitudes pendientes de aprobación.';
   }
 
   eliminarSolicitud(id: string) {

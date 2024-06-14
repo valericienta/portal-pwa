@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { Permiso } from 'src/app/interfaces/permiso.interface';
@@ -23,7 +23,8 @@ export class PermisosHistorialComponent implements OnInit {
     color: '--historial-accent',
     icon: this.histIcon,
   };
-
+  serviceInvoked = false;
+  @Output() onRecordsCount = new EventEmitter<number>();
   constructor(public permisosService: PermisosService) {}
 
   ngOnInit() {
@@ -36,6 +37,8 @@ export class PermisosHistorialComponent implements OnInit {
       .getPermisosHistorial(this.pagina, 4)
       .then((data: searchResponse) => {
         if (!data.hasNextPage) this.infiniteScroll.disabled = true;
+        this.serviceInvoked = true;
+        this.onRecordsCount.emit(data.totalCount);
         data.data.forEach((item: Permiso) => {
           this.permisosAprobados.push(item);
         });

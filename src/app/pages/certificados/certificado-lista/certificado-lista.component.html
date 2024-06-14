@@ -1,4 +1,11 @@
-<ion-list *ngIf="certificados.length > 0">
+<app-section-title
+  [section]="certificadosTitle"
+  [displayEmpty]="certificados.length == 0 && serviceInvodek"
+></app-section-title>
+
+<app-item-skeleton [size]="6" *ngIf="!serviceInvodek"></app-item-skeleton>
+
+<ion-list>
   <ion-item
     *ngFor="let certificado of certificados"
     (click)="showPDF(certificado)" >
@@ -6,7 +13,7 @@
       <h4 class="item-title">{{ certificado.referencia }}</h4>
       <p>{{ certificado.fecha | date : "dd/MM/yyyy" }}</p>
     </ion-label>
-    <ion-badge class="badge-success">Aprobado</ion-badge>
+    <ion-button slot="end" color="light"> Ver </ion-button>
   </ion-item>
 </ion-list>
 

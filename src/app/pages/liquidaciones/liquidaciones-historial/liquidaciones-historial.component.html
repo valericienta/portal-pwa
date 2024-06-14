@@ -1,0 +1,16 @@
+<app-section-title [section]="historialTitle"
+  [displayEmpty]="liquidaciones.length == 0 && serviceInvoked"></app-section-title>
+
+<app-item-skeleton [size]="4" *ngIf="!serviceInvoked"></app-item-skeleton>
+
+<ion-list>
+  <ion-item (click)="showPDF(liquidacion)" *ngFor="let liquidacion of liquidaciones">
+    <ion-label class="semibold"><h2>{{ liquidacion.referencia }}</h2>
+    <p>{{ liquidacion.fecha | date : "dd/MM/yy" }}</p></ion-label>
+    <ion-button slot="end" color="light"> Ver </ion-button>
+  </ion-item>
+</ion-list>
+
+<ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+  <ion-infinite-scroll-content class="spinner-hide"></ion-infinite-scroll-content>
+</ion-infinite-scroll>

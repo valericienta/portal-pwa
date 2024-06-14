@@ -1,23 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { CalendarComponentOptions, DayConfig } from '@googlproxer/ion-range-calendar';
+import {
+  CalendarComponentOptions,
+  DayConfig,
+} from '@googlproxer/ion-range-calendar';
 import { ModalController } from '@ionic/angular';
 import { ToastService } from 'src/app/services/toast.service';
 import { VacacionesService } from 'src/app/services/vacaciones.service';
 
 @Component({
-  selector: 'app-vacaciones-solictar',
+  selector: 'app-vacaciones-solicitar',
   templateUrl: './vacaciones-solicitar.component.html',
   styleUrls: ['./vacaciones-solicitar.component.scss'],
 })
 export class VacacionesSolicitarComponent implements OnInit {
-  dateRange: { from: string; to: string; };
+  dateRange: { from: string; to: string };
   type: 'string';
 
   test: DayConfig[] = [];
   public optionsRange: CalendarComponentOptions = {
-    from: (new Date()).setDate((new Date()).getDate() + 1),
+    from: new Date().setDate(new Date().getDate() + 1),
     pickMode: 'range',
-    daysConfig: this.test
+    daysConfig: this.test,
   };
 
   solicitud = {
@@ -25,17 +28,18 @@ export class VacacionesSolicitarComponent implements OnInit {
     observaciones: '',
     desde: '',
     hasta: '',
-    dias: 0
+    dias: 0,
   };
 
-  constructor(public modalController: ModalController,
+  constructor(
+    public modalController: ModalController,
     public vacacionesService: VacacionesService,
-    public toastService: ToastService) {
+    public toastService: ToastService
+  ) {
     this.solicitud.observaciones = '';
-  
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   dismiss() {
     this.modalController.dismiss(null, 'cancel');
@@ -46,7 +50,11 @@ export class VacacionesSolicitarComponent implements OnInit {
     this.solicitud.hasta = this.dateRange.to;
     this.vacacionesService.solicitar(this.solicitud).then((data: any) => {
       if (data) this.modalController.dismiss(null, 'save');
-      else this.toastService.present('Se ha producido un error al registrar la solicitud','danger');
-    })
+      else
+        this.toastService.present(
+          'Se ha producido un error al registrar la solicitud',
+          'danger'
+        );
+    });
   }
 }

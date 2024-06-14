@@ -5,14 +5,13 @@ import { firstValueFrom } from 'rxjs/internal/firstValueFrom';
 import { map } from 'rxjs';
 import { TiposPermiso } from '../interfaces/tipos-permiso.interface';
 import { Permiso } from '../interfaces/permiso.interface';
-import { environment } from 'src/environments/environment';
 import { searchResponse } from '../models/search-response.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PermisosService {
-  constructor(public http: HttpClient, public global: GlobalService) {}
+  constructor(public http: HttpClient, public global: GlobalService) { }
 
   getTipos() {
     let url = `/permisos/tipos`;
@@ -29,10 +28,10 @@ export class PermisosService {
   getPermisosHistorial(page?: number, size?: number) {
     let url = `/permisos/search`;
     let filtro = {
-      firmado: true,
       orderby: ['desde DESC'],
       pageNumber: page,
       pageSize: size,
+      utilizado: true
     };
     const source$ = this.http
       .post(url, filtro)
@@ -43,7 +42,7 @@ export class PermisosService {
   getPermisosPendientes() {
     let url = `/permisos/search`;
     let filtro = {
-      firmado: false,
+      utilizado: false,
       orderby: ['desde DESC'],
     };
     const source$ = this.http
@@ -72,7 +71,7 @@ export class PermisosService {
     return firstValueFrom(source$);
   }
 
-  getCantidadPermisosPendientes(){
+  getCantidadPermisosPendientes() {
     let url = '/permisos/pendientes'
     const source$ = this.http.get(url).pipe(map(((response: any) => response.data)))
     return firstValueFrom(source$)

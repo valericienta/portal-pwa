@@ -1,6 +1,6 @@
-<ion-header>
+<ion-header [translucent]="true" mode="ios">
   <ion-toolbar>
-    <h6>Nueva solicitud de certificado</h6>
+    <ion-title>Nueva solicitud</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="dismiss()">
         <fa-icon icon="close"></fa-icon>
@@ -8,24 +8,22 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content class="ion-padding">
-  <ion-radio-group [(ngModel)]="certificado.idFormato">
-    <ion-item
-      *ngFor="let tipo of tipos"
-      (click)="selectTipo(tipo.id)"
-      style="--padding-start: 0px; --background: none"
-    >
-      <ion-label> {{ tipo.nombre }}</ion-label>
-      <ion-radio slot="start" [value]="tipo.id"></ion-radio>
-    </ion-item>
-  </ion-radio-group>
 
-  <div style="display: flex; justify-content: end; margin-top: 1rem">
-    <ion-button
-      id="btnSolicitar"
-      (click)="solicitar()"
-      [disabled]="!certificado.idFormato"
-      >Solicitar</ion-button
-    >
-  </div>
-</ion-content>
+<ion-radio-group [(ngModel)]="certificado.idFormato">
+  <ion-radio
+    value="end"
+    labelPlacement="end"
+    class="ion-margin"
+    *ngFor="let tipo of tipos"
+    (click)="selectTipo(tipo.id)"
+    [value]="tipo.id"
+    >{{ tipo.nombre }}</ion-radio
+  ><br />
+</ion-radio-group>
+
+<ion-button
+  (click)="solicitar()"
+  expand="block"
+  [disabled]="!certificado.idFormato"
+  >Solicitar</ion-button
+>

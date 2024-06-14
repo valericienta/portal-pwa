@@ -25,14 +25,15 @@ export class DocumentosPendientesComponent implements OnInit {
     color: '--documentos-accent',
     icon: this.docIcon,
   };
+  serviceInvoked = false;
 
   constructor(
     public global: GlobalService,
     public modalCtrl: ModalController,
     private documentosService: DocumentosService
-  ) { }
+  ) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   async showPDF(document: Documento) {
     const modal = await this.modalCtrl.create({
@@ -40,24 +41,26 @@ export class DocumentosPendientesComponent implements OnInit {
       componentProps: {
         id: document.id,
         firmar: !document.firmado,
-        documento: document
-      }
+        documento: document,
+      },
     });
     modal.present();
     const { data, role } = await modal.onWillDismiss();
     if (role === 'firmado') {
       this.firmaEvent.emit(true);
       this.loadPendientes();
-    }
-    else this.firmaEvent.emit(false);
+    } else this.firmaEvent.emit(false);
   }
 
   loadPendientes() {
     this.documentos = [];
-    this.documentosService.getDocumentosPendientesTodos().then((data: searchResponse) => {
-      data.data.forEach((item: Documento) => {
-        this.documentos.push(item);
+    this.documentosService
+      .getDocumentosPendientesTodos()
+      .then((data: searchResponse) => {
+        this.serviceInvoked = true;
+        data.data.forEach((item: Documento) => {
+          this.documentos.push(item);
+        });
       });
-    });
   }
 }

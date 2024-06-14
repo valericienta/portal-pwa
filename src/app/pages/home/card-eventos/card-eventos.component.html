@@ -1,6 +1,6 @@
 <app-section-title [section]="eventosSection"></app-section-title>
 
-<ion-item class="ion-margin" style="border-radius: 9px" *ngIf="!eventos">
+<ion-item class="ion-margin" style="border-radius: 9px" *ngIf="!serviceInvoked">
   <ion-thumbnail slot="start">
     <ion-skeleton-text [animated]="true"></ion-skeleton-text>
   </ion-thumbnail>
@@ -26,13 +26,13 @@
   </ion-label>
 </ion-item>
 
-<swiper-container pagination="true" *ngIf="eventos">
+<swiper-container pagination="true">
   <swiper-slide
     *ngFor="let event of eventos"
     class="ion-padding"
     style="height: 170px !important"
   >
-    <ion-item class="card" lines="none">
+    <ion-item class="card" lines="none" *ngIf="serviceInvoked">
       <ion-avatar slot="start" *ngIf="event.urlFotografia.length > 0">
         <img [src]="event.urlFotografia" />
       </ion-avatar>

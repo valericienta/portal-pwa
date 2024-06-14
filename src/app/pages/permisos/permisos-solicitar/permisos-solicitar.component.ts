@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { CalendarComponentOptions, DayConfig } from '@googlproxer/ion-range-calendar';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  CalendarComponentOptions,
+  DayConfig,
+} from '@googlproxer/ion-range-calendar';
 import { ModalController } from '@ionic/angular';
 import { Permiso } from 'src/app/interfaces/permiso.interface';
 import { TiposPermiso } from 'src/app/interfaces/tipos-permiso.interface';
@@ -12,54 +15,64 @@ import { ToastService } from 'src/app/services/toast.service';
   styleUrls: ['./permisos-solicitar.component.scss'],
 })
 export class PermisosSolicitarComponent implements OnInit {
-  dateRange: { from: string; to: string; };
+  @Output() dismissChange = new EventEmitter<any>();
+  dateRange: { from: string; to: string };
   type: 'string';
 
   test: DayConfig[] = [];
   tipos: TiposPermiso[] = [];
   public optionsRange: CalendarComponentOptions = {
-    from: (new Date()).setDate((new Date()).getDate() + 1),
+    from: new Date().setDate(new Date().getDate() + 1),
     pickMode: 'range',
-    daysConfig: this.test
+    daysConfig: this.test,
   };
 
   permiso: Permiso = {
     idTipoPermiso: 0,
     observaciones: '',
     desde: '',
-    hasta: ''
+    hasta: '',
   };
 
-  constructor(public permisosService: PermisosService,
+  constructor(
+    public permisosService: PermisosService,
     public toastService: ToastService,
-    public modalCtrl: ModalController) {
+    public modalCtrl: ModalController
+  ) {
     this.getTipos();
   }
 
-  ngOnInit() { }
-
+  ngOnInit() {}
 
   getTipos() {
-    this.permisosService.getTipos().then(data => {
+    this.permisosService.getTipos().then((data) => {
       this.tipos = data;
-    })
+    });
   }
 
   solicitar() {
     this.permiso.desde = this.dateRange.from;
     this.permiso.hasta = this.dateRange.to;
-    this.permisosService.solicitar(this.permiso)
-    .then((data: any) => {
-      if (data) this.modalCtrl.dismiss(null, 'save');
-      else this.toastService.present('Se ha producido un error al registrar la solicitud', 'danger');
-    })
-    .catch((error)=>{
-      this.toastService.present('Se ha producido un error al registrar la solicitud', 'danger');
-    })
+    this.permisosService
+      .solicitar(this.permiso)
+      .then((data: any) => {
+        if (data) this.modalCtrl.dismiss(null, 'save');
+        else
+          this.toastService.present(
+            'Se ha producido un error al registrar la solicitud',
+            'danger'
+          );
+      })
+      .catch((error) => {
+        this.toastService.present(
+          'Se ha producido un error al registrar la solicitud',
+          'danger'
+        );
+      });
   }
 
   dismiss() {
+    this.dismissChange.emit();
     this.modalCtrl.dismiss(null, 'cancel');
   }
-
 }
